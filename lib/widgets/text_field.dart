@@ -8,7 +8,6 @@ class XTextField extends StatelessWidget {
   final void Function()? onBlur;
   final void Function(String text)? onSubmit;
   final TextEditingController? controller;
-  var submitLocked = false;
   XTextField(
       {Key? key,
       this.validator,
