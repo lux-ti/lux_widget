@@ -211,9 +211,9 @@ class _XLogoPainter extends CustomPainter {
     lux.lineTo(size.width * 0.4805163, size.height * 0.3414000);
     lux.close();
 
-    Paint lux_fill = Paint()..style = PaintingStyle.fill;
-    lux_fill.color = primaryColor;
-    canvas.drawPath(lux, lux_fill);
+    Paint luxFill = Paint()..style = PaintingStyle.fill;
+    luxFill.color = primaryColor;
+    canvas.drawPath(lux, luxFill);
 
     Path erp = Path();
     erp.moveTo(size.width * 0.5692093, size.height * 0.4638250);
@@ -310,9 +310,9 @@ class _XLogoPainter extends CustomPainter {
         size.height * 0.4638250);
     erp.close();
 
-    Paint erp_fill = Paint()..style = PaintingStyle.fill;
-    erp_fill.color = secondaryColor;
-    canvas.drawPath(erp, erp_fill);
+    Paint erpFill = Paint()..style = PaintingStyle.fill;
+    erpFill.color = secondaryColor;
+    canvas.drawPath(erp, erpFill);
 
     erp.moveTo(size.width * 0.7128000, size.height * 0.9579556);
     erp.lineTo(size.width * 0.7128000, size.height * 0.02108092);
@@ -504,7 +504,7 @@ class _XLogoPainter extends CustomPainter {
         size.height * 0.9579556);
     erp.close();
 
-    canvas.drawPath(erp, erp_fill);
+    canvas.drawPath(erp, erpFill);
   }
 
   @override
