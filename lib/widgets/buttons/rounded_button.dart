@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:lux_ui/lib.dart';
 
-class RoundedButton extends StatelessWidget {
+class XRoundedButton extends StatelessWidget {
   final double? height;
   final double? width;
+  final String? name;
+  final Color? color;
  
   final void Function() onTap;
 
   
 
-  const RoundedButton({ Key? key, this.height, this.width, required this.onTap, }) : super(key: key);
+  const XRoundedButton({ Key? key, this.height, this.width, required this.onTap, this.name, this.color  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +23,10 @@ class RoundedButton extends StatelessWidget {
         alignment: Alignment.center,
         height: height ?? 34,
         width: width ?? 100,
-        child: Text('Login',style: TextStyle(color: xTheme.backgroundColor,fontSize: 16,fontWeight: FontWeight.w700,)),
+        child: Text(name!,style: TextStyle(color: xTheme.backgroundColor,fontSize: 16,fontWeight: FontWeight.w700,)),
         
         decoration: BoxDecoration(
-          color: xTheme.warningColor,
+          color: color ?? xTheme.warningColor,
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
     
