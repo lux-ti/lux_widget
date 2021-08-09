@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CircleAvatarLux extends StatelessWidget {
+class XCircleAvatar extends StatelessWidget {
   @required
   final String image;
   @required
   final String initials;
   final double radius;
 
-  const CircleAvatarLux(
+  const XCircleAvatar(
       {Key? key, required this.image, required this.initials, this.radius = 16})
       : super(key: key);
   @override
