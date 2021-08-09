@@ -28,9 +28,18 @@ class XLogin extends StatelessWidget {
     return Stack(children: [
       Container(
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            blurRadius: 6,
+            spreadRadius: 3,
+            offset: Offset(0,3)
+          
+          )],
             color: xTheme.primaryColor, borderRadius: BorderRadius.circular(5)),
         height: 330,
         width: 345,
+        
       ),
       Padding(
         padding: EdgeInsets.only(top: 3),
@@ -74,11 +83,11 @@ class XLogin extends StatelessWidget {
                     color: xTheme.primaryColor,
                     fontSize: 12),
                 Padding(
-                  padding: const EdgeInsets.only(left: 30),
+                  padding: const EdgeInsets.only(left: 70),
                   child: Obx(() => Row(
                         children: [
                           Container(
-                            width: 250,
+                            width: 200,
                             child: TextFormField(
                               onFieldSubmitted: (value) {},
                               onChanged: onChange,
