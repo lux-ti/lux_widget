@@ -15,7 +15,7 @@ class XLogin extends StatelessWidget {
     Key? key,
     this.topName = '',
     this.contentTop,
-    this.midName = 'a',
+    this.midName = '',
     this.contentMid,
     this.onChange,
   }) : super(key: key);
@@ -74,7 +74,7 @@ class XLogin extends StatelessWidget {
                     color: xTheme.primaryColor,
                     fontSize: 12),
                 Padding(
-                  padding: const EdgeInsets.only(left: 50),
+                  padding: const EdgeInsets.only(left: 30),
                   child: Obx(() => Row(
                         children: [
                           Container(
