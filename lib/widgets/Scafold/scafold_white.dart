@@ -70,9 +70,7 @@ class XScafold extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Expanded(
-                  child: buildChild(context),
-                )
+                Expanded(child: buildChild(context))
               ],
             ),
           ),
