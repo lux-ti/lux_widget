@@ -5,8 +5,9 @@ class XBorderCard extends StatelessWidget {
   final double? width;
   final double? heigth;
   final bool? isBorder;
+  final Widget? child;
 
-  const XBorderCard({Key? key, this.width = 380, this.heigth = 192, this.isBorder = false})
+  const XBorderCard({Key? key, this.width = 380, this.heigth = 192, this.isBorder = false, this.child})
       : super(key: key);
 
   @override
@@ -21,13 +22,15 @@ class XBorderCard extends StatelessWidget {
           height: heigth,
           decoration: BoxDecoration(
             color: xTheme.warningColor,
-            borderRadius: BorderRadius.circular(7)
+            borderRadius: BorderRadius.circular(7),
+            
             
           ),
         ),
         Padding(
           padding: EdgeInsets.only(left: (aux == true) ? 5 : 0),
           child: Container(
+            child: child,
             width: 380,
             height: heigth,
             decoration: BoxDecoration(
