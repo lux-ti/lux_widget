@@ -4,10 +4,12 @@ import 'package:lux_ui/lib.dart';
 class XBorderCard extends StatelessWidget {
   final double? width;
   final double? heigth;
+  final double? widthOut;
+  final double? heigthOut;
   final bool? isBorder;
   final Widget? child;
 
-  const XBorderCard({Key? key, this.width = 380, this.heigth = 192, this.isBorder = false, this.child})
+  const XBorderCard({Key? key, this.width = 380, this.heigth = 192, this.isBorder = false, this.child, this.widthOut, this.heigthOut})
       : super(key: key);
 
   @override
@@ -31,8 +33,8 @@ class XBorderCard extends StatelessWidget {
           padding: EdgeInsets.only(left: (aux == true) ? 5 : 0),
           child: Container(
             child: child,
-            width: 380,
-            height: heigth,
+            width: widthOut,
+            height: heigthOut,
             decoration: BoxDecoration(
               color: xTheme.backgroundColor,
               borderRadius: BorderRadius.circular(7)
