@@ -6,22 +6,16 @@ class XSideBarButton extends StatelessWidget {
   final String? text;
   final void Function()? onTap;
   final double? fontSize;
-  final Color? color;
+  final Color? colorIcon;
+  final Color? colorText;
   final double? iconSize;
 
-  const XSideBarButton(
-      {Key? key,
-      required this.icon,
-      this.text = '',
-      this.onTap,
-      this.fontSize = 28,
-      this.color,
-      this.iconSize = 30})
-      : super(key: key);
+  const XSideBarButton({ Key? key, required this.icon,  this.text = '',  this.onTap, this.fontSize = 30, this.colorIcon, this.iconSize, this.colorText }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var xTheme = XTheme.of(context);
+    
     return Container(
       margin: EdgeInsets.symmetric(vertical: 12),
       child: GestureDetector(
@@ -32,7 +26,7 @@ class XSideBarButton extends StatelessWidget {
             Icon(
               icon,
               size: iconSize,
-              color: color ?? xTheme.backgroundColor,
+              color: colorIcon ?? xTheme.backgroundColor,
             ),
             SizedBox(
               width: 10,
@@ -40,7 +34,7 @@ class XSideBarButton extends StatelessWidget {
             Text(
               text!,
               style: TextStyle(
-                  color: color ?? xTheme.backgroundColor,
+                  color: colorText ?? xTheme.backgroundColor,
                   fontSize: fontSize,
                   fontWeight: FontWeight.w300),
             )
