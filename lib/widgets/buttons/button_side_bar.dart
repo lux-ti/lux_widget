@@ -7,11 +7,12 @@ class XSideBarButton extends StatelessWidget {
   final String? text;
   final void Function()? onTap;
   final double? fontSize;
-  final Color? color;
+  final Color? colorIcon;
+  final Color? colorText;
   final double? iconSize;
   
 
-  const XSideBarButton({ Key? key, required this.icon,  this.text = '',  this.onTap, this.fontSize = 30, this.color, this.iconSize }) : super(key: key);
+  const XSideBarButton({ Key? key, required this.icon,  this.text = '',  this.onTap, this.fontSize = 30, this.colorIcon, this.iconSize, this.colorText }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +24,14 @@ class XSideBarButton extends StatelessWidget {
         children: [
           Icon(icon,
           size: iconSize,
-          color: color,
+          color: colorIcon,
           ),
 
           SizedBox(width: 10,),
 
           Text(text!,
           style: TextStyle(
-            color: color ?? xTheme.backgroundColor,
+            color: colorText ?? xTheme.backgroundColor,
             fontSize: fontSize,
             
           ),)
