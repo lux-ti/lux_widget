@@ -51,7 +51,7 @@ class XScafoldGrey extends XScafold {
                   SizedBox(
                     height: 10,
                   ),
-                  buildChild(context)
+                  Expanded(child: buildChild(context))
                 ],
               ),
             ),
