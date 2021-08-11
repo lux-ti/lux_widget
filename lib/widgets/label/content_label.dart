@@ -8,8 +8,12 @@ class XContentLabel extends StatelessWidget {
   final Color? colorName;
   final double? topSize;
   final double? nameSize;
+  final FontWeight? topWeight;
+  final FontWeight? nameWeight;
+  final double? topSpace;
+  final double? nameSpace;
 
-  const XContentLabel({Key? key, required this.topName, required this.name, this.colorTop, this.colorName, this.topSize, this.nameSize,})
+  const XContentLabel({Key? key, required this.topName, required this.name, this.colorTop, this.colorName, this.topSize, this.nameSize, this.topWeight, this.nameWeight, this.topSpace, this.nameSpace,})
       : super(key: key);
 
   @override
@@ -21,17 +25,18 @@ class XContentLabel extends StatelessWidget {
       children: [
         Text(
           topName,
-          style: TextStyle(letterSpacing: 3,
+          style: TextStyle(letterSpacing: topSpace,
             color: colorTop ??xTheme.backgroundColor,
-            fontSize: topSize,fontWeight: FontWeight.w600
+            fontSize: topSize,fontWeight: topWeight
           ),
         ),
        
         Text(name,
             style: TextStyle(
+              letterSpacing: nameSpace,
                 color: colorName ??xTheme.backgroundColor,
                 fontSize: nameSize,
-                fontWeight: FontWeight.w300)),
+                fontWeight: nameWeight)),
       ],
     );
   }
