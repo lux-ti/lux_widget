@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
 
 class XScafoldWithColorChild extends XScafold {
-  XScafoldWithColorChild(
-      {required String title, Widget? child, void Function()? onBack})
+  final Alignment? alignment;
+  XScafoldWithColorChild( 
+      {this.alignment,required String title, Widget? child, void Function()? onBack})
       : super(title: title, child: child, onBack: onBack);
 
   @override
   Widget buildChild(context) {
     return Container(
-        color: Color.fromRGBO(229, 229, 229, 0.3), child: child ?? Container());
+        constraints: BoxConstraints.expand(),
+         
+        child: Container(
+          alignment: alignment ?? Alignment.topCenter,
+          color: Color.fromRGBO(229, 229, 229, 0.3),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+            child: child,
+          ),
+        ),
+        );
   }
 }
