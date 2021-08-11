@@ -17,6 +17,7 @@ class XTextField extends StatelessWidget {
   final Color? colorFocus;
   final Color? colorEnable;
   final Color? colorBorder;
+  final Color? colorText;
 
 
 
@@ -26,7 +27,7 @@ class XTextField extends StatelessWidget {
       this.onFocus,
       this.onBlur,
       this.controller,
-      this.onSubmit, this.topText, this.hintText, this.color, this.borderRadius, this.colorHint, this.colorError, this.colorFocus, this.colorEnable, this.colorBorder})
+      this.onSubmit, this.topText, this.hintText, this.color, this.borderRadius, this.colorHint, this.colorError, this.colorFocus, this.colorEnable, this.colorBorder, this.colorText})
       : super(key: key);
 
   @override
@@ -38,7 +39,7 @@ class XTextField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(topText ?? ''),
+          Text(topText ?? '', style: TextStyle(color: colorText,fontWeight: FontWeight.w600),),
           SizedBox(
             height: 8,
           ),
