@@ -4,8 +4,10 @@ import 'package:lux_ui/lib.dart';
 class XContentLabel extends StatelessWidget {
   final String topName;
   final String name;
+  final Color? colorTop;
+  final Color? colorName;
 
-  const XContentLabel({Key? key, required this.topName, required this.name})
+  const XContentLabel({Key? key, required this.topName, required this.name, this.colorTop, this.colorName,})
       : super(key: key);
 
   @override
@@ -18,14 +20,14 @@ class XContentLabel extends StatelessWidget {
         Text(
           topName,
           style: TextStyle(letterSpacing: 3,
-            color: xTheme.backgroundColor,
+            color: colorTop ??xTheme.backgroundColor,
             fontSize: 12,fontWeight: FontWeight.w600
           ),
         ),
        
         Text(name,
             style: TextStyle(
-                color: xTheme.backgroundColor,
+                color: colorName ??xTheme.backgroundColor,
                 fontSize: 24,
                 fontWeight: FontWeight.w300)),
       ],
