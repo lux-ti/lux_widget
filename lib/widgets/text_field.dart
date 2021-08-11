@@ -10,6 +10,13 @@ class XTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? topText;
   final String? hintText;
+  final double? borderRadius;
+  final Color? color;
+  final Color? colorHint;
+  final Color? colorError;
+  final Color? colorFocus;
+  final Color? colorEnable;
+  final Color? colorBorder;
 
 
 
@@ -19,7 +26,7 @@ class XTextField extends StatelessWidget {
       this.onFocus,
       this.onBlur,
       this.controller,
-      this.onSubmit, this.topText, this.hintText})
+      this.onSubmit, this.topText, this.hintText, this.color, this.borderRadius, this.colorHint, this.colorError, this.colorFocus, this.colorEnable, this.colorBorder})
       : super(key: key);
 
   @override
@@ -52,12 +59,12 @@ class XTextField extends StatelessWidget {
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                   hintText: hintText ?? 'Infome',
-                  disabledBorder: xOutlineInputBorder(theme.disabledColor),
-                  hintStyle: TextStyle(color: theme.hintColor),
-                  errorBorder: xOutlineInputBorder(theme.dangeColor),
-                  focusedBorder: xOutlineInputBorder(theme.primaryColor),
-                  enabledBorder: xOutlineInputBorder(theme.borderColor),
-                  border: xOutlineInputBorder(theme.primaryColor)),
+                  disabledBorder: xOutlineInputBorder(theme.disabledColor,borderRadius),
+                  hintStyle: TextStyle(color: colorHint ?? theme.hintColor),
+                  errorBorder: xOutlineInputBorder(colorError ?? theme.dangeColor, borderRadius),
+                  focusedBorder: xOutlineInputBorder(colorFocus ?? theme.primaryColor, borderRadius),
+                  enabledBorder: xOutlineInputBorder(colorEnable ?? theme.borderColor,borderRadius ),
+                  border: xOutlineInputBorder(colorBorder ?? theme.primaryColor, borderRadius)),
             ),
           ),
         ],
@@ -71,9 +78,9 @@ class XTextField extends StatelessWidget {
     }
   }
 
-  OutlineInputBorder xOutlineInputBorder(Color color) {
+  OutlineInputBorder xOutlineInputBorder(Color color,[double? borderRadius]) {
     return OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        borderSide: BorderSide(color: color, width: 2.0));
+        borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 10)),
+        borderSide: BorderSide(color: color , width: 2.0));
   }
 }
