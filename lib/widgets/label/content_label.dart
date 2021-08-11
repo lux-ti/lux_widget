@@ -13,8 +13,19 @@ class XContentLabel extends StatelessWidget {
   final double? topSpace;
   final double? nameSpace;
 
-  const XContentLabel({Key? key, required this.topName, required this.name, this.colorTop, this.colorName, this.topSize, this.nameSize, this.topWeight, this.nameWeight, this.topSpace, this.nameSpace,})
-      : super(key: key);
+  const XContentLabel({
+    Key? key,
+    required this.topName,
+    required this.name,
+    this.colorTop,
+    this.colorName,
+    this.topSize,
+    this.nameSize,
+    this.topWeight,
+    this.nameWeight,
+    this.topSpace,
+    this.nameSpace,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +36,16 @@ class XContentLabel extends StatelessWidget {
       children: [
         Text(
           topName,
-          style: TextStyle(letterSpacing: topSpace,
-            color: colorTop ??xTheme.backgroundColor,
-            fontSize: topSize,fontWeight: topWeight
-          ),
+          style: TextStyle(
+              letterSpacing: topSpace,
+              color: colorTop ?? xTheme.backgroundColor,
+              fontSize: topSize,
+              fontWeight: topWeight),
         ),
-       
         Text(name,
             style: TextStyle(
-              letterSpacing: nameSpace,
-                color: colorName ??xTheme.backgroundColor,
+                letterSpacing: nameSpace,
+                color: colorName ?? xTheme.backgroundColor,
                 fontSize: nameSize,
                 fontWeight: nameWeight)),
       ],
