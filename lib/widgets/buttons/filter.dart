@@ -31,6 +31,7 @@ class XFilter extends StatelessWidget {
                 width: 320,
                 child: TextField(
                     decoration: InputDecoration(
+                        border: InputBorder.none,
                         filled: true,
                         fillColor: colorInputText ?? xTheme.backgroundColor,
                         prefixIcon: Container(

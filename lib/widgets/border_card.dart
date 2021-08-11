@@ -30,7 +30,7 @@ class XBorderCard extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: (aux == true) ? 5 : 0),
+          padding: EdgeInsets.only(left: (aux == true) ? 3 : 0),
           child: Container(
             child: child,
             width: widthOut,
