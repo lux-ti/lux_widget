@@ -8,13 +8,18 @@ class XTextField extends StatelessWidget {
   final void Function()? onBlur;
   final void Function(String text)? onSubmit;
   final TextEditingController? controller;
+  final String? topText;
+  final String? hintText;
+
+
+
   XTextField(
       {Key? key,
       this.validator,
       this.onFocus,
       this.onBlur,
       this.controller,
-      this.onSubmit})
+      this.onSubmit, this.topText, this.hintText})
       : super(key: key);
 
   @override
@@ -26,7 +31,7 @@ class XTextField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Teste'),
+          Text(topText ?? ''),
           SizedBox(
             height: 8,
           ),
@@ -46,7 +51,7 @@ class XTextField extends StatelessWidget {
               decoration: InputDecoration(
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-                  hintText: 'Testetete',
+                  hintText: hintText ?? 'Infome',
                   disabledBorder: xOutlineInputBorder(theme.disabledColor),
                   hintStyle: TextStyle(color: theme.hintColor),
                   errorBorder: xOutlineInputBorder(theme.dangeColor),
