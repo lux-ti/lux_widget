@@ -45,7 +45,7 @@ class XFilter extends StatelessWidget {
                 children: [
                   Icon(
                     Lxi.luxFilter,
-                    size: 12,
+                    size: iconsSize,
                   ),
                   SizedBox(
                     width: 8,
