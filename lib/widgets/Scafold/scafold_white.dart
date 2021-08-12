@@ -3,7 +3,7 @@ import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/util/lxi.dart';
 
 class XScafold extends StatelessWidget {
-  final String title;
+  final String? title;
   final Widget? child;
   late final XThemeData theme;
   final void Function()? onBack;
@@ -41,9 +41,9 @@ class XScafold extends StatelessWidget {
     );
   }
 
-  Text buildTitle() {
+  Widget buildTitle() {
     return Text(
-      title,
+      title ?? '',
       style: TextStyle(
           fontFamily: 'Rubik',
           fontWeight: FontWeight.w300,
