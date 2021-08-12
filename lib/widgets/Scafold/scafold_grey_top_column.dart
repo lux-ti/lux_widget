@@ -3,8 +3,12 @@ import 'package:lux_ui/widgets/Scafold/Scafold.dart';
 
 class XScafoldGreyTopColumn extends XScafoldGrey {
   final Widget? topChild;
-  XScafoldGreyTopColumn(this.topChild,
-      {Key? key, String? title, Widget? child, void Function()? onBack})
+  XScafoldGreyTopColumn(
+      {Key? key,
+      String? title,
+      this.topChild,
+      Widget? child,
+      void Function()? onBack})
       : super(key: key, title: title, child: child, onBack: onBack);
   @override
   Widget buildTop(context) {
