@@ -10,7 +10,7 @@ class XScafoldGrey extends XScafold {
     String? title,
     Widget? child,
     void Function()? onBack,
-  }) : super(title: title = '', child: child, onBack: onBack);
+  }) : super(title: title, child: child, onBack: onBack);
 
   Widget buildTop(context) {
     final parentRoute = ModalRoute.of(context);
@@ -27,9 +27,9 @@ class XScafoldGrey extends XScafold {
     );
   }
 
-  Text buildTitle() {
+  Widget buildTitle() {
     return Text(
-      title,
+      title ?? "",
       style: TextStyle(
           fontFamily: 'Manrope',
           fontWeight: FontWeight.w200,
