@@ -43,6 +43,8 @@ flutter:
   fonts:
     - family: Manrope
       fonts:
+        - asset: fonts/Manrope-ExtraBold.ttf
+          weight: 800
         - asset: fonts/Manrope-Bold.ttf
           weight: 700
         - asset: fonts/Manrope-SemiBold.ttf

@@ -4,13 +4,15 @@ import 'package:lux_ui/lib.dart';
 class XFilter extends StatelessWidget {
   final double? heigth;
   final double? width;
+  final Color? colorInputText;
+  final double? iconsSize;
   final void Function() onTap;
 
   const XFilter({
     Key? key,
     this.heigth = 40,
     this.width = 370,
-    required this.onTap,
+    required this.onTap, this.colorInputText, this.iconsSize,
   }) : super(key: key);
 
   @override
@@ -29,8 +31,9 @@ class XFilter extends StatelessWidget {
                 width: 320,
                 child: TextField(
                     decoration: InputDecoration(
+                        border: InputBorder.none,
                         filled: true,
-                        fillColor: xTheme.disabledColor,
+                        fillColor: colorInputText ?? xTheme.backgroundColor,
                         prefixIcon: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
@@ -43,14 +46,14 @@ class XFilter extends StatelessWidget {
                 children: [
                   Icon(
                     Lxi.luxFilter,
-                    size: 12,
+                    size: iconsSize,
                   ),
                   SizedBox(
                     width: 8,
                   ),
                   Icon(
                     Lxi.chevronBottom,
-                    size: 12,
+                    size: iconsSize,
                   )
                 ],
               ),

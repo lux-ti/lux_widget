@@ -3,12 +3,14 @@ import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
 
 class XScafoldGrey extends XScafold {
-  XScafoldGrey(
-      {Key? key,
-      required String? title,
-      Widget? child,
-      void Function()? onBack})
-      : super(title: title, child: child, onBack: onBack);
+  final Widget? topChild;
+  XScafoldGrey({
+    Key? key,
+    this.topChild,
+    String? title,
+    Widget? child,
+    void Function()? onBack,
+  }) : super(title: title, child: child, onBack: onBack);
 
   Widget buildTop(context) {
     final parentRoute = ModalRoute.of(context);
@@ -20,14 +22,14 @@ class XScafoldGrey extends XScafold {
         SizedBox(
           width: 8,
         ),
-        buildTitle()
+        topChild ?? buildTitle()
       ],
     );
   }
 
   Widget buildTitle() {
     return Text(
-      title ?? '',
+      title ?? "",
       style: TextStyle(
           fontFamily: 'Manrope',
           fontWeight: FontWeight.w200,
@@ -45,7 +47,7 @@ class XScafoldGrey extends XScafold {
           bottom: false,
           child: Padding(
             padding: EdgeInsets.only(left: 8, right: 8, top: 18),
-            child: SingleChildScrollView(
+            child: Container(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
