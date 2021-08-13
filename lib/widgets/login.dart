@@ -55,12 +55,12 @@ class XLogin extends StatelessWidget {
             children: [
               Column(children: [
                 XSideBarButton(
-                    iconSize: 12,
+                    iconSize: 18,
                     icon: Lxi.user,
                     text: topName!,
                     colorIcon: xTheme.primaryColor,
                     colorText: xTheme.primaryColor,
-                    fontSize: 12),
+                    fontSize: 18),
                 Container(
                   width: 350,
                   decoration:
@@ -78,12 +78,12 @@ class XLogin extends StatelessWidget {
               ]),
               Column(children: [
                 XSideBarButton(
-                    iconSize: 12,
+                    iconSize: 18,
                     icon: Lxi.lock,
                     text: midName!,
                     colorIcon: xTheme.primaryColor,
                     colorText: xTheme.primaryColor,
-                    fontSize: 12),
+                    fontSize: 18),
                 Padding(
                   padding: const EdgeInsets.only(left: 70),
                   child: Obx(() => Row(
@@ -104,7 +104,7 @@ class XLogin extends StatelessWidget {
                             ),
                           ),
                           IconButton(
-                            icon: Icon(Lxi.eye, size: 24),
+                            icon: Icon(Lxi.eye, size: 24,color: xTheme.primaryColor,),
                             onPressed: () {
                               obscureText.value =
                                   (obscureText != true.obs) ? true : false;
