@@ -19,15 +19,23 @@ class XTextField extends StatelessWidget {
   final Color? colorBorder;
   final Color? colorText;
 
-
-
   XTextField(
       {Key? key,
       this.validator,
       this.onFocus,
       this.onBlur,
       this.controller,
-      this.onSubmit, this.topText, this.hintText, this.color, this.borderRadius, this.colorHint, this.colorError, this.colorFocus, this.colorEnable, this.colorBorder, this.colorText})
+      this.onSubmit,
+      this.topText,
+      this.hintText,
+      this.color,
+      this.borderRadius,
+      this.colorHint,
+      this.colorError,
+      this.colorFocus,
+      this.colorEnable,
+      this.colorBorder,
+      this.colorText})
       : super(key: key);
 
   @override
@@ -39,7 +47,13 @@ class XTextField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(topText ?? '', style: TextStyle(color: colorText,fontWeight: FontWeight.w600),),
+          Padding(
+            padding: const EdgeInsets.only(left: 13),
+            child: Text(
+              topText ?? '',
+              style: TextStyle(color: colorText, fontWeight: FontWeight.w600),
+            ),
+          ),
           SizedBox(
             height: 8,
           ),
@@ -60,12 +74,17 @@ class XTextField extends StatelessWidget {
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                   hintText: hintText ?? 'Infome',
-                  disabledBorder: xOutlineInputBorder(theme.disabledColor,borderRadius),
+                  disabledBorder:
+                      xOutlineInputBorder(theme.disabledColor, borderRadius),
                   hintStyle: TextStyle(color: colorHint ?? theme.hintColor),
-                  errorBorder: xOutlineInputBorder(colorError ?? theme.dangeColor, borderRadius),
-                  focusedBorder: xOutlineInputBorder(colorFocus ?? theme.primaryColor, borderRadius),
-                  enabledBorder: xOutlineInputBorder(colorEnable ?? theme.borderColor,borderRadius ),
-                  border: xOutlineInputBorder(colorBorder ?? theme.primaryColor, borderRadius)),
+                  errorBorder: xOutlineInputBorder(
+                      colorError ?? theme.dangeColor, borderRadius),
+                  focusedBorder: xOutlineInputBorder(
+                      colorFocus ?? theme.primaryColor, borderRadius),
+                  enabledBorder: xOutlineInputBorder(
+                      colorEnable ?? theme.borderColor, borderRadius),
+                  border: xOutlineInputBorder(
+                      colorBorder ?? theme.primaryColor, borderRadius)),
             ),
           ),
         ],
@@ -79,9 +98,9 @@ class XTextField extends StatelessWidget {
     }
   }
 
-  OutlineInputBorder xOutlineInputBorder(Color color,[double? borderRadius]) {
+  OutlineInputBorder xOutlineInputBorder(Color color, [double? borderRadius]) {
     return OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 10)),
-        borderSide: BorderSide(color: color , width: 2.0));
+        borderSide: BorderSide(color: color, width: 2.0));
   }
 }
