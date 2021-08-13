@@ -6,32 +6,35 @@ class XStatus extends StatelessWidget {
   final Color? color;
   final int? intDays;
 
-  const XStatus({ Key? key, this.name, this.color = Colors.red, this.intDays }) : super(key: key);
+  const XStatus({Key? key, this.name, this.color = Colors.red, this.intDays})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var xTheme = XTheme.of(context);
 
     return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          height: 5,
-          width: 5,
+          height: 10,
+          width: 10,
           decoration: BoxDecoration(
+            shape: BoxShape.circle,
             color: color,
-            borderRadius: BorderRadius.circular(15)
           ),
         ),
-
-        SizedBox(width: 5,),
-
+        SizedBox(
+          width: 5,
+        ),
         Text(
-          '$name' + ' $intDays' + ' DIAS',
+          '${name.toString().toUpperCase()}' +
+              ' ${intDays.toString().toUpperCase()}' +
+              ' DIAS',
           style: TextStyle(
             color: color ?? xTheme.dangeColor,
             fontSize: 12,
             fontWeight: FontWeight.w800,
-            
           ),
         ),
       ],
