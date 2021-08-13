@@ -7,7 +7,7 @@ class XScafoldGrey extends XScafold {
   final double? textSize;
 
 
-  XScafoldGrey(this.textSize, {
+  XScafoldGrey( {this.textSize,
     Key? key,
     this.topChild,
     String? title,
