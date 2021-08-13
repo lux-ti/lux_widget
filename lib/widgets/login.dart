@@ -55,12 +55,12 @@ class XLogin extends StatelessWidget {
             children: [
               Column(children: [
                 XSideBarButton(
-                    iconSize: 18,
+                    iconSize: 15,
                     icon: Lxi.user,
                     text: topName!,
                     colorIcon: xTheme.primaryColor,
                     colorText: xTheme.primaryColor,
-                    fontSize: 18),
+                    fontSize: 15),
                 Container(
                   width: 350,
                   decoration:
@@ -78,12 +78,12 @@ class XLogin extends StatelessWidget {
               ]),
               Column(children: [
                 XSideBarButton(
-                    iconSize: 18,
+                    iconSize: 15,
                     icon: Lxi.lock,
                     text: midName!,
                     colorIcon: xTheme.primaryColor,
                     colorText: xTheme.primaryColor,
-                    fontSize: 18),
+                    fontSize: 15),
                 Padding(
                   padding: const EdgeInsets.only(left: 70),
                   child: Obx(() => Row(
