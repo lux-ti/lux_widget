@@ -58,7 +58,8 @@ class XLogin extends StatelessWidget {
                     iconSize: 12,
                     icon: Lxi.user,
                     text: topName!,
-                    color: xTheme.primaryColor,
+                    colorIcon: xTheme.primaryColor,
+                    colorText: xTheme.primaryColor,
                     fontSize: 12),
                 Container(
                   width: 350,
@@ -80,7 +81,8 @@ class XLogin extends StatelessWidget {
                     iconSize: 12,
                     icon: Lxi.lock,
                     text: midName!,
-                    color: xTheme.primaryColor,
+                    colorIcon: xTheme.primaryColor,
+                    colorText: xTheme.primaryColor,
                     fontSize: 12),
                 Padding(
                   padding: const EdgeInsets.only(left: 70),
