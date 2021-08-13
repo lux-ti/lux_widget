@@ -4,7 +4,10 @@ import 'package:lux_ui/widgets/Scafold/Scafold.dart';
 
 class XScafoldGrey extends XScafold {
   final Widget? topChild;
-  XScafoldGrey({
+  final double? textSize;
+
+
+  XScafoldGrey(this.textSize, {
     Key? key,
     this.topChild,
     String? title,
@@ -34,7 +37,7 @@ class XScafoldGrey extends XScafold {
           fontFamily: 'Manrope',
           fontWeight: FontWeight.w200,
           color: theme.backgroundColor,
-          fontSize: 20),
+          fontSize: textSize ?? 20),
     );
   }
 
