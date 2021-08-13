@@ -21,7 +21,7 @@ class XSideBarButton extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               icon,
