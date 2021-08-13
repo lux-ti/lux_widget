@@ -27,7 +27,7 @@ class XCardForList extends StatelessWidget {
         height: height,
         width: width,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+          padding: const EdgeInsets.only(right: 10),
           child: Row(
           
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
