@@ -50,8 +50,8 @@ class XCardForList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(nameRight ?? '',style: TextStyle(color: xTheme.borderColor,fontSize: 12 ),),
-                  Text(subNameRight ?? ' ',style: TextStyle(color: xTheme.foregroundColor,fontSize: 18 ),), 
+                  Text(nameLeft ?? '',style: TextStyle(color: xTheme.borderColor,fontSize: 12 ),),
+                  Text(subNameLeft ?? ' ',style: TextStyle(color: xTheme.foregroundColor,fontSize: 18 ),), 
                 ],
               ),
         
