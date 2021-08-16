@@ -20,13 +20,17 @@ class XScafoldGreyTopColumn extends XScafoldGrey {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (onBack != null || parentRoute?.canPop == true) ...[
-            buildBackButton(context),
-          ],
-          SizedBox(
-            height: 8,
+          Row(
+            children: [
+              if (onBack != null || parentRoute?.canPop == true) ...[
+                buildBackButton(context),
+              ],
+              SizedBox(
+                width: 10,
+              ),
+              buildTitle(),
+            ],
           ),
-          buildTitle(),
           topChild ?? Container()
         ],
       ),
