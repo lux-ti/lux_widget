@@ -9,13 +9,12 @@ class XCardForList extends StatelessWidget {
   final String? nameRight;
   final String? subNameLeft;
   final String? subNameRight;
-  final String? intText;
   final bool? isRoundedCheckBox;
   
   
 
 
-  const XCardForList({ Key? key, this.height = 85 , this.width = 390, this.nameLeft, this.nameRight, this.subNameLeft, this.subNameRight, this.intText = '', this.isRoundedCheckBox, }) : super(key: key);
+  const XCardForList({ Key? key, this.height = 85 , this.width = 390, this.nameLeft, this.nameRight, this.subNameLeft, this.subNameRight,  this.isRoundedCheckBox, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,23 +26,12 @@ class XCardForList extends StatelessWidget {
         height: height,
         width: width,
         child: Padding(
-          padding: const EdgeInsets.only(right: 10),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
           child: Row(
           
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               
-              Container(
-                alignment: Alignment.center,
-                width: 70,
-                child: Text(intText ?? '', overflow: TextOverflow.fade ,softWrap: false,style: TextStyle(
-                      color: xTheme.foregroundColor,
-                      fontSize: 40,
-                      fontWeight: FontWeight.w300,
-                      
-
-                    ), ),
-              ),
           
               Column(
                 
