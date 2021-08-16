@@ -32,7 +32,7 @@ class XTabSelect extends StatelessWidget {
             child: TabBar(
               indicator: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Colors.greenAccent),
+                  color: XTheme.of(context).primaryColor),
               isScrollable: isScrollable,
               tabs: tabs,
             ),
