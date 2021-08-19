@@ -4,7 +4,12 @@ import 'package:lux_ui/widgets/Scafold/Scafold.dart';
 
 class XScafoldGrey extends XScafold {
   final Widget? topChild;
+  final double? textSize;
+  final TextStyle? textStyle;
+
   XScafoldGrey({
+    this.textStyle,
+    this.textSize,
     Key? key,
     this.topChild,
     String? title,
@@ -30,11 +35,12 @@ class XScafoldGrey extends XScafold {
   Widget buildTitle() {
     return Text(
       title ?? "",
-      style: TextStyle(
-          fontFamily: 'Manrope',
-          fontWeight: FontWeight.w200,
-          color: theme.backgroundColor,
-          fontSize: 20),
+      style: textStyle ??
+          TextStyle(
+              fontFamily: 'Manrope',
+              fontWeight: FontWeight.w600,
+              color: theme.backgroundColor,
+              fontSize: textSize ?? 20),
     );
   }
 
