@@ -21,6 +21,7 @@ class XTextField extends StatelessWidget {
   final Color? colorEnable;
   final Color? colorBorder;
   final Color? colorText;
+  final TextDirection? textDirection;
   final TextInputType? textInputType;
   final List<TextInputFormatter>? maskFormatter;
   
@@ -41,7 +42,7 @@ class XTextField extends StatelessWidget {
       this.colorFocus,
       this.colorEnable,
       this.colorBorder,
-      this.colorText, this.maskFormatter,this.sizeTextHint, this.sizeInputText, this.textInputType})
+      this.colorText, this.maskFormatter,this.sizeTextHint, this.sizeInputText, this.textInputType, this.textDirection})
       : super(key: key);
 
   @override
@@ -73,7 +74,8 @@ class XTextField extends StatelessWidget {
               }
             },
             child: TextFormField(
-              style: TextStyle(fontSize: sizeInputText,),
+              textDirection: textDirection,
+              style: TextStyle(fontSize: sizeInputText),
               inputFormatters: maskFormatter,
               controller: textController,
               validator: validator?.validate,
