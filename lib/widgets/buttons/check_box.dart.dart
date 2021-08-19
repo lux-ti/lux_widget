@@ -29,30 +29,30 @@ class XCheckBox extends StatelessWidget {
           isTouch.value = (isTouch.isTrue!) ? false : true;
           onTap!(isTouch.value!);
         },
-        child: Obx (()=>border(xTheme, isTouch.value!)));
+        child: Obx(() => border(xTheme, isTouch.value!)));
   }
 
   Widget border(XThemeData xTheme, bool isTouch) {
     return Container(
-        height: heigth,
-        width: width,
-        decoration: BoxDecoration(
-          color: null,
-          border: Border.all(color: color ?? xTheme.primaryColor),
-          borderRadius: BorderRadius.circular(borderRadius),
-        ),
-        child: childInside(isTouch, xTheme),
-      );
+      height: heigth,
+      width: width,
+      decoration: BoxDecoration(
+        color: null,
+        border: Border.all(color: color ?? xTheme.primaryColor),
+        borderRadius: BorderRadius.circular(borderRadius),
+      ),
+      child: childInside(isTouch, xTheme),
+    );
   }
 
   Widget childInside(bool isTouch, XThemeData xTheme) {
     return Padding(
-        padding: const EdgeInsets.all(0.5),
-        child:  Container(
-              decoration: BoxDecoration(
-                  color: isTouch ? null : xTheme.primaryColor,
-                  borderRadius: BorderRadius.all(Radius.circular(4))),
-            ),
-      );
+      padding: const EdgeInsets.all(5),
+      child: Container(
+        decoration: BoxDecoration(
+            color: isTouch ? null : xTheme.primaryColor,
+            borderRadius: BorderRadius.all(Radius.circular(4))),
+      ),
+    );
   }
 }
