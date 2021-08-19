@@ -3,9 +3,18 @@ import 'package:lux_ui/lib.dart';
 import 'package:lux_ui/widgets/buttons/buttons.dart';
 
 void xDialog(
-    {required BuildContext context,required Widget childButton,
-    required String title,
-    required void Function() onTapSelector,required void Function() onTapIcon,
+    {IconData? icon2,
+    String? midText,
+    Color? midColor,
+    double? sizeMidText,
+    Color? iconColor,
+    double? iconSize,
+    IconData? icon,
+    required BuildContext context,
+    required Widget childButton,
+    required String? title,
+    required void Function() onTapSelector,
+    required void Function() onTapIcon,
     void Function()? onTapSquareButton,
     Color? squareButtonColor}) {
   showModalBottomSheet(
@@ -13,47 +22,79 @@ void xDialog(
       builder: (context) {
         var xTheme = XTheme.of(context);
         return Container(
-          height: 220,
+          height: 300,
+          width: double.infinity,
           color: xTheme.backgroundColor,
-          child: Padding(
-            padding: EdgeInsets.only(top: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
-                  child: Row(
+          child: Container(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        title,
+                        title ?? '',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w300),
                       ),
-                      IconButton(
-                        onPressed: onTapIcon,
-                        icon: Icon(Lxi.luxClose,
-                        size: 20,)
+                      GestureDetector(
+                        onTap: onTapIcon,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            
+                             Icon(icon,
+                                  size: iconSize, color: iconColor),
+
+                                  SizedBox(width: 5,),
+                            
+                             Icon(
+                                icon2,
+                                size: iconSize,
+                                color: iconColor,
+                              ),
+                            
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                ),
-                XSelector(
-                  text: 'Selecione o motivo',
-                  height: 35,
-                  width: 300,
-                  onTap: onTapSelector,
-                ),
-                onTapSquareButton != null
-                    ? XSquaredButton(
-                        color: squareButtonColor,
-                        height: 45,
-                        width: double.infinity,
-                        onTap: () => onTapSquareButton() ,
-                        child: childButton,
-                      )
-                    : Container()
-              ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        midText ?? '',
+                        style: TextStyle(
+                            color: midColor,
+                            fontSize: sizeMidText,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.end,
+                      ),
+                      SizedBox(width: 20,),
+                      XSelector(
+                        text: 'Selecione o motivo',
+                        height: 35,
+                        width: 260,
+                        onTap: onTapSelector,
+                      ),
+                    ],
+                  ),
+                  onTapSquareButton != null
+                      ? XSquaredButton(
+                          borderRadius: 22,
+                          color: squareButtonColor,
+                          height: 36,
+                          width: double.infinity,
+                          onTap: () => onTapSquareButton(),
+                          child: childButton,
+                        )
+                      : Container()
+                ],
+              ),
             ),
           ),
         );
