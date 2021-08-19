@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/validation/validation.dart';
 
@@ -10,6 +11,8 @@ class XTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? topText;
   final String? hintText;
+  final double? sizeTextHint;
+  final double? sizeInputText;
   final double? borderRadius;
   final Color? color;
   final Color? colorHint;
@@ -18,6 +21,9 @@ class XTextField extends StatelessWidget {
   final Color? colorEnable;
   final Color? colorBorder;
   final Color? colorText;
+  final TextInputType? textInputType;
+  final List<TextInputFormatter>? maskFormatter;
+  
 
   XTextField(
       {Key? key,
@@ -35,7 +41,7 @@ class XTextField extends StatelessWidget {
       this.colorFocus,
       this.colorEnable,
       this.colorBorder,
-      this.colorText})
+      this.colorText, this.maskFormatter,this.sizeTextHint, this.sizeInputText, this.textInputType})
       : super(key: key);
 
   @override
@@ -67,16 +73,19 @@ class XTextField extends StatelessWidget {
               }
             },
             child: TextFormField(
-              //onFieldSubmitted: submit,
+              style: TextStyle(fontSize: sizeInputText,),
+              inputFormatters: maskFormatter,
               controller: textController,
               validator: validator?.validate,
+              keyboardType: textInputType,
               decoration: InputDecoration(
+                
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                   hintText: hintText ?? 'Infome',
                   disabledBorder:
                       xOutlineInputBorder(theme.disabledColor, borderRadius),
-                  hintStyle: TextStyle(color: colorHint ?? theme.hintColor),
+                  hintStyle: TextStyle(color: colorHint ?? theme.hintColor,fontSize: sizeTextHint),
                   errorBorder: xOutlineInputBorder(
                       colorError ?? theme.dangeColor, borderRadius),
                   focusedBorder: xOutlineInputBorder(
