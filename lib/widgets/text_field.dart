@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:lux_ui/lib.dart';
+import 'package:flutter/services.dart';
 import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/validation/validation.dart';
 
@@ -14,6 +13,8 @@ class XTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final String? topText;
   final String? hintText;
+  final double? sizeTextHint;
+  final double? sizeInputText;
   final double? borderRadius;
   final Color? color;
   final Color? colorHint;
@@ -22,6 +23,9 @@ class XTextField extends StatelessWidget {
   final Color? colorEnable;
   final Color? colorBorder;
   final Color? colorText;
+  final TextDirection? textDirection;
+  final TextInputType? textInputType;
+  final List<TextInputFormatter>? maskFormatter;
 
   XTextField(
       {Key? key,
@@ -40,6 +44,11 @@ class XTextField extends StatelessWidget {
       this.colorEnable,
       this.colorBorder,
       this.colorText,
+      this.maskFormatter,
+      this.sizeTextHint,
+      this.sizeInputText,
+      this.textInputType,
+      this.textDirection,
       this.onTap,
       this.suffixIcon})
       : super(key: key);
@@ -53,7 +62,13 @@ class XTextField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Teste'),
+          Padding(
+            padding: const EdgeInsets.only(left: 13),
+            child: Text(
+              topText ?? '',
+              style: TextStyle(color: colorText, fontWeight: FontWeight.w600),
+            ),
+          ),
           SizedBox(
             height: 8,
           ),
@@ -69,10 +84,12 @@ class XTextField extends StatelessWidget {
             child: GestureDetector(
               onTap: onTap,
               child: TextFormField(
-                enabled: onTap == null ? true : false,
-                //onFieldSubmitted: submit,
+                textDirection: textDirection,
+                style: TextStyle(fontSize: sizeInputText),
+                inputFormatters: maskFormatter,
                 controller: textController,
                 validator: validator?.validate,
+                keyboardType: textInputType,
                 decoration: InputDecoration(
                     suffixIcon: suffixIcon,
                     contentPadding:
@@ -80,7 +97,9 @@ class XTextField extends StatelessWidget {
                     hintText: hintText ?? 'Infome',
                     disabledBorder:
                         xOutlineInputBorder(theme.disabledColor, borderRadius),
-                    hintStyle: TextStyle(color: colorHint ?? theme.hintColor),
+                    hintStyle: TextStyle(
+                        color: colorHint ?? theme.hintColor,
+                        fontSize: sizeTextHint),
                     errorBorder: xOutlineInputBorder(
                         colorError ?? theme.dangeColor, borderRadius),
                     focusedBorder: xOutlineInputBorder(
@@ -91,7 +110,7 @@ class XTextField extends StatelessWidget {
                         colorBorder ?? theme.primaryColor, borderRadius)),
               ),
             ),
-          ),
+          )
         ],
       ),
     );
