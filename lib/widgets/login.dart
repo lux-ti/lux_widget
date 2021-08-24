@@ -62,7 +62,7 @@ class XLogin extends StatelessWidget {
                     colorText: xTheme.primaryColor,
                     fontSize: 15),
                 Container(
-                  width: 350,
+                  width: 200,
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(15)),
                   child: TextFormField(
