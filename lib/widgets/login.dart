@@ -11,6 +11,9 @@ class XLogin extends StatelessWidget {
   final String? contentMid;
   final void Function(String? text)? onChange;
   final bool isTouch;
+  final void Function(String? email,String? senha)? onTap;
+  
+
   
 
   const XLogin({
@@ -19,11 +22,13 @@ class XLogin extends StatelessWidget {
     this.contentTop,
     this.midName = '',
     this.contentMid,
-    this.onChange, this.isTouch = false,
+    this.onChange, this.isTouch = false, this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var controllerEmail = TextEditingController();
+    var controllerSenha = TextEditingController();
     var xTheme = XTheme.of(context);
     var obscureText = true.obs;
     RxBool isTap = isTouch.obs;
@@ -65,6 +70,7 @@ class XLogin extends StatelessWidget {
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(15)),
                   child: TextFormField(
+                    controller: controllerEmail,
                     textInputAction: TextInputAction.next,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
@@ -90,6 +96,7 @@ class XLogin extends StatelessWidget {
                           Container(
                             width: 200,
                             child: TextFormField(
+                              controller: controllerSenha,
                               onFieldSubmitted: (value) {},
                               onChanged: onChange,
                               textAlign: TextAlign.center,
@@ -121,6 +128,7 @@ class XLogin extends StatelessWidget {
                     color: xTheme.primaryColor,
                     onTap: () {
                       isTap.value = true;
+                      onTap!(controllerEmail.text,controllerSenha.text);
                     },
                     widget: (isTap.isFalse) ? text(name: 'LOGIN',xTheme: xTheme.backgroundColor) : cPI(xTheme: xTheme.backgroundColor),
                   ))
