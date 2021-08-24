@@ -10,6 +10,8 @@ class XLogin extends StatelessWidget {
   final String? midName;
   final String? contentMid;
   final void Function(String? text)? onChange;
+  final bool isTouch;
+  
 
   const XLogin({
     Key? key,
@@ -17,14 +19,14 @@ class XLogin extends StatelessWidget {
     this.contentTop,
     this.midName = '',
     this.contentMid,
-    this.onChange,
+    this.onChange, this.isTouch = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var xTheme = XTheme.of(context);
     var obscureText = true.obs;
-    RxBool isTap = false.obs;
+    RxBool isTap = isTouch.obs;
 
     return Stack(children: [
       Container(
