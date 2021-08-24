@@ -24,22 +24,19 @@ class XLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     var xTheme = XTheme.of(context);
     var obscureText = true.obs;
+    RxBool isTap = false.obs;
 
     return Stack(children: [
       Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            blurRadius: 6,
-            spreadRadius: 3,
-            offset: Offset(0,3)
-          
-          )],
-            color: xTheme.primaryColor, borderRadius: BorderRadius.circular(5)),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              blurRadius: 6,
+              spreadRadius: 3,
+              offset: Offset(0, 3))
+        ], color: xTheme.primaryColor, borderRadius: BorderRadius.circular(5)),
         height: 330,
         width: 345,
-        
       ),
       Padding(
         padding: EdgeInsets.only(top: 3),
@@ -85,7 +82,7 @@ class XLogin extends StatelessWidget {
                     colorText: xTheme.primaryColor,
                     fontSize: 15),
                 Padding(
-                  padding: const EdgeInsets.only(left: 70),
+                  padding: const EdgeInsets.only(left: 78),
                   child: Obx(() => Row(
                         children: [
                           Container(
@@ -104,7 +101,11 @@ class XLogin extends StatelessWidget {
                             ),
                           ),
                           IconButton(
-                            icon: Icon(Lxi.eye, size: 24,color: xTheme.primaryColor,),
+                            icon: Icon(
+                              Lxi.eye,
+                              size: 24,
+                              color: xTheme.primaryColor,
+                            ),
                             onPressed: () {
                               obscureText.value =
                                   (obscureText != true.obs) ? true : false;
@@ -114,17 +115,37 @@ class XLogin extends StatelessWidget {
                       )),
                 )
               ]),
-              XRoundedButton(
-                color: xTheme.primaryColor,
-                onTap: () {
-                  print('funfando');
-                },
-                name: 'Login',
-              )
+              Obx(() => XRoundedButton(
+                    color: xTheme.primaryColor,
+                    onTap: () {
+                      isTap.value = true;
+                    },
+                    widget: (isTap.isFalse) ? text(name: 'LOGIN',xTheme: xTheme.backgroundColor) : cPI(xTheme: xTheme.backgroundColor),
+                  ))
             ],
           ),
         ),
       ),
     ]);
   }
+}
+
+Widget text({String? name, Color? xTheme}) {
+  return Text(name!,
+      style: TextStyle(
+        color: xTheme,
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+      ));
+}
+
+Widget cPI({Color? xTheme}) {
+  return Container(
+    height: 16,
+    width: 16,
+    child: CircularProgressIndicator(
+      strokeWidth: 2,
+      color: xTheme,
+    ),
+  );
 }
