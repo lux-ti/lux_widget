@@ -23,6 +23,7 @@ class XTextField extends StatelessWidget {
   final Color? colorEnable;
   final Color? colorBorder;
   final Color? colorText;
+  final bool? isEnable;
   final TextDirection? textDirection;
   final TextInputType? textInputType;
   final List<TextInputFormatter>? maskFormatter;
@@ -50,7 +51,8 @@ class XTextField extends StatelessWidget {
       this.textInputType,
       this.textDirection,
       this.onTap,
-      this.suffixIcon})
+      this.suffixIcon,
+      this.isEnable = true})
       : super(key: key);
 
   @override
@@ -84,6 +86,7 @@ class XTextField extends StatelessWidget {
             child: GestureDetector(
               onTap: onTap,
               child: TextFormField(
+                enabled: isEnable,
                 textDirection: textDirection,
                 style: TextStyle(fontSize: sizeInputText),
                 inputFormatters: maskFormatter,
