@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
+import 'package:lux_ui/widgets/login.dart';
 
 class TelaTeste extends StatelessWidget {
   final textcontroller = TextEditingController();
@@ -11,46 +12,13 @@ class TelaTeste extends StatelessWidget {
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: XScafold(
-        title: 'teste',
-        child: Column(
-          children: [
-            Container(
-              color: Colors.white,
-              child: Form(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  child: DismissKeyboard(
-                    child: XTextField(
-                      onSubmit: print,
-                      validator: Validator([LengthRule(length: 10)]),
-                      controller: textcontroller,
-                      onBlur: () {
-                        print(textcontroller.text);
-                      },
-                      onFocus: () {
-                        //textcontroller.text = 'qualquer texto';
-                      },
-                    ),
-                  )),
-            ),
-            Container(
-              color: Colors.white,
-              child: Form(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  child: DismissKeyboard(
-                    child: XTextField(
-                      onSubmit: print,
-                      validator: Validator([LengthRule(length: 10)]),
-                      controller: textcontroller2,
-                      onBlur: () {
-                        //print(textcontroller.text);
-                      },
-                      onFocus: () {},
-                    ),
-                  )),
-            ),
-          ],
-        ),
-      ),
+          title: 'teste',
+          child: XLogin(
+            contentMid: 'teste',
+            contentTop: 'teste',
+            midName: 'teste',
+            topName: 'teste',
+          )),
     );
   }
 }
