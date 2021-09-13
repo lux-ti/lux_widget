@@ -11,10 +11,7 @@ class XLogin extends StatelessWidget {
   final String? contentMid;
   final void Function(String? text)? onChange;
   final bool isTouch;
-  final void Function(String? email,String? senha)? onTap;
-  
-
-  
+  final void Function(String? email, String? senha)? onTap;
 
   const XLogin({
     Key? key,
@@ -22,7 +19,9 @@ class XLogin extends StatelessWidget {
     this.contentTop,
     this.midName = '',
     this.contentMid,
-    this.onChange, this.isTouch = false, this.onTap,
+    this.onChange,
+    this.isTouch = false,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -59,6 +58,7 @@ class XLogin extends StatelessWidget {
             children: [
               Column(children: [
                 XSideBarButton(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     iconSize: 15,
                     icon: Lxi.user,
                     text: topName!,
@@ -83,6 +83,7 @@ class XLogin extends StatelessWidget {
               ]),
               Column(children: [
                 XSideBarButton(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     iconSize: 15,
                     icon: Lxi.lock,
                     text: midName!,
@@ -128,9 +129,11 @@ class XLogin extends StatelessWidget {
                     color: xTheme.primaryColor,
                     onTap: () {
                       isTap.value = true;
-                      onTap!(controllerEmail.text,controllerSenha.text);
+                      onTap!(controllerEmail.text, controllerSenha.text);
                     },
-                    widget: (isTap.isFalse) ? text(name: 'LOGIN',xTheme: xTheme.backgroundColor) : cPI(xTheme: xTheme.backgroundColor),
+                    widget: (isTap.isFalse)
+                        ? text(name: 'LOGIN', xTheme: xTheme.backgroundColor)
+                        : cPI(xTheme: xTheme.backgroundColor),
                   ))
             ],
           ),
