@@ -1,6 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
+import 'package:lux_ui/widgets/buttons/buttons.dart';
+import 'package:lux_ui/widgets/label/content_label.dart';
+import 'package:lux_ui/widgets/login.dart';
+import 'package:lux_ui/widgets/widgets_WMS/card_conference.dart';
+import 'package:lux_ui/widgets/widgets_WMS/card_production_line.dart';
+import 'package:lux_ui/widgets/widgets_WMS/xcard_production.dart';
 
 class TelaTeste extends StatelessWidget {
   final textcontroller = TextEditingController();
@@ -12,45 +19,148 @@ class TelaTeste extends StatelessWidget {
     return DismissKeyboard(
       child: XScafold(
         title: 'teste',
-        child: Column(
-          children: [
-            Container(
-              color: Colors.white,
-              child: Form(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  child: DismissKeyboard(
-                    child: XTextField(
-                      onSubmit: print,
-                      validator: Validator([LengthRule(length: 10)]),
-                      controller: textcontroller,
-                      onBlur: () {
-                        print(textcontroller.text);
-                      },
-                      onFocus: () {
-                        //textcontroller.text = 'qualquer texto';
-                      },
+        child: Center(
+          child: XCardProduction(
+
+              height: 150,
+              borderColor: Colors.green,
+              frontColor: Colors.white,
+              bottomLeftWidget: Column(
+                children: [
+                  Text('TESTE'),
+                  SB(),
+                ],
+              ),
+              topLeftWidget: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    color:Colors.red,
+                    child: Text(
+                      '876',
+                      style: TextStyle(fontSize: 32, fontWeight: FontWeight.w300),
                     ),
-                  )),
-            ),
-            Container(
-              color: Colors.white,
-              child: Form(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  child: DismissKeyboard(
-                    child: XTextField(
-                      onSubmit: print,
-                      validator: Validator([LengthRule(length: 10)]),
-                      controller: textcontroller2,
-                      onBlur: () {
-                        //print(textcontroller.text);
-                      },
-                      onFocus: () {},
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        height: 8,
+                        width: 8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.green,
+                        ),
+                      ),
+                      Text('carro no patio', style: TextStyle(fontSize: 12))
+                    ],
+                  ),
+                ],
+              ),
+              topRightWidget:  Container(
+                    alignment: Alignment.bottomCenter,
+                    color:Colors.red,
+                    child: Text(
+                      '876',
+                      style: TextStyle(fontSize: 32, fontWeight: FontWeight.w300),
                     ),
-                  )),
-            ),
-          ],
+                  ),
+              bottomRightWidget: SB(),
+
         ),
       ),
-    );
+      ));
   }
 }
+
+Widget SB() {
+  return XSquaredButton(
+                  height: 30,
+                  width: 130,
+                  color: Colors.grey[800],
+                  borderRadius: 25,
+                  child: Text(
+                    'NÃO INICIADO',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  onTap: () {});
+}
+
+
+//pegar código na hora da construção do widget n oprjeto wms.
+
+//  XCardProductionLine(
+//             borderColor: Colors.green,
+//             frontColor: Colors.white,
+//             leftWidget: XContentLabel(
+//                 nameWeight: FontWeight.w300,
+//                 topWeight: FontWeight.w600,
+//                 topSpace: 1,
+//                 nameSize: 24,
+//                 topSize: 12,
+//                 colorTop: Colors.grey[800],
+//                 colorName: Colors.grey[800],
+//                 topName: 'ETIQUETA',
+//                 name: '78687687687'),
+//                 rightWidget: XContentLabel(
+//                 nameWeight: FontWeight.w300,
+//                 topWeight: FontWeight.w600,
+//                 topSpace: 1,
+//                 nameSize: 24,
+//                 topSize: 12,
+//                 colorTop: Colors.grey[800],
+//                 colorName: Colors.grey[800],
+//                 topName: 'ETIQUETA',
+//                 name: '49,9'),
+//           ),
+
+
+//====================== #################### =======================
+
+  //aproveitar cod 
+
+//  XCardConference(
+//               height: 96,
+//               borderColor: Colors.green,
+//               frontColor: Colors.white,
+//               leftWidget: Column(
+//                 mainAxisAlignment: MainAxisAlignment.start,
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(
+//                     '876',
+//                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.w300),
+//                   ),
+//                   Row(
+//                     children: [
+//                       Container(
+//                         height: 8,
+//                         width: 8,
+//                         decoration: BoxDecoration(
+//                           borderRadius: BorderRadius.circular(100),
+//                           color: Colors.green,
+//                         ),
+
+                        
+
+//                       ),
+//                       Text('carro no patio', style: TextStyle(fontSize: 12))
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//               rightWidget: XSquaredButton(
+//                   height: 30,
+//                   width: 130,
+//                   color: Colors.grey[800],
+//                   borderRadius: 25,
+//                   child: Text(
+//                     'NÃO INICIADO',
+//                     style: TextStyle(
+//                         color: Colors.white,
+//                         fontSize: 12,
+//                         fontWeight: FontWeight.w600),
+//                   ),
+//                   onTap: () {})),
