@@ -6,12 +6,13 @@ class XRoundedButton extends StatelessWidget {
   final double? width;
   final String? name;
   final Color? color;
+  final Widget? widget;
  
   final void Function() onTap;
 
   
 
-  const XRoundedButton({ Key? key, this.height, this.width, required this.onTap, this.name, this.color  }) : super(key: key);
+  const XRoundedButton({ Key? key, this.height, this.width, required this.onTap, this.name, this.color, this.widget  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class XRoundedButton extends StatelessWidget {
         alignment: Alignment.center,
         height: height ?? 34,
         width: width ?? 100,
-        child: Text(name!,style: TextStyle(color: xTheme.backgroundColor,fontSize: 16,fontWeight: FontWeight.w700,)),
+        child: widget,
         
         decoration: BoxDecoration(
           color: color ?? xTheme.warningColor,

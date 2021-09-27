@@ -2,12 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
-import 'package:lux_ui/widgets/buttons/buttons.dart';
-import 'package:lux_ui/widgets/label/content_label.dart';
 import 'package:lux_ui/widgets/login.dart';
-import 'package:lux_ui/widgets/widgets_WMS/card_conference.dart';
-import 'package:lux_ui/widgets/widgets_WMS/card_production_line.dart';
-import 'package:lux_ui/widgets/widgets_WMS/xcard_production.dart';
 
 class TelaTeste extends StatelessWidget {
   final textcontroller = TextEditingController();
@@ -18,6 +13,7 @@ class TelaTeste extends StatelessWidget {
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: XScafold(
+<<<<<<< HEAD
         title: 'teste',
         child: Center(
           child: XCardProduction(
@@ -26,49 +22,6 @@ class TelaTeste extends StatelessWidget {
               borderColor: Colors.green,
               frontColor: Colors.white,
               bottomLeftWidget: Column(
-                children: [
-                  Text('TESTE'),
-                  SB(),
-                ],
-              ),
-              topLeftWidget: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.bottomCenter,
-                    color:Colors.red,
-                    child: Text(
-                      '876',
-                      style: TextStyle(fontSize: 32, fontWeight: FontWeight.w300),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        height: 8,
-                        width: 8,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.green,
-                        ),
-                      ),
-                      Text('carro no patio', style: TextStyle(fontSize: 12))
-                    ],
-                  ),
-                ],
-              ),
-              topRightWidget:  Container(
-                    alignment: Alignment.bottomCenter,
-                    color:Colors.red,
-                    child: Text(
-                      '876',
-                      style: TextStyle(fontSize: 32, fontWeight: FontWeight.w300),
-                    ),
-                  ),
-              bottomRightWidget: SB(),
-
-        ),
-      ),
-      ));
   }
 }
 
@@ -77,7 +30,6 @@ Widget SB() {
                   height: 30,
                   width: 130,
                   color: Colors.grey[800],
-                  borderRadius: 25,
                   child: Text(
                     'NÃO INICIADO',
                     style: TextStyle(
