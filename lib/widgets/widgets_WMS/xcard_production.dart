@@ -48,6 +48,7 @@ class XCardProduction extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   topLeftWidget ?? Container(),
@@ -56,6 +57,7 @@ class XCardProduction extends StatelessWidget {
                 ],
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   topRightWidget ?? Container(),
