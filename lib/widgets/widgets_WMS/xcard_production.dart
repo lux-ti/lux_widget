@@ -42,7 +42,7 @@ class XCardProduction extends StatelessWidget {
       ),
 
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10,15,10,10),
+          padding: const EdgeInsets.fromLTRB(20,15,10,10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
