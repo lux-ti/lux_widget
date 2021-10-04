@@ -36,7 +36,7 @@ class XCardConference extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(20,10,30,10),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               
               
