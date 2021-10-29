@@ -4,7 +4,7 @@ import 'package:lux_ui/lib.dart';
 class XStatus extends StatelessWidget {
   final String? name;
   final Color? color;
-  final int? intDays;
+  final String? intDays;
 
   const XStatus({Key? key, this.name, this.color = Colors.red, this.intDays})
       : super(key: key);
