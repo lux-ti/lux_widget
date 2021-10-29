@@ -3,10 +3,12 @@ import 'package:lux_ui/lib.dart';
 
 class XStatus extends StatelessWidget {
   final String? name;
+  final String? days;
   final Color? color;
   final String? intDays;
 
-  const XStatus({Key? key, this.name, this.color = Colors.red, this.intDays})
+  const XStatus(
+      {Key? key, this.name, this.color = Colors.red, this.intDays, this.days})
       : super(key: key);
 
   @override
@@ -30,7 +32,7 @@ class XStatus extends StatelessWidget {
         Text(
           '${name.toString().toUpperCase()}' +
               ' ${intDays.toString().toUpperCase()}' +
-              ' DIAS',
+              days!,
           style: TextStyle(
             color: color ?? xTheme.dangeColor,
             fontSize: 12,
