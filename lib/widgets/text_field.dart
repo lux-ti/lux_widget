@@ -9,6 +9,7 @@ class XTextField extends StatelessWidget {
   final void Function()? onBlur;
   final void Function()? onTap;
   final void Function(String text)? onSubmit;
+  final void Function(String? text)? onSaved;
   final TextEditingController? controller;
   final Widget? suffixIcon;
   final String? topText;
@@ -52,7 +53,8 @@ class XTextField extends StatelessWidget {
       this.textDirection,
       this.onTap,
       this.suffixIcon,
-      this.isEnable = true})
+      this.isEnable = true,
+      this.onSaved})
       : super(key: key);
 
   @override
@@ -86,6 +88,7 @@ class XTextField extends StatelessWidget {
             child: GestureDetector(
               onTap: onTap,
               child: TextFormField(
+                onSaved: onSaved,
                 enabled: isEnable,
                 textDirection: textDirection,
                 style: TextStyle(fontSize: sizeInputText),
