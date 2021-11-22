@@ -13,6 +13,7 @@ class XscaffoldTeste extends StatelessWidget {
     return XScafoldGrey(
       title: 'text',
       codeNumber: 'daw',
+      nameStatus: 'dwawad',
       onPressed: () {
         print('foi');
       },

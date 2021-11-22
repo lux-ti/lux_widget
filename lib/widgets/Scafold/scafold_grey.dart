@@ -2,15 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
 import 'package:lux_ui/widgets/Scafold/rounded_icon_button.dart';
+import 'package:lux_ui/widgets/status_box.dart';
 
 class XScafoldGrey extends XScafold {
   final Widget? topChild;
   final double? textSize;
   final TextStyle? textStyle;
+  final Color? colorStatus;
   final String? codeNumber;
+  final String? nameStatus;
+  final IconData? iconStatus;
   final void Function()? onPressed;
 
   XScafoldGrey({
+    this.iconStatus,
+    this.nameStatus,
+    this.colorStatus,
     this.onPressed,
     this.codeNumber,
     this.textStyle,
@@ -37,7 +44,10 @@ class XScafoldGrey extends XScafold {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             (codeNumber != null) ? codeNumberText() : Container(),
-            buildTitle(),
+            Padding(
+              padding: EdgeInsets.only(bottom: codeNumber != null ? 20 : 0),
+              child: buildTitle(),
+            ),
           ],
         ),
         SizedBox(
@@ -46,12 +56,37 @@ class XScafoldGrey extends XScafold {
         (onPressed != null)
             ? RoundedIconButton(
                 onPressed: onPressed,
+                width: 35,
+                height: 35,
                 backgroundColor: theme.primaryColor,
                 iconColor: theme.backgroundColor,
-                iconSize: 30,
+                iconSize: 20,
                 icon: Icons.add,
               )
-            : Container()
+            : Container(),
+        SizedBox(
+          width: 20,
+        ),
+        (nameStatus != null)
+            ? Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    XStatusBox(
+                      name: nameStatus!,
+                      color: colorStatus ?? Colors.transparent,
+                    ),
+                    (iconStatus != null)
+                        ? RoundedIconButton(
+                            icon: iconStatus!,
+                            backgroundColor: colorStatus ?? Colors.transparent,
+                            iconColor: Colors.white,
+                          )
+                        : Container()
+                  ],
+                ),
+              )
+            : Container(),
       ],
     );
   }

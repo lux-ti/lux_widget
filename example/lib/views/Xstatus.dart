@@ -12,6 +12,11 @@ class XstatusTeste extends StatelessWidget {
     var xTheme = XTheme.of(context);
     return XScafoldGrey(
       title: 'text',
+      codeNumber: '231312',
+      nameStatus: 'dwadw adwadawd',
+      colorStatus: xTheme.primaryColor,
+      iconStatus: Icons.add,
+      onBack: () {},
       onPressed: () {
         print('foi');
       },
@@ -27,9 +32,7 @@ class XstatusTeste extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  XStatus.tatusBox(),
-                ],
+                children: [],
               ),
             ),
           ))
