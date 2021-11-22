@@ -12,8 +12,6 @@ class XscaffoldTeste extends StatelessWidget {
     var xTheme = XTheme.of(context);
     return XScafoldGrey(
       title: 'text',
-      create: true,
-      isCode: true,
       codeNumber: 'daw',
       onPressed: () {
         print('foi');

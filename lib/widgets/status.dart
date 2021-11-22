@@ -42,4 +42,8 @@ class XStatus extends StatelessWidget {
       ],
     );
   }
+
+  static Widget tatusBox() {
+    return Text('dwa');
+  }
 }

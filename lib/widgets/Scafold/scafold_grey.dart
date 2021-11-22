@@ -7,16 +7,12 @@ class XScafoldGrey extends XScafold {
   final Widget? topChild;
   final double? textSize;
   final TextStyle? textStyle;
-  final bool? isCode;
-  final bool? create;
   final String? codeNumber;
   final void Function()? onPressed;
 
   XScafoldGrey({
     this.onPressed,
-    this.create,
     this.codeNumber,
-    this.isCode = false,
     this.textStyle,
     this.textSize,
     Key? key,
@@ -40,14 +36,14 @@ class XScafoldGrey extends XScafold {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            (isCode == true) ? codeNumberText() : Container(),
+            (codeNumber != null) ? codeNumberText() : Container(),
             buildTitle(),
           ],
         ),
         SizedBox(
           width: 20,
         ),
-        (create != null)
+        (onPressed != null)
             ? RoundedIconButton(
                 onPressed: onPressed,
                 backgroundColor: theme.primaryColor,

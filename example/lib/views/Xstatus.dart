@@ -12,9 +12,6 @@ class XstatusTeste extends StatelessWidget {
     var xTheme = XTheme.of(context);
     return XScafoldGrey(
       title: 'text',
-      create: true,
-      isCode: true,
-      codeNumber: 'daw',
       onPressed: () {
         print('foi');
       },
@@ -31,12 +28,7 @@ class XstatusTeste extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  XStatus(
-                    name: 'dwadwada',
-                    days: 'dwada',
-                    color: Colors.red,
-                    intDays: '213',
-                  )
+                  XStatus.tatusBox(),
                 ],
               ),
             ),
