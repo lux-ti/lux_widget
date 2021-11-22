@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
+import 'package:lux_ui/widgets/Scafold/rounded_icon_button.dart';
+import 'package:lux_ui/widgets/status_box.dart';
 
 class XScafoldGrey extends XScafold {
   final Widget? topChild;
   final double? textSize;
   final TextStyle? textStyle;
-  final bool? isCode;
+  final Color? colorStatus;
   final String? codeNumber;
+  final String? nameStatus;
+  final IconData? iconStatus;
+  final void Function()? onPressed;
 
   XScafoldGrey({
+    this.iconStatus,
+    this.nameStatus,
+    this.colorStatus,
+    this.onPressed,
     this.codeNumber,
-    this.isCode = false,
     this.textStyle,
     this.textSize,
     Key? key,
@@ -33,11 +41,52 @@ class XScafoldGrey extends XScafold {
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            (isCode == true) ? codeNumberText() : Container(),
-            buildTitle(),
+            (codeNumber != null) ? codeNumberText() : Container(),
+            Padding(
+              padding: EdgeInsets.only(bottom: codeNumber != null ? 20 : 0),
+              child: buildTitle(),
+            ),
           ],
         ),
+        SizedBox(
+          width: 20,
+        ),
+        (onPressed != null)
+            ? RoundedIconButton(
+                onPressed: onPressed,
+                width: 35,
+                height: 35,
+                backgroundColor: theme.primaryColor,
+                iconColor: theme.backgroundColor,
+                iconSize: 20,
+                icon: Icons.add,
+              )
+            : Container(),
+        SizedBox(
+          width: 20,
+        ),
+        (nameStatus != null)
+            ? Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    XStatusBox(
+                      name: nameStatus!,
+                      color: colorStatus ?? Colors.transparent,
+                    ),
+                    (iconStatus != null)
+                        ? RoundedIconButton(
+                            icon: iconStatus!,
+                            backgroundColor: colorStatus ?? Colors.transparent,
+                            iconColor: Colors.white,
+                          )
+                        : Container()
+                  ],
+                ),
+              )
+            : Container(),
       ],
     );
   }
@@ -71,15 +120,18 @@ class XScafoldGrey extends XScafold {
         body: SafeArea(
           bottom: false,
           child: Padding(
-            padding: EdgeInsets.only(left: 8, right: 8, top: 18),
+            padding: EdgeInsets.only(
+              left: 8,
+              right: 8,
+            ),
             child: Container(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  buildTop(context),
                   SizedBox(
-                    height: 10,
+                    height: MediaQuery.of(context).size.height / 7,
+                    child: buildTop(context),
                   ),
                   Expanded(child: buildChild(context))
                 ],
