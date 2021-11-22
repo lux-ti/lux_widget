@@ -6,8 +6,12 @@ class XScafoldGrey extends XScafold {
   final Widget? topChild;
   final double? textSize;
   final TextStyle? textStyle;
+  final bool? isCode;
+  final String? codeNumber;
 
   XScafoldGrey({
+    this.codeNumber,
+    this.isCode = false,
     this.textStyle,
     this.textSize,
     Key? key,
@@ -27,7 +31,13 @@ class XScafoldGrey extends XScafold {
         SizedBox(
           width: 8,
         ),
-        topChild ?? buildTitle()
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            (isCode == true) ? codeNumberText() : Container(),
+            buildTitle(),
+          ],
+        ),
       ],
     );
   }
@@ -37,11 +47,20 @@ class XScafoldGrey extends XScafold {
       title ?? "",
       style: textStyle ??
           TextStyle(
-              fontFamily: 'Manrope',
-              fontWeight: FontWeight.w600,
+              fontFamily: 'Rubik',
+              fontWeight: FontWeight.w300,
               color: theme.backgroundColor,
-              fontSize: textSize ?? 20),
+              fontSize: textSize ?? 38),
     );
+  }
+
+  Widget codeNumberText() {
+    return Text(codeNumber ?? '',
+        style: TextStyle(
+            color: theme.backgroundColor,
+            fontSize: 12,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1));
   }
 
   @override
