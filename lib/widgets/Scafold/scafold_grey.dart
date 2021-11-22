@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
+import 'package:lux_ui/widgets/Scafold/rounded_icon_button.dart';
 
 class XScafoldGrey extends XScafold {
   final Widget? topChild;
   final double? textSize;
   final TextStyle? textStyle;
   final bool? isCode;
+  final bool? create;
   final String? codeNumber;
+  final void Function()? onPressed;
 
   XScafoldGrey({
+    this.onPressed,
+    this.create,
     this.codeNumber,
     this.isCode = false,
     this.textStyle,
@@ -33,11 +38,24 @@ class XScafoldGrey extends XScafold {
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             (isCode == true) ? codeNumberText() : Container(),
             buildTitle(),
           ],
         ),
+        SizedBox(
+          width: 20,
+        ),
+        (create != null)
+            ? RoundedIconButton(
+                onPressed: onPressed,
+                backgroundColor: theme.primaryColor,
+                iconColor: theme.backgroundColor,
+                iconSize: 30,
+                icon: Icons.add,
+              )
+            : Container()
       ],
     );
   }
@@ -71,15 +89,18 @@ class XScafoldGrey extends XScafold {
         body: SafeArea(
           bottom: false,
           child: Padding(
-            padding: EdgeInsets.only(left: 8, right: 8, top: 18),
+            padding: EdgeInsets.only(
+              left: 8,
+              right: 8,
+            ),
             child: Container(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  buildTop(context),
                   SizedBox(
-                    height: 10,
+                    height: MediaQuery.of(context).size.height / 7,
+                    child: buildTop(context),
                   ),
                   Expanded(child: buildChild(context))
                 ],
