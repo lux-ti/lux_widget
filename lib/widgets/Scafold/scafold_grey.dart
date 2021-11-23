@@ -51,16 +51,16 @@ class XScafoldGrey extends XScafold {
           ],
         ),
         SizedBox(
-          width: 20,
+          width: 8,
         ),
         (onPressed != null)
             ? RoundedIconButton(
                 onPressed: onPressed,
-                width: 35,
-                height: 35,
+                width: 25,
+                height: 25,
                 backgroundColor: theme.primaryColor,
                 iconColor: theme.backgroundColor,
-                iconSize: 20,
+                iconSize: 10,
                 icon: Icons.add,
               )
             : Container(),
@@ -74,6 +74,7 @@ class XScafoldGrey extends XScafold {
                   children: [
                     XStatusBox(
                       name: nameStatus!,
+                      size: 8,
                       color: colorStatus ?? Colors.transparent,
                     ),
                     (iconStatus != null)
@@ -81,6 +82,9 @@ class XScafoldGrey extends XScafold {
                             icon: iconStatus!,
                             backgroundColor: colorStatus ?? Colors.transparent,
                             iconColor: Colors.white,
+                            iconSize: 18,
+                            width: 34,
+                            height: 34,
                           )
                         : Container()
                   ],
