@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lux_ui/lib.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
 
 class XScafoldGreyTopColumn extends XScafoldGrey {
@@ -13,6 +14,7 @@ class XScafoldGreyTopColumn extends XScafoldGrey {
   @override
   Widget buildTop(context) {
     final parentRoute = ModalRoute.of(context);
+    var theme = XTheme.of(context);
     return Padding(
       padding: const EdgeInsets.only(left: 8.0),
       child: Column(
@@ -28,23 +30,19 @@ class XScafoldGreyTopColumn extends XScafoldGrey {
               SizedBox(
                 width: 10,
               ),
-              buildTitle(),
+              Text(
+                title ?? '',
+                style: TextStyle(
+                    fontFamily: 'Manrope',
+                    fontWeight: FontWeight.w300,
+                    color: theme.backgroundColor,
+                    fontSize: 30),
+              ),
             ],
           ),
           topChild ?? Container()
         ],
       ),
-    );
-  }
-
-  Widget buildTitle() {
-    return Text(
-      title ?? '',
-      style: TextStyle(
-          fontFamily: 'Manrope',
-          fontWeight: FontWeight.w300,
-          color: theme.backgroundColor,
-          fontSize: 30),
     );
   }
 
