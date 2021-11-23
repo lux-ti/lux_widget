@@ -13,13 +13,14 @@ class XStatusBox extends StatelessWidget {
       decoration: BoxDecoration(
           color: color, borderRadius: BorderRadius.all(Radius.circular(5))),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
         child: Text(
           name,
           style: TextStyle(
               color: Colors.white,
               fontSize: size ?? 20,
-              fontWeight: FontWeight.w700,letterSpacing: 1),
+              fontWeight: FontWeight.w800,
+              letterSpacing: 1),
         ),
       ),
     );

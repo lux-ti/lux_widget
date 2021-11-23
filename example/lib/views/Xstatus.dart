@@ -11,9 +11,9 @@ class XstatusTeste extends StatelessWidget {
   Widget build(BuildContext context) {
     var xTheme = XTheme.of(context);
     return XScafoldGrey(
-      title: 'text',
+      title: 'Pedidos',
       codeNumber: '231312',
-      nameStatus: 'dwadw adwadawd',
+      nameStatus: 'Fechado',
       colorStatus: xTheme.primaryColor,
       iconStatus: Icons.add,
       onBack: () {},

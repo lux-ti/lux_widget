@@ -31,6 +31,7 @@ class XScafoldGrey extends XScafold {
 
   Widget buildTop(context) {
     final parentRoute = ModalRoute.of(context);
+    var theme = XTheme.of(context);
     return Row(
       children: [
         if (onBack != null || parentRoute?.canPop == true) ...[
@@ -43,24 +44,32 @@ class XScafoldGrey extends XScafold {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            (codeNumber != null) ? codeNumberText() : Container(),
+            (codeNumber != null) ? codeNumberText(context) : Container(),
             Padding(
               padding: EdgeInsets.only(bottom: codeNumber != null ? 20 : 0),
-              child: buildTitle(),
+              child: Text(
+                title ?? "",
+                style: textStyle ??
+                    TextStyle(
+                        fontFamily: 'Rubik',
+                        fontWeight: FontWeight.w300,
+                        color: theme.backgroundColor,
+                        fontSize: textSize ?? 38),
+              ),
             ),
           ],
         ),
         SizedBox(
-          width: 20,
+          width: 8,
         ),
         (onPressed != null)
             ? RoundedIconButton(
                 onPressed: onPressed,
-                width: 35,
-                height: 35,
+                width: 25,
+                height: 25,
                 backgroundColor: theme.primaryColor,
                 iconColor: theme.backgroundColor,
-                iconSize: 20,
+                iconSize: 10,
                 icon: Icons.add,
               )
             : Container(),
@@ -74,6 +83,7 @@ class XScafoldGrey extends XScafold {
                   children: [
                     XStatusBox(
                       name: nameStatus!,
+                      size: 8,
                       color: colorStatus ?? Colors.transparent,
                     ),
                     (iconStatus != null)
@@ -81,6 +91,9 @@ class XScafoldGrey extends XScafold {
                             icon: iconStatus!,
                             backgroundColor: colorStatus ?? Colors.transparent,
                             iconColor: Colors.white,
+                            iconSize: 18,
+                            width: 34,
+                            height: 34,
                           )
                         : Container()
                   ],
@@ -91,19 +104,13 @@ class XScafoldGrey extends XScafold {
     );
   }
 
-  Widget buildTitle() {
-    return Text(
-      title ?? "",
-      style: textStyle ??
-          TextStyle(
-              fontFamily: 'Rubik',
-              fontWeight: FontWeight.w300,
-              color: theme.backgroundColor,
-              fontSize: textSize ?? 38),
-    );
-  }
+  // Widget buildTitle(context) {
+  //   var theme = XTheme.of(context);
+  //   return
+  // }
 
-  Widget codeNumberText() {
+  Widget codeNumberText(context) {
+    var theme = XTheme.of(context);
     return Text(codeNumber ?? '',
         style: TextStyle(
             color: theme.backgroundColor,
@@ -114,7 +121,7 @@ class XScafoldGrey extends XScafold {
 
   @override
   Widget build(BuildContext context) {
-    theme = XTheme.of(context);
+    var theme = XTheme.of(context);
     return Scaffold(
         backgroundColor: theme.foregroundColor,
         body: SafeArea(
