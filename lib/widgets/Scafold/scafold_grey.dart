@@ -45,6 +45,7 @@ class XScafoldGrey extends XScafold {
 
   Widget buildTop(context) {
     final parentRoute = ModalRoute.of(context);
+    var theme = XTheme.of(context);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -60,10 +61,12 @@ class XScafoldGrey extends XScafold {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                (codeNumber != null) ? codeNumberText() : Container(),
+                (codeNumber != null)
+                    ? codeNumberText(context, codeNumber)
+                    : Container(),
                 Row(
                   children: [
-                    buildTitle(),
+                    buildTitle(title, theme),
                     SizedBox(
                       width: 2,
                     ),
@@ -119,7 +122,7 @@ class XScafoldGrey extends XScafold {
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],
@@ -130,7 +133,7 @@ class XScafoldGrey extends XScafold {
     );
   }
 
-  Widget buildTitle() {
+  Widget buildTitle(title, theme) {
     return Text(
       title ?? "",
       style: textStyle ??
@@ -142,7 +145,8 @@ class XScafoldGrey extends XScafold {
     );
   }
 
-  Widget codeNumberText() {
+  Widget codeNumberText(context, codeNumber) {
+    var theme = XTheme.of(context);
     return Text(codeNumber ?? '',
         style: TextStyle(
             color: theme.backgroundColor,
@@ -154,7 +158,7 @@ class XScafoldGrey extends XScafold {
 
   @override
   Widget build(BuildContext context) {
-    theme = XTheme.of(context);
+    var theme = XTheme.of(context);
     return Scaffold(
         backgroundColor: theme.foregroundColor,
         body: SafeArea(

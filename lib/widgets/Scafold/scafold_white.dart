@@ -5,12 +5,13 @@ import 'package:lux_ui/util/lxi.dart';
 class XScafold extends StatelessWidget {
   final String? title;
   final Widget? child;
-  late final XThemeData theme;
+  // late final XThemeData theme;
   final void Function()? onBack;
   XScafold({Key? key, required this.title, this.child, this.onBack})
       : super(key: key);
 
   Widget buildTop(context) {
+    var theme = XTheme.of(context);
     final parentRoute = ModalRoute.of(context);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -22,15 +23,21 @@ class XScafold extends StatelessWidget {
           SizedBox(
             width: 8,
           ),
-          buildTitle()
+          Text(
+            title ?? '',
+            style: TextStyle(
+                fontFamily: 'Rubik',
+                fontWeight: FontWeight.w300,
+                color: theme.borderColor,
+                fontSize: 34),
+          )
         ],
       ),
     );
   }
 
-  Widget buildBackButton(
-    context,
-  ) {
+  Widget buildBackButton(context) {
+    var theme = XTheme.of(context);
     return GestureDetector(
       onTap: onBack ?? () => Navigator.of(context).pop(),
       child: Icon(
@@ -41,22 +48,11 @@ class XScafold extends StatelessWidget {
     );
   }
 
-  Widget buildTitle() {
-    return Text(
-      title ?? '',
-      style: TextStyle(
-          fontFamily: 'Rubik',
-          fontWeight: FontWeight.w300,
-          color: theme.borderColor,
-          fontSize: 34),
-    );
-  }
-
   Widget buildChild(BuildContext context) => child ?? Container();
 
   @override
   Widget build(BuildContext context) {
-    theme = XTheme.of(context);
+    var theme = XTheme.of(context);
     return Scaffold(
         backgroundColor: theme.foregroundColor,
         body: SafeArea(
