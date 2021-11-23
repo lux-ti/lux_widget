@@ -22,21 +22,21 @@ class RoundedIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: backgroundColor,
-      ),
-      child: Center(
-        child: IconButton(
-          icon: Icon(
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: backgroundColor,
+        ),
+        child: Center(
+          child: Icon(
             icon,
             size: iconSize,
             color: iconColor,
           ),
-          onPressed: onPressed,
         ),
       ),
     );
