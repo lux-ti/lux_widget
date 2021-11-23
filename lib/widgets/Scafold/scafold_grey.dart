@@ -104,11 +104,6 @@ class XScafoldGrey extends XScafold {
     );
   }
 
-  // Widget buildTitle(context) {
-  //   var theme = XTheme.of(context);
-  //   return
-  // }
-
   Widget codeNumberText(context) {
     var theme = XTheme.of(context);
     return Text(codeNumber ?? '',
