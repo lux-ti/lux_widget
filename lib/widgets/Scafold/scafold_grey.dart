@@ -31,6 +31,7 @@ class XScafoldGrey extends XScafold {
 
   Widget buildTop(context) {
     final parentRoute = ModalRoute.of(context);
+    var theme = XTheme.of(context);
     return Row(
       children: [
         if (onBack != null || parentRoute?.canPop == true) ...[
@@ -43,10 +44,18 @@ class XScafoldGrey extends XScafold {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            (codeNumber != null) ? codeNumberText() : Container(),
+            (codeNumber != null) ? codeNumberText(context) : Container(),
             Padding(
               padding: EdgeInsets.only(bottom: codeNumber != null ? 20 : 0),
-              child: buildTitle(),
+              child: Text(
+                title ?? "",
+                style: textStyle ??
+                    TextStyle(
+                        fontFamily: 'Rubik',
+                        fontWeight: FontWeight.w300,
+                        color: theme.backgroundColor,
+                        fontSize: textSize ?? 38),
+              ),
             ),
           ],
         ),
@@ -95,19 +104,13 @@ class XScafoldGrey extends XScafold {
     );
   }
 
-  Widget buildTitle() {
-    return Text(
-      title ?? "",
-      style: textStyle ??
-          TextStyle(
-              fontFamily: 'Rubik',
-              fontWeight: FontWeight.w300,
-              color: theme.backgroundColor,
-              fontSize: textSize ?? 38),
-    );
-  }
+  // Widget buildTitle(context) {
+  //   var theme = XTheme.of(context);
+  //   return
+  // }
 
-  Widget codeNumberText() {
+  Widget codeNumberText(context) {
+    var theme = XTheme.of(context);
     return Text(codeNumber ?? '',
         style: TextStyle(
             color: theme.backgroundColor,
@@ -118,7 +121,7 @@ class XScafoldGrey extends XScafold {
 
   @override
   Widget build(BuildContext context) {
-    theme = XTheme.of(context);
+    var theme = XTheme.of(context);
     return Scaffold(
         backgroundColor: theme.foregroundColor,
         body: SafeArea(
