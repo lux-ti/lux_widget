@@ -14,6 +14,8 @@ class XscaffoldTeste extends StatelessWidget {
       title: 'text',
       codeNumber: 'daw',
       nameStatus: 'dwawad',
+      colorStatus: Colors.red,
+      iconStatus: Icons.ac_unit_outlined,
       onPressed: () {
         print('foi');
       },

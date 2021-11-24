@@ -12,24 +12,10 @@ class XScafoldGrey extends XScafold {
   final String? codeNumber;
   final String? nameStatus;
   final IconData? iconStatus;
-  final Color? iconVerifiedBackgroundColor;
-  final Color? roundedIconBackGroundColor;
-  final Color? iconVerifiedColor;
-  final Color? roundedIconColor;
-  final bool? isStatus;
-  final bool? isRoundedIconbutton;
-  final bool? isIconVerified;
   final void Function()? onPressed;
 
   XScafoldGrey({
-    this.iconVerifiedColor,
-    this.roundedIconColor,
-    this.iconVerifiedBackgroundColor,
-    this.roundedIconBackGroundColor,
-    this.isIconVerified,
     this.iconStatus,
-    this.isStatus,
-    this.isRoundedIconbutton,
     this.nameStatus,
     this.colorStatus,
     this.onPressed,
@@ -75,15 +61,13 @@ class XScafoldGrey extends XScafold {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          (isRoundedIconbutton == true)
+                          (onPressed != null)
                               ? RoundedIconButton(
                                   onPressed: onPressed,
                                   width: 21,
                                   height: 21,
-                                  backgroundColor: roundedIconBackGroundColor ??
-                                      theme.primaryColor,
-                                  iconColor:
-                                      roundedIconColor ?? theme.backgroundColor,
+                                  backgroundColor: theme.primaryColor,
+                                  iconColor: theme.backgroundColor,
                                   iconSize: 21,
                                   icon: Icons.add,
                                 )
@@ -100,25 +84,23 @@ class XScafoldGrey extends XScafold {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            (isStatus == true)
+                            (nameStatus != null)
                                 ? XStatusBox(
                                     name: nameStatus ?? '',
                                     color: colorStatus ?? theme.primaryColor,
                                   )
                                 : Container(),
-                            (isIconVerified == true)
+                            (iconStatus != null)
                                 ? RoundedIconButton(
-                                    icon: Icons.check,
+                                    icon: iconStatus,
                                     backgroundColor:
-                                        iconVerifiedBackgroundColor ??
-                                            theme.primaryColor,
-                                    iconColor: iconVerifiedColor ??
-                                        theme.backgroundColor,
+                                        colorStatus ?? theme.primaryColor,
+                                    iconColor: theme.backgroundColor,
                                     width: 31,
                                     height: 31,
                                     iconSize: 31,
                                   )
-                                : Container()
+                                : Container(),
                           ],
                         ),
                       ),
