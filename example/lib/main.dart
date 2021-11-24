@@ -6,6 +6,6 @@ import 'package:lux_ui/lux_ui.dart';
 main(List<String> args) {
   runApp(XApp(
     title: 'Exemplo',
-    home: XstatusTeste(),
+    home: XscaffoldTeste(),
   ));
 }
