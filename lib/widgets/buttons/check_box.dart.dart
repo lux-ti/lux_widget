@@ -17,19 +17,19 @@ class XCheckBox extends StatelessWidget {
     this.color,
     this.borderRadius = 5,
     this.isTap,
-    this.onTap,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var xTheme = XTheme.of(context);
-    var isTouch = (isTap == null) ? false.obs : isTap.obs;
+    var isTouch = false.obs;
     return GestureDetector(
         onTap: () {
-          isTouch.value = (isTouch.isTrue!) ? false : true;
-          onTap!(isTouch.value!);
+          isTouch.value = (isTouch.isTrue) ? false : true;
+          onTap!(isTouch.value);
         },
-        child: Obx(() => border(xTheme, isTouch.value!)));
+        child: Obx(() => border(xTheme, isTouch.value)));
   }
 
   Widget border(XThemeData xTheme, bool isTouch) {
@@ -37,7 +37,7 @@ class XCheckBox extends StatelessWidget {
       height: heigth,
       width: width,
       decoration: BoxDecoration(
-        color: null,
+        color: Colors.transparent,
         border: Border.all(color: color ?? xTheme.primaryColor),
         borderRadius: BorderRadius.circular(borderRadius),
       ),
@@ -50,7 +50,8 @@ class XCheckBox extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       child: Container(
         decoration: BoxDecoration(
-            color: isTouch ? null : xTheme.primaryColor,
+            color:
+                (isTouch == false) ? Colors.transparent : xTheme.primaryColor,
             borderRadius: BorderRadius.all(Radius.circular(4))),
       ),
     );
