@@ -6,13 +6,17 @@ class XFilter extends StatelessWidget {
   final double? width;
   final Color? colorInputText;
   final double? iconsSize;
-  final void Function() onTap;
+  final void Function()? onTap;
+  final void Function(String)? onChanged;
 
   const XFilter({
     Key? key,
     this.heigth = 40,
     this.width = 370,
-    required this.onTap, this.colorInputText, this.iconsSize,
+    this.onTap,
+    this.colorInputText,
+    this.iconsSize,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -30,6 +34,7 @@ class XFilter extends StatelessWidget {
             Container(
                 width: 320,
                 child: TextField(
+                    onChanged: onChanged,
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         filled: true,
