@@ -137,16 +137,19 @@ class XLogin extends StatelessWidget {
                         )),
                   )
                 ]),
-                Obx(() => XRoundedButton(
-                      color: xTheme.primaryColor,
-                      onTap: () {
-                        isTap.value = true;
-                        onTap!(controllerEmail.text, controllerSenha.text);
-                      },
-                      widget: (isTap.isFalse)
-                          ? text(name: 'LOGIN', xTheme: xTheme.backgroundColor)
-                          : cPI(xTheme: xTheme.backgroundColor),
-                    ))
+                Obx(
+                  () => XRoundedButton(
+                    color: xTheme.primaryColor,
+                    onTap: () {
+                      isTap.value = isTouch;
+                      print(isTouch);
+                      onTap!(controllerEmail.text, controllerSenha.text);
+                    },
+                    widget: (isTap.isFalse)
+                        ? text(name: 'LOGIN', xTheme: xTheme.backgroundColor)
+                        : cPI(xTheme: xTheme.backgroundColor),
+                  ),
+                ),
               ],
             ),
           ),
