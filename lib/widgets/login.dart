@@ -5,15 +5,21 @@ import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/widgets/buttons/buttons.dart';
 
 class XLogin extends StatelessWidget {
-  final String? topName;
+  final String topName;
   final String? contentTop;
-  final String? midName;
+  final String midName;
   final String? contentMid;
   final void Function(String? text)? onChange;
   final bool isTouch;
+  final FormFieldValidator<String>? topValidator;
+  final FormFieldValidator<String>? midValidator;
   final void Function(String? email, String? senha)? onTap;
+  final GlobalKey<FormState>? formKey;
 
   const XLogin({
+    this.topValidator,
+    this.midValidator,
+    this.formKey,
     Key? key,
     this.topName = '',
     this.contentTop,
@@ -41,7 +47,7 @@ class XLogin extends StatelessWidget {
               spreadRadius: 3,
               offset: Offset(0, 3))
         ], color: xTheme.primaryColor, borderRadius: BorderRadius.circular(5)),
-        height: 330,
+        height: 350,
         width: 345,
       ),
       Padding(
@@ -51,91 +57,98 @@ class XLogin extends StatelessWidget {
           decoration: BoxDecoration(
               color: xTheme.backgroundColor,
               borderRadius: BorderRadius.circular(5)),
-          height: 330,
+          height: 350,
           width: 345,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(children: [
-                XSideBarButton(
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(children: [
+                  XSideBarButton(
                     mainAxisAlignment: MainAxisAlignment.center,
                     iconSize: 15,
                     icon: Lxi.user,
-                    text: topName!,
+                    text: topName,
                     colorIcon: xTheme.primaryColor,
                     colorText: xTheme.primaryColor,
-                    fontSize: 15),
-                Container(
-                  width: 200,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                  child: TextFormField(
-                    controller: controllerEmail,
-                    textInputAction: TextInputAction.next,
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
+                    fontSize: 15,
+                  ),
+                  Container(
+                    width: 200,
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                    child: TextFormField(
+                      controller: controllerEmail,
+                      validator: topValidator,
+                      textInputAction: TextInputAction.next,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: contentTop,
                         hintStyle: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.w300)),
+                            fontSize: 24, fontWeight: FontWeight.w300),
+                      ),
+                    ),
                   ),
-                ),
-              ]),
-              Column(children: [
-                XSideBarButton(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    iconSize: 15,
-                    icon: Lxi.lock,
-                    text: midName!,
-                    colorIcon: xTheme.primaryColor,
-                    colorText: xTheme.primaryColor,
-                    fontSize: 15),
-                Padding(
-                  padding: const EdgeInsets.only(left: 78),
-                  child: Obx(() => Row(
-                        children: [
-                          Container(
-                            width: 200,
-                            child: TextFormField(
-                              controller: controllerSenha,
-                              onFieldSubmitted: (value) {},
-                              onChanged: onChange,
-                              textAlign: TextAlign.center,
-                              obscureText: obscureText.value,
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: contentMid,
-                                  hintStyle: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w300)),
+                ]),
+                Column(children: [
+                  XSideBarButton(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      iconSize: 15,
+                      icon: Lxi.lock,
+                      text: midName,
+                      colorIcon: xTheme.primaryColor,
+                      colorText: xTheme.primaryColor,
+                      fontSize: 15),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 78),
+                    child: Obx(() => Row(
+                          children: [
+                            Container(
+                              width: 200,
+                              child: TextFormField(
+                                controller: controllerSenha,
+                                validator: midValidator,
+                                onFieldSubmitted: (value) {},
+                                onChanged: onChange,
+                                textAlign: TextAlign.center,
+                                obscureText: obscureText.value,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: contentMid,
+                                    hintStyle: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w300)),
+                              ),
                             ),
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Lxi.eye,
-                              size: 24,
-                              color: xTheme.primaryColor,
+                            IconButton(
+                              icon: Icon(
+                                Lxi.eye,
+                                size: 24,
+                                color: xTheme.primaryColor,
+                              ),
+                              onPressed: () {
+                                obscureText.value =
+                                    (obscureText != true.obs) ? true : false;
+                              },
                             ),
-                            onPressed: () {
-                              obscureText.value =
-                                  (obscureText != true.obs) ? true : false;
-                            },
-                          ),
-                        ],
-                      )),
-                )
-              ]),
-              Obx(() => XRoundedButton(
-                    color: xTheme.primaryColor,
-                    onTap: () {
-                      isTap.value = true;
-                      onTap!(controllerEmail.text, controllerSenha.text);
-                    },
-                    widget: (isTap.isFalse)
-                        ? text(name: 'LOGIN', xTheme: xTheme.backgroundColor)
-                        : cPI(xTheme: xTheme.backgroundColor),
-                  ))
-            ],
+                          ],
+                        )),
+                  )
+                ]),
+                Obx(() => XRoundedButton(
+                      color: xTheme.primaryColor,
+                      onTap: () {
+                        isTap.value = true;
+                        onTap!(controllerEmail.text, controllerSenha.text);
+                      },
+                      widget: (isTap.isFalse)
+                          ? text(name: 'LOGIN', xTheme: xTheme.backgroundColor)
+                          : cPI(xTheme: xTheme.backgroundColor),
+                    ))
+              ],
+            ),
           ),
         ),
       ),
