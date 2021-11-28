@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +10,7 @@ import 'package:lux_ui/widgets/buttons/buttons.dart';
 import 'package:lux_ui/widgets/login.dart';
 
 class LoginView extends GetView {
-  late bool isTouch = false;
+  // late bool isTouch = false;
 
   String? _topValidator(String? value) {
     if (value!.isEmpty) return 'o email é obrigatório';
@@ -24,7 +26,10 @@ class LoginView extends GetView {
   Widget build(BuildContext context) {
     var xTheme = XTheme.of(context);
     final _formKey = GlobalKey<FormState>();
-    // RxBool isTap = isTouch.obs;
+    RxBool isTap = true.obs;
+
+    var controllerEmail = TextEditingController();
+    var controllerSenha = TextEditingController();
 
     return XScafold(
       title: '',
@@ -39,6 +44,8 @@ class LoginView extends GetView {
               height: 30,
             ),
             XLogin(
+              controllerEmail: controllerEmail,
+              controllerSenha: controllerSenha,
               topName: 'LOGIN',
               contentTop: 'Digite seu email',
               formKey: _formKey,
@@ -46,23 +53,23 @@ class LoginView extends GetView {
               contentMid: 'Digite sua senha',
               topValidator: _topValidator,
               midValidator: _midValidator,
-              onTap: (email, senha) {
-                isTouch = false;
-                if (_formKey.currentState!.validate()) {
-                  isTouch = true;
-                }
-              },
-              // buttonChild: Obx(
-              //   () => XRoundedButton(
-              //     color: xTheme.primaryColor,
-              //     onTap: () {
-              //       isTap.value = isTouch;
-              //     },
-              //     widget: (isTouch)
-              //         ? text(name: 'LOGIN', xTheme: xTheme.backgroundColor)
-              //         : cPI(xTheme: xTheme.backgroundColor),
-              //   ),
-              // ),
+              buttonChild: Container(
+                child: Obx(
+                  () => XRoundedButton(
+                    color: xTheme.primaryColor,
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        isTap.value = false;
+                        print(controllerSenha.text);
+                        print(controllerEmail.text);
+                      }
+                    },
+                    widget: (isTap.value)
+                        ? text(name: 'LOGIN', xTheme: xTheme.backgroundColor)
+                        : cPI(xTheme: xTheme.backgroundColor),
+                  ),
+                ),
+              ),
             ),
           ],
         ),

@@ -10,13 +10,17 @@ class XLogin extends StatelessWidget {
   final String midName;
   final String? contentMid;
   final void Function(String? text)? onChange;
-  final bool isTouch;
   final FormFieldValidator<String>? topValidator;
   final FormFieldValidator<String>? midValidator;
-  final void Function(String? email, String? senha)? onTap;
   final GlobalKey<FormState>? formKey;
+  final Widget buttonChild;
+  final TextEditingController? controllerEmail;
+  final TextEditingController? controllerSenha;
 
   const XLogin({
+    required this.controllerEmail,
+    required this.controllerSenha,
+    required this.buttonChild,
     this.topValidator,
     this.midValidator,
     this.formKey,
@@ -26,17 +30,12 @@ class XLogin extends StatelessWidget {
     this.midName = '',
     this.contentMid,
     this.onChange,
-    this.isTouch = false,
-    this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var controllerEmail = TextEditingController();
-    var controllerSenha = TextEditingController();
     var xTheme = XTheme.of(context);
     var obscureText = true.obs;
-    RxBool isTap = isTouch.obs;
 
     return Stack(children: [
       Container(
@@ -81,6 +80,7 @@ class XLogin extends StatelessWidget {
                     child: TextFormField(
                       controller: controllerEmail,
                       validator: topValidator,
+                      keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
@@ -137,19 +137,7 @@ class XLogin extends StatelessWidget {
                         )),
                   )
                 ]),
-                Obx(
-                  () => XRoundedButton(
-                    color: xTheme.primaryColor,
-                    onTap: () {
-                      isTap.value = isTouch;
-                      print(isTouch);
-                      onTap!(controllerEmail.text, controllerSenha.text);
-                    },
-                    widget: (isTap.isFalse)
-                        ? text(name: 'LOGIN', xTheme: xTheme.backgroundColor)
-                        : cPI(xTheme: xTheme.backgroundColor),
-                  ),
-                ),
+                buttonChild,
               ],
             ),
           ),
