@@ -28,6 +28,9 @@ class LoginView extends GetView {
     final _formKey = GlobalKey<FormState>();
     RxBool isTap = true.obs;
 
+    var controllerEmail = TextEditingController();
+    var controllerSenha = TextEditingController();
+
     return XScafold(
       title: '',
       child: SingleChildScrollView(
@@ -41,6 +44,8 @@ class LoginView extends GetView {
               height: 30,
             ),
             XLogin(
+              controllerEmail: controllerEmail,
+              controllerSenha: controllerSenha,
               topName: 'LOGIN',
               contentTop: 'Digite seu email',
               formKey: _formKey,
@@ -55,6 +60,8 @@ class LoginView extends GetView {
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
                         isTap.value = false;
+                        print(controllerSenha.text);
+                        print(controllerEmail.text);
                       }
                     },
                     widget: (isTap.value)

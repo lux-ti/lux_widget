@@ -14,8 +14,12 @@ class XLogin extends StatelessWidget {
   final FormFieldValidator<String>? midValidator;
   final GlobalKey<FormState>? formKey;
   final Widget buttonChild;
+  final TextEditingController? controllerEmail;
+  final TextEditingController? controllerSenha;
 
   const XLogin({
+    required this.controllerEmail,
+    required this.controllerSenha,
     required this.buttonChild,
     this.topValidator,
     this.midValidator,
@@ -30,8 +34,6 @@ class XLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controllerEmail = TextEditingController();
-    var controllerSenha = TextEditingController();
     var xTheme = XTheme.of(context);
     var obscureText = true.obs;
 
