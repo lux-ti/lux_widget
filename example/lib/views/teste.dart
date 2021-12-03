@@ -8,13 +8,37 @@ import 'package:lux_ui/widgets/status.dart';
 class Teste extends StatelessWidget {
   const Teste({Key? key}) : super(key: key);
 
+  get icon => null;
+
   @override
   Widget build(BuildContext context) {
     var xTheme = XTheme.of(context);
-    return Center(
-      child: XCheckBox(
-        onTap: (value) {},
-      ),
-    );
+    var form = GlobalKey<FormState>();
+    var controller = TextEditingController();
+    return Scaffold(
+        body: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Form(
+          key: form,
+          child: XTextField(
+            validator: validate,
+          ),
+        ),
+        IconButton(
+          onPressed: () {
+            form.currentState!.validate();
+          },
+          icon: Icon(Icons.add),
+        ),
+      ],
+    ));
   }
+}
+
+String? validate(String? text) {
+  if (text == '') {
+    return 'Obrigatório';
+  } else
+    return null;
 }
