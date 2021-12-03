@@ -4,12 +4,12 @@ import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/validation/validation.dart';
 
 class XTextField extends StatelessWidget {
-  final Validator? validator;
   final void Function()? onFocus;
   final void Function()? onBlur;
   final void Function()? onTap;
   final void Function(String text)? onSubmit;
   final void Function(String? text)? onSaved;
+  String? Function(String? value)? validator;
   final TextEditingController? controller;
   final Widget? suffixIcon;
   final String? topText;
@@ -94,7 +94,7 @@ class XTextField extends StatelessWidget {
                 style: TextStyle(fontSize: sizeInputText),
                 inputFormatters: maskFormatter,
                 controller: textController,
-                validator: validator?.validate,
+                validator: validator,
                 keyboardType: textInputType,
                 decoration: InputDecoration(
                     suffixIcon: suffixIcon,
