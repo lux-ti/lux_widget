@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lux_ui/lib.dart';
 import 'package:lux_ui/widgets/buttons/buttons.dart';
 
@@ -45,18 +46,15 @@ void xDialog(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            
-                             Icon(icon,
-                                  size: iconSize, color: iconColor),
-
-                                  SizedBox(width: 5,),
-                            
-                             Icon(
-                                icon2,
-                                size: iconSize,
-                                color: iconColor,
-                              ),
-                            
+                            Icon(icon, size: iconSize, color: iconColor),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Icon(
+                              icon2,
+                              size: iconSize,
+                              color: iconColor,
+                            ),
                           ],
                         ),
                       ),
@@ -74,7 +72,9 @@ void xDialog(
                             fontWeight: FontWeight.w600),
                         textAlign: TextAlign.end,
                       ),
-                      SizedBox(width: 20,),
+                      SizedBox(
+                        width: 20,
+                      ),
                       XSelector(
                         text: 'Selecione o motivo',
                         height: 35,
@@ -99,4 +99,69 @@ void xDialog(
           ),
         );
       });
+}
+
+class XDialog {
+  BuildContext context;
+  double? height;
+  Widget? child;
+  Color? color;
+  String? text;
+  XDialog({
+    this.height,
+    this.child,
+    required this.context,
+    this.color,
+    this.text,
+  });
+
+  void modal() {
+    Get.dialog(Dialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: EdgeInsets.symmetric(horizontal: 20),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            width: double.infinity - 50,
+            height: height ??
+                MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).size.height * 40 / 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: color ?? Colors.white,
+            ),
+            child: child,
+          )
+        ],
+      ),
+    ));
+  }
+
+  void alert() {
+    Get.dialog(Dialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: EdgeInsets.symmetric(horizontal: 10),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width - 50,
+            height: height ??
+                MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).size.height * 80 / 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: color ?? Colors.white,
+            ),
+            child: Center(
+              child: Text(
+                text ?? 'Erro inesperado',
+              ),
+            ),
+          )
+        ],
+      ),
+    ));
+  }
 }
