@@ -9,36 +9,36 @@ class Teste extends StatelessWidget {
   const Teste({Key? key}) : super(key: key);
 
   get icon => null;
+  // Icons.inventory_outlined
 
   @override
   Widget build(BuildContext context) {
     var xTheme = XTheme.of(context);
     var form = GlobalKey<FormState>();
     var controller = TextEditingController();
-    return Scaffold(
-        body: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Form(
-          key: form,
-          child: XTextField(
-            validator: validate,
-          ),
-        ),
-        IconButton(
-          onPressed: () {
-            form.currentState!.validate();
-          },
-          icon: Icon(Icons.add),
-        ),
-      ],
-    ));
+    return XScafoldGrey(
+      textSize: 38,
+      title: 'Pedido',
+      codeNumber: '123',
+      colorStatus: xTheme.primaryColor,
+      nameStatus: 'nome do status',
+      icon: Icons.search_off,
+      firstOnPressed: () {},
+      lastOnTapIcon: () {
+        print('foi');
+      },
+      child: Column(
+        children: [
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: xTheme.backgroundColor,
+                borderRadius: BorderRadius.circular(5),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
-}
-
-String? validate(String? text) {
-  if (text == '') {
-    return 'Obrigatório';
-  } else
-    return null;
 }
