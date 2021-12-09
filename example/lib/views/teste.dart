@@ -12,7 +12,12 @@ class Teste extends StatelessWidget {
 
   TextEditingController n1controller = TextEditingController();
   TextEditingController n2controller = TextEditingController();
-
+  var obj = [
+    {'id': 1, 'name': 'nome1'},
+    {'id': 12, 'name': 'nome2'},
+    {'id': 13, 'name': 'nome31'},
+    {'id': 14, 'name': 'nome14'}
+  ];
   @override
   Widget build(BuildContext context) {
     var xTheme = XTheme.of(context);
@@ -45,7 +50,8 @@ class Teste extends StatelessWidget {
                               onChanged: (value, haveItem) {
                                 print(haveItem);
                               },
-                              items: [],
+                              items:
+                                  obj.map((e) => e['name'].toString()).toList(),
                               infinity: () {
                                 print('foi');
                               },

@@ -10,6 +10,7 @@ class XDropdownSearch extends StatefulWidget {
   final String? Function(String?)? validator;
   final bool compact;
   final List<String> items;
+  final double? width;
   XDropdownSearch({
     Key? key,
     this.onChanged,
@@ -20,6 +21,7 @@ class XDropdownSearch extends StatefulWidget {
     this.compact = false,
     this.infinity,
     required this.items,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -38,6 +40,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
   void initState() {
     super.initState();
     setState(() {
+      items = widget.items;
       listSearch = items;
     });
     _scrollController.addListener(() {
@@ -58,7 +61,8 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
+      width: widget.width ?? double.infinity,
+      margin: EdgeInsets.all(10),
       child: Column(
         children: [
           FocusScope(
