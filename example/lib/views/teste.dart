@@ -18,9 +18,12 @@ class Teste extends StatelessWidget {
     {'id': 13, 'name': 'nome31'},
     {'id': 14, 'name': 'nome14'}
   ];
+
+  var list2 = ['item 1', 'item 2', 'item 3', 'item 4', 'item 5', 'item 6'];
   @override
   Widget build(BuildContext context) {
     var xTheme = XTheme.of(context);
+    final _formKey = GlobalKey<FormState>();
     return XScafoldGrey(
       textSize: 38,
       title: 'Pedido',
@@ -43,18 +46,28 @@ class Teste extends StatelessWidget {
                         context: context,
                         child: Column(
                           children: [
-                            XDropdownSearch(
-                              placeholder: 'nome do campo',
-                              compact: true,
-                              controller: n1controller,
-                              onChanged: (value, haveItem) {
-                                print(haveItem);
-                              },
-                              items:
-                                  obj.map((e) => e['name'].toString()).toList(),
-                              infinity: () {
-                                print('foi');
-                              },
+                            Form(
+                              key: _formKey,
+                              child: XDropdownSearch(
+                                placeholder: 'nome do campo',
+                                compact: true,
+                                controller: n1controller,
+                                validator: (item) {
+                                  if (item == null) {
+                                    return "campo obrigatório";
+                                  }
+                                  return null;
+                                },
+                                onChanged: (value, haveItem) {
+                                  print(haveItem);
+                                },
+                                items: obj
+                                    .map((e) => e['name'].toString())
+                                    .toList(),
+                                infinity: () {
+                                  print('foi');
+                                },
+                              ),
                             ),
                             SizedBox(
                               height: 10,
@@ -63,7 +76,21 @@ class Teste extends StatelessWidget {
                               placeholder: 'nome do campo',
                               controller: n2controller,
                               items: [],
+                              validator: (item) {
+                                if (item == null) {
+                                  return "campo obrigatório";
+                                }
+                                return null;
+                              },
                             ),
+                            MaterialButton(
+                              onPressed: () {
+                                print(_formKey.currentState!.validate());
+                                print('valido');
+                                if (_formKey.currentState!.validate()) {}
+                              },
+                              child: Text('enviar'),
+                            )
                           ],
                         ),
                       ).modal();
