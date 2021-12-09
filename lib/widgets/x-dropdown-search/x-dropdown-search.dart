@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class XDropdownSearch extends GetView {
+class XDropdownSearch extends StatefulWidget {
   final void Function()? onFocus;
   final void Function()? onBlur;
   final void Function()? onTap;
@@ -16,50 +16,72 @@ class XDropdownSearch extends GetView {
       this.controller})
       : super(key: key);
 
-  final RxList<String> list = [
-    'item1',
-    'item2',
-    'item1',
-    'item2',
-    'item1',
-    'item2',
-    'item1',
-    'item2',
-    'item1',
-    'item2',
-    'item1',
-    'item2',
-    'item1',
-    'item2',
-    'item1',
-    'item2',
-    'item1',
-    'item2',
-    'item1',
-    'item2',
-    'item1',
-    'item2',
-    'item1',
-    'item2',
-    'item1',
-    'item2',
-    'item1',
-    'item2'
-  ].obs;
+  @override
+  State<XDropdownSearch> createState() => _XDropdownSearchState();
+}
 
-  final RxDouble boxList = 0.0.obs;
-  Rx<ScrollController> _scrollController = ScrollController().obs;
+class _XDropdownSearchState extends State<XDropdownSearch> {
+  double boxList = 0.0;
+  List<String> list = [];
+
+  ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    print('iniciiu');
+    setState(() {
+      list = [
+        'item1',
+        'item2',
+        'item1',
+        'item2',
+        'item1',
+        'item2',
+        'item1',
+        'item2',
+        'item1',
+        'item2',
+        'item1',
+        'item2',
+        'item1',
+        'item2',
+        'item1',
+        'item2',
+        'item1',
+        'item2',
+        'item1',
+        'item2',
+        'item1',
+        'item2',
+        'item1',
+        'item2',
+        'item1',
+        'item2',
+        'item1',
+        'item2'
+      ];
+    });
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >=
+          _scrollController.position.maxScrollExtent) {
+        print('checkou');
+        setState(() {
+          list.add('novo valor value');
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final textController = controller ?? TextEditingController();
-
-    if (boxList > 0) {
-      if (_scrollController.value.position.pixels ==
-          _scrollController.value.position.maxScrollExtent) {
-        list.value = [];
-      }
-    }
+    var textController = widget.controller ?? TextEditingController();
 
     return Container(
       width: 300,
@@ -73,12 +95,16 @@ class XDropdownSearch extends GetView {
         children: [
           FocusScope(
             onFocusChange: (value) {
-              if (value && onFocus != null) {
-                onFocus!();
-                boxList.value = 200.0;
-              } else if (!value && onBlur != null) {
-                onBlur!();
-                boxList.value = 0.0;
+              if (value && widget.onFocus != null) {
+                widget.onFocus!();
+                setState(() {
+                  boxList = 200.0;
+                });
+              } else if (!value && widget.onBlur != null) {
+                widget.onBlur!();
+                setState(() {
+                  boxList = 0.0;
+                });
                 submit(textController.text);
               }
             },
@@ -91,28 +117,24 @@ class XDropdownSearch extends GetView {
             ),
           ),
           SingleChildScrollView(
-            child: Obx(
-              () => Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Theme.of(context).disabledColor),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Theme.of(context).disabledColor),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
                 ),
-                height: boxList.value,
-                child: ListView.builder(
-                  controller: _scrollController.value,
-                  itemCount: list.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Text(
-                            _scrollController.value.position.pixels.toString()),
-                        Text(list[index]),
-                      ],
-                    );
-                  },
-                ),
+              ),
+              height: boxList,
+              child: ListView.builder(
+                controller: _scrollController,
+                itemCount: list.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Text(list[index]),
+                    ],
+                  );
+                },
               ),
             ),
           ),
@@ -122,8 +144,8 @@ class XDropdownSearch extends GetView {
   }
 
   void submit(String? text) {
-    if (text != null && onSubmit != null) {
-      onSubmit!(text);
+    if (text != null && widget.onSubmit != null) {
+      widget.onSubmit!(text);
     }
   }
 }

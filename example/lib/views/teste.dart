@@ -44,14 +44,6 @@ class Teste extends StatelessWidget {
                                 print('foi');
                               },
                             ),
-                            XDropdownSearch(
-                              onBlur: () {
-                                print('foi');
-                              },
-                              onFocus: () {
-                                print('foi');
-                              },
-                            ),
                           ],
                         ),
                       ).modal();
