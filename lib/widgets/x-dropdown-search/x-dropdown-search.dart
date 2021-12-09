@@ -67,9 +67,10 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
         children: [
           FocusScope(
             onFocusChange: (value) {
-              if (value) {
+              if (value && items.isNotEmpty) {
                 setState(() {
-                  boxList = 200.0;
+                  boxList =
+                      items.length <= 5 && items.length != 0 ? 130 : 200.0;
                 });
               } else if (!value) {
                 setState(() {
@@ -141,6 +142,16 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                       GestureDetector(
                         onTap: () {
                           widget.controller.text = listSearch[index];
+                          if (boxList > 0.0) {
+                            FocusScopeNode currentFocus =
+                                FocusScope.of(context);
+                            if (!currentFocus.hasPrimaryFocus) {
+                              currentFocus.unfocus();
+                            }
+                            setState(() {
+                              boxList = 0.0;
+                            });
+                          }
                         },
                         child: Container(
                           width: double.infinity,
@@ -148,6 +159,11 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                           child: Text(
                             listSearch[index],
                             textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color:
+                                    widget.controller.text == listSearch[index]
+                                        ? Theme.of(context).primaryColor
+                                        : null),
                           ),
                         ),
                       ),
