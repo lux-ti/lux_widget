@@ -8,7 +8,10 @@ import 'package:lux_ui/widgets/status.dart';
 import 'package:lux_ui/widgets/x-dropdown-search/x-dropdown-search.dart';
 
 class Teste extends StatelessWidget {
-  const Teste({Key? key}) : super(key: key);
+  Teste({Key? key}) : super(key: key);
+
+  TextEditingController n1controller = TextEditingController();
+  TextEditingController n2controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +34,29 @@ class Teste extends StatelessWidget {
                 children: [
                   MaterialButton(
                     onPressed: () {
-                      print('abriu');
                       XDialog(
                         context: context,
                         child: Column(
                           children: [
                             XDropdownSearch(
-                              onBlur: () {
+                              placeholder: 'nome do campo',
+                              compact: true,
+                              controller: n1controller,
+                              onChanged: (value, haveItem) {
+                                print(haveItem);
+                              },
+                              items: [],
+                              infinity: () {
                                 print('foi');
                               },
-                              onFocus: () {
-                                print('foi');
-                              },
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            XDropdownSearch(
+                              placeholder: 'nome do campo',
+                              controller: n2controller,
+                              items: [],
                             ),
                           ],
                         ),
