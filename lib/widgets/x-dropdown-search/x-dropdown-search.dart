@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 class XDropdownSearch extends StatefulWidget {
   final void Function(String, bool)? onChanged;
+  final void Function(String)? onTapItem;
   final void Function()? infinity;
   final TextEditingController controller;
   final String? placeholder;
@@ -22,6 +23,7 @@ class XDropdownSearch extends StatefulWidget {
     this.infinity,
     required this.items,
     this.width,
+    this.onTapItem,
   }) : super(key: key);
 
   @override
@@ -152,6 +154,8 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                               boxList = 0.0;
                             });
                           }
+                          if (widget.onTapItem != null)
+                            widget.onTapItem!(listSearch[index]);
                         },
                         child: Container(
                           width: double.infinity,
