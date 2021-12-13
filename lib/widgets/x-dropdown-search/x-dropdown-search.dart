@@ -196,8 +196,11 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                         },
                         child: Container(
                           width: double.infinity,
+                          color: index % 2 == 0
+                              ? Theme.of(context).backgroundColor
+                              : Colors.grey[100],
                           padding:
-                              EdgeInsets.only(top: 10, bottom: 10, left: 50),
+                              EdgeInsets.only(top: 10, bottom: 10, left: 20),
                           child: Text(
                             listSearch[index],
                             style: TextStyle(

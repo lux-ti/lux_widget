@@ -16,7 +16,12 @@ class Teste extends StatelessWidget {
     {'id': 1, 'name': 'nome1'},
     {'id': 12, 'name': 'nome2'},
     {'id': 13, 'name': 'nome31'},
-    {'id': 14, 'name': 'nome14'}
+    {'id': 14, 'name': 'nome14'},
+    {'id': 14, 'name': 'nome15'},
+    {'id': 14, 'name': 'nome16'},
+    {'id': 14, 'name': 'nome17'},
+    {'id': 14, 'name': 'nome18'},
+    {'id': 14, 'name': 'nome19'},
   ];
 
   var list2 = ['item 1', 'item 2', 'item 3', 'item 4', 'item 5', 'item 6'];
@@ -76,7 +81,6 @@ class Teste extends StatelessWidget {
                             XDropdownSearch(
                               placeholder: 'nome do campo',
                               controller: n2controller,
-                              width: 100,
                               items: [],
                               validator: (item) {
                                 if (item != null) {
