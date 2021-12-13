@@ -159,10 +159,10 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                         },
                         child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.symmetric(vertical: 10),
+                          padding:
+                              EdgeInsets.only(top: 10, bottom: 10, left: 50),
                           child: Text(
                             listSearch[index],
-                            textAlign: TextAlign.center,
                             style: TextStyle(
                                 color:
                                     widget.controller.text == listSearch[index]
