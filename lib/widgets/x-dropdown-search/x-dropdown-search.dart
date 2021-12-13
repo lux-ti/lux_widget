@@ -135,11 +135,11 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                   flex: 1,
                   child: GestureDetector(
                     onTap: () {
-                      widget.controller.text = '';
-                      FocusScopeNode currentFocus = FocusScope.of(context);
                       if (widget.onDelete != null) {
                         widget.onDelete!(widget.controller.text);
                       }
+                      widget.controller.text = '';
+                      FocusScopeNode currentFocus = FocusScope.of(context);
                       if (!currentFocus.hasPrimaryFocus) {
                         currentFocus.unfocus();
                       }
