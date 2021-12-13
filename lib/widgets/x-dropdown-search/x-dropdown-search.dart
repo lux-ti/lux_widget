@@ -5,6 +5,7 @@ class XDropdownSearch extends StatefulWidget {
   final void Function(String, bool)? onChanged;
   final void Function(String)? onTapItem;
   final void Function()? infinity;
+  final void Function(String?)? onDelete;
   final TextEditingController controller;
   final String? placeholder;
   final Color? placeholderColor;
@@ -24,6 +25,7 @@ class XDropdownSearch extends StatefulWidget {
     required this.items,
     this.width,
     this.onTapItem,
+    this.onDelete,
   }) : super(key: key);
 
   @override
@@ -133,6 +135,9 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                   flex: 1,
                   child: GestureDetector(
                     onTap: () {
+                      if (widget.onDelete != null) {
+                        widget.onDelete!(widget.controller.text);
+                      }
                       widget.controller.text = '';
                       FocusScopeNode currentFocus = FocusScope.of(context);
                       if (!currentFocus.hasPrimaryFocus) {
