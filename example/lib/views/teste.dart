@@ -42,6 +42,7 @@ class Teste extends StatelessWidget {
                 children: [
                   MaterialButton(
                     onPressed: () {
+                      print('foi');
                       XDialog(
                         context: context,
                         child: Column(
@@ -75,9 +76,10 @@ class Teste extends StatelessWidget {
                             XDropdownSearch(
                               placeholder: 'nome do campo',
                               controller: n2controller,
+                              width: 100,
                               items: [],
                               validator: (item) {
-                                if (item == null) {
+                                if (item != null) {
                                   return "campo obrigatório";
                                 }
                                 return null;

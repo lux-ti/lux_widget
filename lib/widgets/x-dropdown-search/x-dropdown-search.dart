@@ -80,48 +80,80 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                 });
               }
             },
-            child: Container(
-              margin: EdgeInsets.only(bottom: 10),
-              child: TextFormField(
-                validator: widget.validator,
-                controller: widget.controller,
-                decoration: InputDecoration(
-                  labelText: widget.placeholder ?? null,
-                  labelStyle: TextStyle(
-                    color: widget.placeholderColor ??
-                        Theme.of(context).primaryColor,
-                  ),
-                  border: widget.compact
-                      ? null
-                      : OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: widget.placeholderColor ??
-                                Theme.of(context).primaryColor,
-                          ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  flex: 4,
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    child: TextFormField(
+                      validator: widget.validator,
+                      controller: widget.controller,
+                      decoration: InputDecoration(
+                        labelText: widget.placeholder ?? null,
+                        labelStyle: TextStyle(
+                          color: widget.placeholderColor ??
+                              Theme.of(context).primaryColor,
                         ),
-                  focusedBorder: widget.compact
-                      ? UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: widget.placeholderColor ??
-                                Theme.of(context).primaryColor,
-                          ),
-                        )
-                      : OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: widget.placeholderColor ??
-                                Theme.of(context).primaryColor,
-                          ),
-                        ),
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    listSearch = filterSearch(value);
-                  });
+                        border: widget.compact
+                            ? null
+                            : OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: widget.placeholderColor ??
+                                      Theme.of(context).primaryColor,
+                                ),
+                              ),
+                        focusedBorder: widget.compact
+                            ? UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: widget.placeholderColor ??
+                                      Theme.of(context).primaryColor,
+                                ),
+                              )
+                            : OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: widget.placeholderColor ??
+                                      Theme.of(context).primaryColor,
+                                ),
+                              ),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          listSearch = filterSearch(value);
+                        });
 
-                  if (widget.onChanged != null)
-                    widget.onChanged!(value, haveItem());
-                },
-              ),
+                        if (widget.onChanged != null)
+                          widget.onChanged!(value, haveItem());
+                      },
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: GestureDetector(
+                    onTap: () {
+                      widget.controller.text = '';
+                      FocusScopeNode currentFocus = FocusScope.of(context);
+                      if (!currentFocus.hasPrimaryFocus) {
+                        currentFocus.unfocus();
+                      }
+                      if (boxList > 0.0) {
+                        setState(() {
+                          boxList = 0.0;
+                        });
+                      }
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(left: 10),
+                      child: Icon(
+                        Icons.close,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
           SingleChildScrollView(
