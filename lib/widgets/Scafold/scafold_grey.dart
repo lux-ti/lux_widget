@@ -11,14 +11,18 @@ class XScafoldGrey extends XScafold {
   final Color? colorStatus;
   final String? codeNumber;
   final String? nameStatus;
-  final IconData? iconStatus;
-  final void Function()? onPressed;
+  final Color? backgroundColorIcon;
+  final IconData? icon;
+  final void Function()? firstOnPressed;
+  final void Function()? lastOnTapIcon;
 
   XScafoldGrey({
-    this.iconStatus,
+    this.lastOnTapIcon,
+    this.backgroundColorIcon,
+    this.icon,
     this.nameStatus,
     this.colorStatus,
-    this.onPressed,
+    this.firstOnPressed,
     this.codeNumber,
     this.textStyle,
     this.textSize,
@@ -61,9 +65,9 @@ class XScafoldGrey extends XScafold {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          (onPressed != null)
+                          (firstOnPressed != null)
                               ? RoundedIconButton(
-                                  onPressed: onPressed,
+                                  onPressed: firstOnPressed,
                                   width: 21,
                                   height: 21,
                                   backgroundColor: theme.primaryColor,
@@ -87,18 +91,22 @@ class XScafoldGrey extends XScafold {
                             (nameStatus != null)
                                 ? XStatusBox(
                                     name: nameStatus ?? '',
-                                    color: colorStatus ?? theme.primaryColor,
+                                    color: colorStatus ?? Colors.transparent,
                                   )
                                 : Container(),
-                            (iconStatus != null)
-                                ? RoundedIconButton(
-                                    icon: iconStatus,
-                                    backgroundColor:
-                                        colorStatus ?? theme.primaryColor,
-                                    iconColor: theme.backgroundColor,
-                                    width: 31,
-                                    height: 31,
-                                    iconSize: 31,
+                            (icon != null)
+                                ? GestureDetector(
+                                    onTap: lastOnTapIcon,
+                                    child: RoundedIconButton(
+                                      icon: icon,
+                                      backgroundColor:
+                                          backgroundColorIcon != null
+                                              ? backgroundColorIcon
+                                              : colorStatus ?? null,
+                                      iconColor: theme.backgroundColor,
+                                      padding: 4,
+                                      iconSize: 25,
+                                    ),
                                   )
                                 : Container(),
                           ],

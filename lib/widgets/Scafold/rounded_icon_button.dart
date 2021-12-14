@@ -6,11 +6,13 @@ class RoundedIconButton extends StatelessWidget {
   final double? iconSize;
   final Color? backgroundColor;
   final Color? iconColor;
+  final double? padding;
   final IconData? icon;
   final void Function()? onPressed;
 
   const RoundedIconButton(
       {Key? key,
+      this.padding,
       this.width,
       this.height,
       this.backgroundColor,
@@ -25,8 +27,9 @@ class RoundedIconButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: width,
-        height: height,
+        padding: EdgeInsets.all(padding ?? 0),
+        width: width ?? 31,
+        height: height ?? 31,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: backgroundColor,
@@ -34,8 +37,8 @@ class RoundedIconButton extends StatelessWidget {
         child: Center(
           child: Icon(
             icon,
-            size: iconSize,
-            color: iconColor,
+            size: iconSize ?? 31,
+            color: iconColor ?? Colors.white,
           ),
         ),
       ),
