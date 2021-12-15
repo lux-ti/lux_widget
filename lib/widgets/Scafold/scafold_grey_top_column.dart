@@ -46,19 +46,18 @@ class XScafoldGreyTopColumn extends XScafoldGrey {
             height: topChildHeight,
             child: topChild ?? Container(),
           ),
-          child!,
         ],
       ),
     );
   }
+
+  @override
+  Widget buildChild(context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        child: child,
+      ),
+    );
+  }
 }
-//   @override
-//   Widget buildChild(context) {
-//     return ClipRRect(
-//       borderRadius: BorderRadius.circular(10),
-//       child: Container(
-//         child: child,
-//       ),
-//     );
-//   }
-// }
