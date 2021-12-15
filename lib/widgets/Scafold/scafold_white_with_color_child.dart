@@ -4,12 +4,18 @@ import 'package:lux_ui/widgets/Scafold/Scafold.dart';
 
 class XScafoldWithColorChild extends XScafold {
   final Alignment? alignment;
+
   XScafoldWithColorChild(
       {this.alignment,
       required String title,
       Widget? child,
+      void Function()? onPressedButton,
       void Function()? onBack})
-      : super(title: title, child: child, onBack: onBack);
+      : super(
+            title: title,
+            child: child,
+            onBack: onBack,
+            onPressedButton: onPressedButton);
 
   @override
   Widget buildChild(context) {
