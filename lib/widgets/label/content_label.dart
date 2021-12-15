@@ -5,7 +5,7 @@ class XContentLabel extends StatelessWidget {
   final String topName;
   final String name;
   final Color? colorTop;
-  final double? topNameWidth;
+  final double? NameWidth;
   final Color? colorName;
   final double? topSize;
   final double? nameSize;
@@ -28,7 +28,7 @@ class XContentLabel extends StatelessWidget {
     this.nameWeight,
     this.topSpace,
     this.nameSpace,
-    this.topNameWidth,
+    this.NameWidth,
     this.overflow,
     this.maxLines,
   }) : super(key: key);
@@ -40,25 +40,25 @@ class XContentLabel extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          width: topNameWidth,
-          child: Text(
-            topName,
-            maxLines: maxLines,
-            style: TextStyle(
-                letterSpacing: topSpace,
-                overflow: overflow,
-                color: colorTop ?? xTheme.backgroundColor,
-                fontSize: topSize,
-                fontWeight: topWeight),
-          ),
+        Text(
+          topName,
+          style: TextStyle(
+              letterSpacing: topSpace,
+              color: colorTop ?? xTheme.backgroundColor,
+              fontSize: topSize,
+              fontWeight: topWeight),
         ),
-        Text(name,
-            style: TextStyle(
-                letterSpacing: nameSpace,
-                color: colorName ?? xTheme.backgroundColor,
-                fontSize: nameSize,
-                fontWeight: nameWeight)),
+        Container(
+          width: NameWidth,
+          child: Text(name,
+              maxLines: maxLines,
+              style: TextStyle(
+                  overflow: overflow,
+                  letterSpacing: nameSpace,
+                  color: colorName ?? xTheme.backgroundColor,
+                  fontSize: nameSize,
+                  fontWeight: nameWeight)),
+        ),
       ],
     );
   }
