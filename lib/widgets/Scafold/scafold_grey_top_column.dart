@@ -4,7 +4,8 @@ import 'package:lux_ui/widgets/Scafold/Scafold.dart';
 
 class XScafoldGreyTopColumn extends XScafoldGrey {
   final Widget? topChild;
-  XScafoldGreyTopColumn(
+  final double? topChildHeight;
+  XScafoldGreyTopColumn(this.topChildHeight,
       {Key? key,
       String? title,
       this.topChild,
@@ -40,7 +41,7 @@ class XScafoldGreyTopColumn extends XScafoldGrey {
               ),
             ],
           ),
-          topChild ?? Container()
+          Container(height: topChildHeight, child: topChild ?? Container())
         ],
       ),
     );
