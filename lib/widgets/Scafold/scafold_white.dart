@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/util/lxi.dart';
@@ -6,16 +8,18 @@ import 'package:lux_ui/widgets/Scafold/rounded_icon_button.dart';
 class XScafold extends StatelessWidget {
   final String? title;
   final Widget? child;
+  final String? number;
   final void Function()? onPressedButton;
   // late final XThemeData theme;
   final void Function()? onBack;
-  XScafold(
-      {Key? key,
-      required this.title,
-      this.child,
-      this.onBack,
-      this.onPressedButton})
-      : super(key: key);
+  XScafold({
+    Key? key,
+    required this.title,
+    this.child,
+    this.onBack,
+    this.onPressedButton,
+    this.number,
+  }) : super(key: key);
 
   Widget buildTop(context) {
     var theme = XTheme.of(context);
@@ -30,27 +34,46 @@ class XScafold extends StatelessWidget {
           SizedBox(
             width: 8,
           ),
-          Text(
-            title ?? '',
-            style: TextStyle(
-                fontFamily: 'Rubik',
-                fontWeight: FontWeight.w300,
-                color: theme.borderColor,
-                fontSize: 34),
+          Container(
+            width: MediaQuery.of(context).size.width - 30,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title ?? '',
+                  style: TextStyle(
+                    fontFamily: 'Rubik',
+                    fontWeight: FontWeight.w300,
+                    color: theme.borderColor,
+                    fontSize: 34,
+                  ),
+                ),
+                (number == null && onPressedButton == null)
+                    ? Container()
+                    : (number != null && onPressedButton == null)
+                        ? Text(
+                            number ?? '',
+                            style: TextStyle(
+                              fontSize: 46,
+                              fontWeight: FontWeight.w200,
+                              fontFamily: 'Manrope',
+                              color: theme.foregroundColor,
+                            ),
+                          )
+                        : (onPressedButton != null && number == null)
+                            ? RoundedIconButton(
+                                onPressed: onPressedButton,
+                                width: 21,
+                                height: 21,
+                                backgroundColor: theme.primaryColor,
+                                iconColor: theme.backgroundColor,
+                                iconSize: 21,
+                                icon: Icons.add,
+                              )
+                            : Container()
+              ],
+            ),
           ),
-          SizedBox(
-            width: 5,
-          ),
-          (onPressedButton != null)
-              ? RoundedIconButton(
-                  onPressed: onPressedButton,
-                  width: 21,
-                  height: 21,
-                  backgroundColor: theme.primaryColor,
-                  iconColor: theme.backgroundColor,
-                  iconSize: 21,
-                  icon: Icons.add)
-              : Container()
         ],
       ),
     );
