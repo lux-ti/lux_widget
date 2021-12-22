@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:lux_ui/widgets/buttons/buttons.dart';
 
 class XStatusBox extends StatelessWidget {
   final String name;
   final double? size;
   final Color color;
   final bool boll;
-  XStatusBox(
-      {Key? key,
-      this.size,
-      required this.name,
-      required this.color,
-      this.boll = false})
-      : super(key: key);
+  final bool inBox;
+  XStatusBox({
+    Key? key,
+    this.size,
+    required this.name,
+    required this.color,
+    this.boll = false,
+    this.inBox = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (boll) {
+    if (boll && inBox != true) {
       return Row(
         children: [
           Container(
@@ -32,7 +35,7 @@ class XStatusBox extends StatelessWidget {
           Text(
             name,
             style: TextStyle(
-              color: color,
+              color: color == Colors.white ? null : color,
               fontSize: 12,
               fontWeight: FontWeight.w800,
               letterSpacing: 1,
@@ -41,9 +44,31 @@ class XStatusBox extends StatelessWidget {
         ],
       );
     }
+    if (inBox && boll != true) {
+      return Container(
+        width: 140,
+        height: 30,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.all(Radius.circular(50)),
+        ),
+        child: Center(
+            child: Text(
+          name,
+          style: TextStyle(
+            color: color == Colors.white ? null : Colors.white,
+            fontSize: size ?? 10,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 1,
+          ),
+        )),
+      );
+    }
     return Container(
       decoration: BoxDecoration(
-          color: color, borderRadius: BorderRadius.all(Radius.circular(5))),
+        color: color,
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Padding(
@@ -51,10 +76,11 @@ class XStatusBox extends StatelessWidget {
           child: Text(
             name,
             style: TextStyle(
-                color: Colors.white,
-                fontSize: size ?? 10,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 1),
+              color: Colors.white,
+              fontSize: size ?? 10,
+              fontWeight: FontWeight.w800,
+              letterSpacing: 1,
+            ),
           ),
         ),
       ),
