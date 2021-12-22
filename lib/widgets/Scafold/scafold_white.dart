@@ -9,6 +9,7 @@ class XScafold extends StatelessWidget {
   final String? title;
   final Widget? child;
   final String? number;
+  final bool buttonSpaceBetween;
   final void Function()? onPressedButton;
   // late final XThemeData theme;
   final void Function()? onBack;
@@ -19,6 +20,7 @@ class XScafold extends StatelessWidget {
     this.onBack,
     this.onPressedButton,
     this.number,
+    this.buttonSpaceBetween = false,
   }) : super(key: key);
 
   Widget buildTop(context) {
@@ -39,7 +41,9 @@ class XScafold extends StatelessWidget {
                 ? MediaQuery.of(context).size.width - 50
                 : MediaQuery.of(context).size.width - 30,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: number != null || buttonSpaceBetween
+                  ? MainAxisAlignment.spaceBetween
+                  : MainAxisAlignment.start,
               children: [
                 Text(
                   title ?? '',
