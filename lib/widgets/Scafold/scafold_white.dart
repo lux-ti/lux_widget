@@ -35,7 +35,9 @@ class XScafold extends StatelessWidget {
             width: 8,
           ),
           Container(
-            width: MediaQuery.of(context).size.width - 30,
+            width: onBack != null || parentRoute?.canPop == true
+                ? MediaQuery.of(context).size.width - 50
+                : MediaQuery.of(context).size.width - 30,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
