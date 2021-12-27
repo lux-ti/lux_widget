@@ -9,6 +9,7 @@ class XTextField extends StatelessWidget {
   final void Function()? onTap;
   final void Function(String text)? onSubmit;
   final void Function(String? text)? onSaved;
+  final void Function(String)? onChanged;
   String? Function(String? value)? validator;
   final TextEditingController? controller;
   final Widget? suffixIcon;
@@ -29,33 +30,34 @@ class XTextField extends StatelessWidget {
   final TextInputType? textInputType;
   final List<TextInputFormatter>? maskFormatter;
 
-  XTextField(
-      {Key? key,
-      this.validator,
-      this.onFocus,
-      this.onBlur,
-      this.controller,
-      this.onSubmit,
-      this.topText,
-      this.hintText,
-      this.color,
-      this.borderRadius,
-      this.colorHint,
-      this.colorError,
-      this.colorFocus,
-      this.colorEnable,
-      this.colorBorder,
-      this.colorText,
-      this.maskFormatter,
-      this.sizeTextHint,
-      this.sizeInputText,
-      this.textInputType,
-      this.textDirection,
-      this.onTap,
-      this.suffixIcon,
-      this.isEnable = true,
-      this.onSaved})
-      : super(key: key);
+  XTextField({
+    Key? key,
+    this.validator,
+    this.onFocus,
+    this.onBlur,
+    this.controller,
+    this.onSubmit,
+    this.topText,
+    this.hintText,
+    this.color,
+    this.borderRadius,
+    this.colorHint,
+    this.colorError,
+    this.colorFocus,
+    this.colorEnable,
+    this.colorBorder,
+    this.colorText,
+    this.maskFormatter,
+    this.sizeTextHint,
+    this.sizeInputText,
+    this.textInputType,
+    this.textDirection,
+    this.onTap,
+    this.suffixIcon,
+    this.isEnable = true,
+    this.onSaved,
+    this.onChanged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +90,7 @@ class XTextField extends StatelessWidget {
             child: GestureDetector(
               onTap: onTap,
               child: TextFormField(
+                onChanged: onChanged,
                 onSaved: onSaved,
                 enabled: isEnable,
                 textDirection: textDirection,
