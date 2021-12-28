@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:lux_ui/theme_data.dart';
 
@@ -31,6 +32,11 @@ class XApp extends StatelessWidget {
         title: title,
         initialRoute: initialRoute,
         getPages: getPages,
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
+        supportedLocales: [const Locale('pt', 'BR')],
       ),
     );
   }
