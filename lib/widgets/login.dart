@@ -16,6 +16,8 @@ class XLogin extends StatelessWidget {
   final Widget buttonChild;
   final TextEditingController? controllerEmail;
   final TextEditingController? controllerSenha;
+  final void Function(String)? onFieldSubmittedEmail;
+  final void Function(String)? onFieldSubmittedPassword;
 
   const XLogin({
     required this.controllerEmail,
@@ -30,6 +32,8 @@ class XLogin extends StatelessWidget {
     this.midName = '',
     this.contentMid,
     this.onChange,
+    this.onFieldSubmittedEmail,
+    this.onFieldSubmittedPassword,
   }) : super(key: key);
 
   @override
@@ -81,6 +85,7 @@ class XLogin extends StatelessWidget {
                       controller: controllerEmail,
                       validator: topValidator,
                       keyboardType: TextInputType.emailAddress,
+                      onFieldSubmitted: onFieldSubmittedEmail,
                       textInputAction: TextInputAction.next,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
@@ -110,7 +115,7 @@ class XLogin extends StatelessWidget {
                               child: TextFormField(
                                 controller: controllerSenha,
                                 validator: midValidator,
-                                onFieldSubmitted: (value) {},
+                                onFieldSubmitted: onFieldSubmittedPassword,
                                 onChanged: onChange,
                                 textAlign: TextAlign.center,
                                 obscureText: obscureText.value,
