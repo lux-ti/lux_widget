@@ -1,124 +1,58 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
 import 'package:lux_ui/lib.dart';
-import 'package:lux_ui/widgets/Scafold/Scafold.dart';
-import 'package:lux_ui/widgets/buttons/buttons.dart';
-import 'package:lux_ui/widgets/login.dart';
 
-class LoginView extends GetView {
-  bool isTouch = false;
-  RxBool valid = true.obs;
+class MyApp extends StatefulWidget {
+  @override
+  _State createState() => _State();
+}
 
-  String? _topValidator(String? value) {
-    if (value == null || value.isEmpty) return 'o email é obrigatório';
-    if (!value.isEmail) return 'email inválido';
-    return null;
-  }
+class _State extends State<MyApp> {
+  DateTime selectedData = DateTime.now();
 
-  String? _midValidator(String? value) {
-    if (value!.isEmpty) return 'a senha é obrigatória';
-    return null;
+  Future _selectDate() async {
+    DateTime? dataSelecionada = await showDatePicker(
+      context: context,
+      initialDate: selectedData,
+      firstDate: DateTime(2019, 1),
+      lastDate: DateTime(2030),
+      // builder: (context, child) {
+      //   var xTheme = XTheme.of(context);
+      //   return Theme(
+      //       data: Theme.of(context).copyWith(
+      //         colorScheme: ColorScheme.light(
+      //           primary: xTheme.primaryColor,
+      //           onSurface: xTheme.primaryColor,
+      //         ),
+      //       ),
+      //       child: child!);
+      // },
+    );
+    if (dataSelecionada != null && dataSelecionada != selectedData) {
+      selectedData = dataSelecionada;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    var xTheme = XTheme.of(context);
-    final _formKey = GlobalKey<FormState>();
-    RxBool isTap = true.obs;
-
-    var controllerEmail = TextEditingController();
-    var controllerSenha = TextEditingController();
-
-    String? _topValidator(String? value) {
-      if (value == null || value.isEmpty) return 'o email é obrigatório';
-      if (!value.isEmail) return 'email inválido';
-      return null;
-    }
-
-    String? _midValidator(String? value) {
-      if (value!.isEmpty) return 'a senha é obrigatória';
-      return null;
-    }
-
-    void submit() async {
-      print("validado");
-    }
-
-    return XScafold(
-      title: '',
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            XLogo(
-              width: 200,
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Obx(
-              () => valid.isTrue
-                  ? Container()
-                  : Text(
-                      'email ou senha incorretos!',
-                      style: TextStyle(color: xTheme.dangeColor),
-                    ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            XLogin(
-              controllerEmail: controllerEmail,
-              controllerSenha: controllerSenha,
-              topName: 'LOGIN',
-              contentTop: 'Digite seu email',
-              formKey: _formKey,
-              midName: 'SENHA',
-              contentMid: 'Digite sua senha',
-              topValidator: _topValidator,
-              midValidator: _midValidator,
-              onFieldSubmittedEmail: (value) {
-                submit();
-              },
-              onFieldSubmittedPassword: (value) {
-                submit();
-              },
-              buttonChild: Container(
-                child: Obx(
-                  () => XRoundedButton(
-                    color: xTheme.primaryColor,
-                    onTap: submit,
-                    widget: (isTap.value)
-                        ? text(name: 'LOGIN', xTheme: xTheme.backgroundColor)
-                        : cPI(xTheme: xTheme.backgroundColor),
-                  ),
-                ),
-              ),
-            ),
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Exemplo localização'),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(32.0),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Text(selectedData.toString()),
+              RaisedButton(
+                onPressed: _selectDate,
+                child: Text('CLIQUE'),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
-}
-
-Widget text({String? name, Color? xTheme}) {
-  return Text(name!,
-      style: TextStyle(
-        color: xTheme,
-        fontSize: 16,
-        fontWeight: FontWeight.w700,
-      ));
-}
-
-Widget cPI({Color? xTheme}) {
-  return Container(
-    height: 16,
-    width: 16,
-    child: CircularProgressIndicator(
-      strokeWidth: 2,
-      color: xTheme,
-    ),
-  );
 }

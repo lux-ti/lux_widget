@@ -6,7 +6,7 @@ main(List<String> args) {
   runApp(
     XApp(
       title: 'Exemplo',
-      home: LoginView(),
+      home: MyApp(),
     ),
   );
 }
