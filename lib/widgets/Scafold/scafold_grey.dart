@@ -60,25 +60,17 @@ class XScafoldGrey extends XScafold {
                     SizedBox(
                       width: 2,
                     ),
-                    Container(
-                      height: 30,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          (firstOnPressed != null)
-                              ? RoundedIconButton(
-                                  onPressed: firstOnPressed,
-                                  width: 21,
-                                  height: 21,
-                                  backgroundColor: theme.primaryColor,
-                                  iconColor: theme.backgroundColor,
-                                  iconSize: 21,
-                                  icon: Icons.add,
-                                )
-                              : Container(),
-                        ],
-                      ),
-                    ),
+                    (firstOnPressed != null)
+                        ? RoundedIconButton(
+                            onPressed: firstOnPressed,
+                            width: 21,
+                            height: 21,
+                            backgroundColor: theme.primaryColor,
+                            iconColor: theme.backgroundColor,
+                            iconSize: 21,
+                            icon: Icons.add,
+                          )
+                        : Container(),
                     SizedBox(
                       width: 15,
                     ),
