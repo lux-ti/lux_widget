@@ -11,7 +11,7 @@ class XFilter extends StatelessWidget {
 
   const XFilter({
     Key? key,
-    this.heigth = 40,
+    this.heigth = 50,
     this.width = 370,
     this.onTap,
     this.colorInputText,
@@ -26,44 +26,51 @@ class XFilter extends StatelessWidget {
     return Container(
         height: heigth,
         width: width,
-        color: xTheme.backgroundColor,
-        child: Padding(
-          padding: const EdgeInsets.only(right: 8),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Container(
-                width: 320,
-                child: TextField(
-                    onChanged: onChanged,
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        filled: true,
-                        fillColor: colorInputText ?? xTheme.backgroundColor,
-                        prefixIcon: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            child:
-                                Icon(Lxi.search, color: xTheme.borderColor))))),
-            GestureDetector(
-              onTap: onTap,
-              child: Row(
-                children: [
-                  Icon(
-                    Lxi.luxFilter,
-                    size: iconsSize,
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Icon(
-                    Lxi.chevronBottom,
-                    size: iconsSize,
-                  )
-                ],
+        //color: xTheme.backgroundColor,
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Expanded(
+        child: Container(
+          //width: 320,
+          color: xTheme.backgroundColor,
+          child: TextField(
+            onChanged: onChanged,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              filled: true,
+              fillColor: colorInputText ?? xTheme.backgroundColor,
+              prefixIcon: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: Icon(Lxi.search, color: xTheme.borderColor),
               ),
+            ),
+          ),
+        ),
+            ),
+            GestureDetector(
+        onTap: onTap,
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              children: [
+                Icon(
+                  Lxi.luxFilter,
+                  size: iconsSize,
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Icon(
+                  Lxi.chevronBottom,
+                  size: iconsSize,
+                )
+              ],
+            ),
+          ),
+        ),
             )
-          ]),
-        ));
+          ]));
   }
 }
