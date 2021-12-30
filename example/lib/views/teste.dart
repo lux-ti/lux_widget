@@ -23,6 +23,8 @@ List<DropdownSearchItem> teste = [
 
 int n = 1;
 
+var controllert = TextEditingController();
+
 class _TesteState extends State<Teste> {
   @override
   Widget build(BuildContext context) {
@@ -39,17 +41,20 @@ class _TesteState extends State<Teste> {
       });
     }
 
-    TextEditingController controller = TextEditingController();
     return XScafoldGrey(
       title: "teste ",
       firstOnPressed: () {},
       onBack: () {},
       child: XDropdownSearch(
+        controller: controllert,
         onTapItem: (value) {
           print(value.text);
         },
+        onDelete: (value) {
+          print("value $value");
+          print(controllert.text);
+        },
         onChanged: (value, has) {},
-        controller: controller,
         items: teste,
         infinity: add,
       ),

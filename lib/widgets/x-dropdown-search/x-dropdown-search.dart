@@ -14,7 +14,7 @@ class XDropdownSearch extends StatefulWidget {
   final void Function(DropdownSearchItem) onTapItem;
   final Future<void> Function() infinity;
   final void Function(String?)? onDelete;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? placeholder;
   final Color? placeholderColor;
   final String? Function(String?)? validator;
@@ -24,7 +24,7 @@ class XDropdownSearch extends StatefulWidget {
   XDropdownSearch({
     Key? key,
     this.onChanged,
-    required this.controller,
+    this.controller,
     this.placeholder,
     this.placeholderColor,
     this.validator,
@@ -65,6 +65,9 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController controllerText =
+        widget.controller ?? TextEditingController();
+
     return Container(
       width: widget.width ?? double.infinity,
       child: Column(
@@ -137,9 +140,9 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                         child: GestureDetector(
                           onTap: () {
                             if (widget.onDelete != null) {
-                              widget.onDelete!(widget.controller.text);
+                              widget.onDelete!(controllerText.text);
                             }
-                            widget.controller.text = '';
+                            controllerText.text = '';
                             FocusScopeNode currentFocus =
                                 FocusScope.of(context);
                             if (!currentFocus.hasPrimaryFocus) {
@@ -185,7 +188,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          widget.controller.text = listSearch[index].text;
+                          controllerText.text = listSearch[index].text;
                           if (boxList > 0.0) {
                             FocusScopeNode currentFocus =
                                 FocusScope.of(context);
@@ -208,7 +211,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                           child: Text(
                             listSearch[index].text,
                             style: TextStyle(
-                                color: widget.controller.text ==
+                                color: controllerText.text ==
                                         listSearch[index].text
                                     ? Theme.of(context).primaryColor
                                     : null),
