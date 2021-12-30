@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+class DropdownSearchItem {
+  String text;
+  dynamic value;
+  int id;
+
+  DropdownSearchItem({required this.text, this.value, required this.id});
+}
+
 class XDropdownSearch extends StatefulWidget {
   final void Function(String, bool)? onChanged;
-  final void Function(String)? onTapItem;
-  final void Function()? infinity;
+  final void Function(DropdownSearchItem) onTapItem;
+  final Future<void> Function() infinity;
   final void Function(String?)? onDelete;
   final TextEditingController controller;
   final String? placeholder;
   final Color? placeholderColor;
   final String? Function(String?)? validator;
   final bool compact;
-  final List<String> items;
+  final List<DropdownSearchItem> items;
   final double? width;
   XDropdownSearch({
     Key? key,
@@ -21,10 +29,10 @@ class XDropdownSearch extends StatefulWidget {
     this.placeholderColor,
     this.validator,
     this.compact = false,
-    this.infinity,
+    required this.infinity,
     required this.items,
     this.width,
-    this.onTapItem,
+    required this.onTapItem,
     this.onDelete,
   }) : super(key: key);
 
@@ -34,9 +42,9 @@ class XDropdownSearch extends StatefulWidget {
 
 class _XDropdownSearchState extends State<XDropdownSearch> {
   double boxList = 0.0;
-  List<String> items = [];
+  List<DropdownSearchItem> items = [];
 
-  List<String> listSearch = [];
+  List<DropdownSearchItem> listSearch = [];
 
   ScrollController _scrollController = ScrollController();
 
@@ -46,15 +54,6 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
     setState(() {
       items = widget.items;
       listSearch = items;
-    });
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels >=
-              _scrollController.position.maxScrollExtent &&
-          widget.infinity != null) {
-        setState(() {
-          widget.infinity!();
-        });
-      }
     });
   }
 
@@ -68,7 +67,6 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
   Widget build(BuildContext context) {
     return Container(
       width: widget.width ?? double.infinity,
-      margin: EdgeInsets.all(10),
       child: Column(
         children: [
           FocusScope(
@@ -133,37 +131,41 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                     ),
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: GestureDetector(
-                    onTap: () {
-                      if (widget.onDelete != null) {
-                        widget.onDelete!(widget.controller.text);
-                      }
-                      widget.controller.text = '';
-                      FocusScopeNode currentFocus = FocusScope.of(context);
-                      if (!currentFocus.hasPrimaryFocus) {
-                        currentFocus.unfocus();
-                      }
-                      if (boxList > 0.0) {
-                        setState(() {
-                          boxList = 0.0;
-                        });
-                      }
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(left: 10),
-                      child: Icon(
-                        Icons.close,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ),
-                  ),
-                )
+                (widget.onDelete != null)
+                    ? Expanded(
+                        flex: 1,
+                        child: GestureDetector(
+                          onTap: () {
+                            if (widget.onDelete != null) {
+                              widget.onDelete!(widget.controller.text);
+                            }
+                            widget.controller.text = '';
+                            FocusScopeNode currentFocus =
+                                FocusScope.of(context);
+                            if (!currentFocus.hasPrimaryFocus) {
+                              currentFocus.unfocus();
+                            }
+                            if (boxList > 0.0) {
+                              setState(() {
+                                boxList = 0.0;
+                              });
+                            }
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(left: 10),
+                            child: Icon(
+                              Icons.close,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                        ),
+                      )
+                    : SizedBox()
               ],
             ),
           ),
-          SingleChildScrollView(
+          RefreshIndicator(
+            onRefresh: widget.infinity,
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Theme.of(context).disabledColor),
@@ -175,6 +177,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
               child: ListView.builder(
                 controller: _scrollController,
                 itemCount: listSearch.length,
+                reverse: true,
                 itemBuilder: (context, index) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -182,7 +185,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          widget.controller.text = listSearch[index];
+                          widget.controller.text = listSearch[index].text;
                           if (boxList > 0.0) {
                             FocusScopeNode currentFocus =
                                 FocusScope.of(context);
@@ -193,8 +196,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                               boxList = 0.0;
                             });
                           }
-                          if (widget.onTapItem != null)
-                            widget.onTapItem!(listSearch[index]);
+                          widget.onTapItem(listSearch[index]);
                         },
                         child: Container(
                           width: double.infinity,
@@ -204,12 +206,12 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                           padding:
                               EdgeInsets.only(top: 10, bottom: 10, left: 20),
                           child: Text(
-                            listSearch[index],
+                            listSearch[index].text,
                             style: TextStyle(
-                                color:
-                                    widget.controller.text == listSearch[index]
-                                        ? Theme.of(context).primaryColor
-                                        : null),
+                                color: widget.controller.text ==
+                                        listSearch[index].text
+                                    ? Theme.of(context).primaryColor
+                                    : null),
                           ),
                         ),
                       ),
@@ -224,10 +226,10 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
     );
   }
 
-  List<String> filterSearch(String filter) {
+  List<DropdownSearchItem> filterSearch(String filter) {
     if (filter.isNotEmpty) {
       return items
-          .where((x) => x.toLowerCase().startsWith(filter.toLowerCase()))
+          .where((x) => x.text.toLowerCase().startsWith(filter.toLowerCase()))
           .toList();
     } else {
       return items;
