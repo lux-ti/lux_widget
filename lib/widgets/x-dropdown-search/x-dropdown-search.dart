@@ -51,7 +51,9 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
       if (_scrollController.position.pixels >=
               _scrollController.position.maxScrollExtent &&
           widget.infinity != null) {
-        widget.infinity!();
+        setState(() {
+          widget.infinity!();
+        });
       }
     });
   }
