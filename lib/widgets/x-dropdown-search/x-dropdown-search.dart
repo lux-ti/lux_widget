@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lux_ui/lib.dart';
 
 class DropdownSearchItem {
   String text;
@@ -14,26 +15,28 @@ class XDropdownSearch extends StatefulWidget {
   final void Function(DropdownSearchItem) onTapItem;
   final Future<void> Function() infinity;
   final void Function(String?)? onDelete;
-  final TextEditingController? controller;
+  TextEditingController controller;
+  String? topText;
+  final String? hintText;
   final String? placeholder;
   final Color? placeholderColor;
   final String? Function(String?)? validator;
-  final bool compact;
   final List<DropdownSearchItem> items;
   final double? width;
   XDropdownSearch({
     Key? key,
     this.onChanged,
-    this.controller,
+    required this.controller,
     this.placeholder,
     this.placeholderColor,
     this.validator,
-    this.compact = false,
     required this.infinity,
     required this.items,
     this.width,
     required this.onTapItem,
     this.onDelete,
+    this.topText,
+    this.hintText,
   }) : super(key: key);
 
   @override
@@ -65,9 +68,6 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controllerText =
-        widget.controller ?? TextEditingController();
-
     return Container(
       width: widget.width ?? double.infinity,
       child: Column(
@@ -85,93 +85,70 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                 });
               }
             },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  flex: 4,
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 10),
-                    child: TextFormField(
-                      validator: widget.validator,
-                      controller: widget.controller,
-                      decoration: InputDecoration(
-                        labelText: widget.placeholder ?? null,
-                        labelStyle: TextStyle(
-                          color: widget.placeholderColor ??
-                              Theme.of(context).primaryColor,
-                        ),
-                        border: widget.compact
-                            ? null
-                            : OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: widget.placeholderColor ??
-                                      Theme.of(context).primaryColor,
-                                ),
-                              ),
-                        focusedBorder: widget.compact
-                            ? UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: widget.placeholderColor ??
-                                      Theme.of(context).primaryColor,
-                                ),
-                              )
-                            : OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: widget.placeholderColor ??
-                                      Theme.of(context).primaryColor,
-                                ),
-                              ),
+            child: Container(
+              margin: EdgeInsets.only(bottom: boxList > 0 ? 10 : 0),
+              child: XTextField(
+                textInputType: items.length < 15 ? TextInputType.none : null,
+                validator: widget.validator,
+                controller: widget.controller,
+                colorText: XTheme.of(context).borderColor,
+                sizeInputText: 14,
+                topText: widget.topText ?? '',
+                hintText: widget.hintText ?? 'Infome',
+                suffixIcon: Container(
+                  margin: EdgeInsets.only(right: 10),
+                  width: 100,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Icon(
+                        (boxList > 0) ? Lxi.chevronTop : Lxi.chevronBottom,
+                        color: boxList > 0
+                            ? XTheme.of(context).primaryColor
+                            : null,
                       ),
-                      onChanged: (value) {
-                        setState(() {
-                          listSearch = filterSearch(value);
-                        });
-
-                        if (widget.onChanged != null)
-                          widget.onChanged!(value, haveItem());
-                      },
-                    ),
-                  ),
-                ),
-                (widget.onDelete != null)
-                    ? Expanded(
-                        flex: 1,
-                        child: GestureDetector(
-                          onTap: () {
-                            if (widget.onDelete != null) {
-                              widget.onDelete!(controllerText.text);
-                            }
-                            controllerText.text = '';
-                            FocusScopeNode currentFocus =
-                                FocusScope.of(context);
-                            if (!currentFocus.hasPrimaryFocus) {
-                              currentFocus.unfocus();
-                            }
-                            if (boxList > 0.0) {
-                              setState(() {
-                                boxList = 0.0;
-                              });
-                            }
-                          },
-                          child: Container(
-                            margin: EdgeInsets.only(left: 10),
-                            child: Icon(
-                              Icons.close,
-                              color: Theme.of(context).primaryColor,
-                            ),
+                      GestureDetector(
+                        onTap: () {
+                          if (widget.onDelete != null) {
+                            widget.onDelete!(widget.controller.text);
+                          }
+                          widget.controller.text = '';
+                          FocusScopeNode currentFocus = FocusScope.of(context);
+                          if (!currentFocus.hasPrimaryFocus) {
+                            currentFocus.unfocus();
+                          }
+                          if (boxList > 0.0) {
+                            setState(() {
+                              boxList = 0.0;
+                            });
+                          }
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: Icon(
+                            Icons.close,
+                            color: XTheme.of(context).primaryColor,
                           ),
                         ),
                       )
-                    : SizedBox()
-              ],
+                    ],
+                  ),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    listSearch = filterSearch(value);
+                  });
+                  if (widget.onChanged != null)
+                    widget.onChanged!(value, haveItem());
+                },
+              ),
             ),
           ),
           RefreshIndicator(
             onRefresh: widget.infinity,
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Theme.of(context).disabledColor),
+                border: Border.all(color: XTheme.of(context).disabledColor),
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
                 ),
@@ -188,7 +165,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          controllerText.text = listSearch[index].text;
+                          widget.controller.text = listSearch[index].text;
                           if (boxList > 0.0) {
                             FocusScopeNode currentFocus =
                                 FocusScope.of(context);
@@ -204,16 +181,16 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                         child: Container(
                           width: double.infinity,
                           color: index % 2 == 0
-                              ? Theme.of(context).backgroundColor
+                              ? XTheme.of(context).backgroundColor
                               : Colors.grey[100],
                           padding:
-                              EdgeInsets.only(top: 10, bottom: 10, left: 20),
+                              EdgeInsets.only(top: 13, bottom: 13, left: 20),
                           child: Text(
                             listSearch[index].text,
                             style: TextStyle(
-                                color: controllerText.text ==
+                                color: widget.controller.text ==
                                         listSearch[index].text
-                                    ? Theme.of(context).primaryColor
+                                    ? XTheme.of(context).primaryColor
                                     : null),
                           ),
                         ),
