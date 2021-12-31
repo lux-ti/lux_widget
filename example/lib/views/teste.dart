@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
 import 'package:lux_ui/widgets/x-dropdown-search/x-dropdown-search.dart';
 
@@ -10,7 +11,7 @@ class Teste extends StatefulWidget {
   State<Teste> createState() => _TesteState();
 }
 
-List<DropdownSearchItem> teste = [
+RxList<DropdownSearchItem> teste = [
   DropdownSearchItem(text: 'teste', value: 0, id: 0),
   DropdownSearchItem(text: 'teste1', value: 1, id: 1),
   DropdownSearchItem(text: 'teste2', value: 2, id: 2),
@@ -20,7 +21,7 @@ List<DropdownSearchItem> teste = [
   DropdownSearchItem(text: 'teste6', value: 6, id: 6),
   DropdownSearchItem(text: 'teste7', value: 7, id: 7),
   DropdownSearchItem(text: 'teste8', value: 8, id: 8),
-];
+].obs;
 
 int n = 1;
 
@@ -32,12 +33,10 @@ class _TesteState extends State<Teste> {
     add(int page) async {
       print("PAGE $page");
       await Future.delayed(Duration(seconds: 1), () {
-        setState(() {
-          teste.insertAll(0, [
-            DropdownSearchItem(
-                text: 'novo item ${1 * n}', value: 1 * n, id: 1 * n),
-          ]);
-        });
+        teste.insertAll(0, [
+          DropdownSearchItem(
+              text: 'novo item ${1 * n}', value: 1 * n, id: 1 * n),
+        ]);
         n++;
       });
     }
@@ -51,13 +50,13 @@ class _TesteState extends State<Teste> {
         child: Column(
           children: [
             XDropdownSearch(
-              totalPages: 3,
+              totalPages: 25,
               topText: "Campo 1",
               controller: teste1controller,
               onTapItem: (value) {
                 print("CONTROLLER ${teste1controller.text}");
               },
-              onChanged: (value, has) {},
+              onChanged: (value) {},
               items: teste,
               infinity: add,
             ),
