@@ -14,7 +14,7 @@ class XDropdownSearch extends StatefulWidget {
   final int totalPages;
   final void Function(String)? onChanged;
   final void Function(DropdownSearchItem) onTapItem;
-  final Future<void> Function(int page) infinity;
+  final Future<void> Function(int page)? infinity;
   final void Function(String?)? onDelete;
   TextEditingController controller;
   String? topText;
@@ -48,8 +48,8 @@ class XDropdownSearch extends StatefulWidget {
 class _XDropdownSearchState extends State<XDropdownSearch> {
   int page = 1;
   Future onRefresh() async {
-    if (page <= widget.totalPages) {
-      await widget.infinity(page);
+    if (page <= widget.totalPages && widget.infinity != null) {
+      await widget.infinity!(page);
       page++;
     }
   }
