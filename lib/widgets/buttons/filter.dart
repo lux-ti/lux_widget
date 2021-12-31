@@ -51,6 +51,8 @@ class XFilter extends StatelessWidget {
             GestureDetector(
         onTap: onTap,
         child: Container(
+          color: Colors.transparent,
+          height: 50,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Row(
