@@ -1,75 +1,63 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
-<<<<<<< HEAD
-import 'package:lux_ui/widgets/buttons/buttons.dart';
-=======
 import 'package:lux_ui/widgets/x-dropdown-search/x-dropdown-search.dart';
->>>>>>> b1ba6508be4c1f7ddee02f530cb92b7c1d1ded63
 
-class Teste extends StatelessWidget {
-  const Teste({Key? key}) : super(key: key);
+class Teste extends StatefulWidget {
+  Teste({Key? key}) : super(key: key);
 
   @override
+  State<Teste> createState() => _TesteState();
+}
+
+List<DropdownSearchItem> teste = [
+  DropdownSearchItem(text: 'teste', value: 0, id: 0),
+  DropdownSearchItem(text: 'teste1', value: 1, id: 1),
+  DropdownSearchItem(text: 'teste2', value: 2, id: 2),
+  DropdownSearchItem(text: 'teste3', value: 3, id: 3),
+  DropdownSearchItem(text: 'teste4', value: 4, id: 4),
+  DropdownSearchItem(text: 'teste5', value: 5, id: 5),
+  DropdownSearchItem(text: 'teste6', value: 6, id: 6),
+  DropdownSearchItem(text: 'teste7', value: 7, id: 7),
+  DropdownSearchItem(text: 'teste8', value: 8, id: 8)
+];
+
+int n = 1;
+
+var controllert = TextEditingController();
+
+class _TesteState extends State<Teste> {
+  @override
   Widget build(BuildContext context) {
-    var teste = <String>[
-      "ITEM 1",
-      "ITEM 2",
-      "ITEM 1",
-      "ITEM 2",
-      "ITEM 1",
-      "ITEM 2",
-      "ITEM 1",
-      "ITEM 2",
-      "ITEM 1",
-      "ITEM 2",
-      "ITEM 1",
-      "ITEM 2"
-    ];
-    int n = 1;
-    add() {
-      Future.delayed(Duration(seconds: 3), () {
-        teste.add("${1 * n}");
+    add() async {
+      await Future.delayed(Duration(seconds: 1), () {
+        print(teste);
+        setState(() {
+          teste.insertAll(0, [
+            DropdownSearchItem(
+                text: 'novo item ${1 * n}', value: 1 * n, id: 1 * n),
+          ]);
+        });
         n++;
       });
     }
 
-    TextEditingController controller = TextEditingController();
     return XScafoldGrey(
-<<<<<<< HEAD
-      child: Center(
-        child: XFilter(
-          width: double.infinity,
-          heigth: 50,
-          iconsSize: 18,
-        ),
+      title: "teste ",
+      firstOnPressed: () {},
+      onBack: () {},
+      child: XDropdownSearch(
+        controller: controllert,
+        onTapItem: (value) {
+          print(value.text);
+        },
+        onDelete: (value) {
+          print("value $value");
+          print(controllert.text);
+        },
+        onChanged: (value, has) {},
+        items: teste,
+        infinity: add,
       ),
     );
-=======
-        title: "teste ",
-        firstOnPressed: () {},
-        onBack: () {},
-        child: XDropdownSearch(
-          controller: controller,
-          items: teste,
-          onDelete: (value) {
-            teste = <String>[
-              "ITEM 1",
-              "ITEM 2",
-              "ITEM 1",
-              "ITEM 2",
-              "ITEM 1",
-              "ITEM 2",
-              "ITEM 1",
-              "ITEM 2",
-              "ITEM 1",
-              "ITEM 2",
-              "ITEM 1",
-              "ITEM 2"
-            ];
-          },
-          infinity: add,
-        ));
->>>>>>> b1ba6508be4c1f7ddee02f530cb92b7c1d1ded63
   }
 }
