@@ -88,17 +88,10 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
             child: Container(
               margin: EdgeInsets.only(bottom: boxList > 0 ? 10 : 0),
               child: XTextField(
-                // onTap: () {
-                //   if (items.length < 15) {
-                //     setState(() {
-                //       boxList =
-                //           items.length <= 5 && items.length != 0 ? 130 : 200.0;
-                //     });
-                //   }
-                // },
-                //isEnable: !(items.length < 15),
+                textInputType: items.length < 15 ? TextInputType.none : null,
                 validator: widget.validator,
                 controller: widget.controller,
+                colorText: XTheme.of(context).borderColor,
                 sizeInputText: 14,
                 topText: widget.topText ?? '',
                 hintText: widget.hintText ?? 'Infome',
@@ -109,7 +102,10 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Icon(
-                        Lxi.chevronBottom,
+                        (boxList > 0) ? Lxi.chevronTop : Lxi.chevronBottom,
+                        color: boxList > 0
+                            ? XTheme.of(context).primaryColor
+                            : null,
                       ),
                       GestureDetector(
                         onTap: () {
@@ -131,6 +127,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                           margin: EdgeInsets.only(left: 10),
                           child: Icon(
                             Icons.close,
+                            color: XTheme.of(context).primaryColor,
                           ),
                         ),
                       )
@@ -151,7 +148,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
             onRefresh: widget.infinity,
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Theme.of(context).disabledColor),
+                border: Border.all(color: XTheme.of(context).disabledColor),
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
                 ),
@@ -184,7 +181,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                         child: Container(
                           width: double.infinity,
                           color: index % 2 == 0
-                              ? Theme.of(context).backgroundColor
+                              ? XTheme.of(context).backgroundColor
                               : Colors.grey[100],
                           padding:
                               EdgeInsets.only(top: 13, bottom: 13, left: 20),
@@ -193,7 +190,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                             style: TextStyle(
                                 color: widget.controller.text ==
                                         listSearch[index].text
-                                    ? Theme.of(context).primaryColor
+                                    ? XTheme.of(context).primaryColor
                                     : null),
                           ),
                         ),

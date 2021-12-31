@@ -82,6 +82,7 @@ class _TesteState extends State<Teste> {
         child: Column(
           children: [
             XDropdownSearch(
+              topText: "Campo 1",
               controller: teste1controller,
               onTapItem: (value) {
                 print("CONTROLLER ${teste1controller.text}");
@@ -91,6 +92,7 @@ class _TesteState extends State<Teste> {
               infinity: add,
             ),
             XDropdownSearch(
+              topText: "Campo 2",
               controller: teste2controller,
               onTapItem: (value) {
                 print(value.text);
@@ -100,6 +102,7 @@ class _TesteState extends State<Teste> {
               infinity: add,
             ),
             XDropdownSearch(
+              topText: "Campo 3",
               controller: teste1controller,
               hintText: "Teste",
               onTapItem: (value) {
