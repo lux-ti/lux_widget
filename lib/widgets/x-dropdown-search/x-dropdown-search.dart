@@ -11,9 +11,10 @@ class DropdownSearchItem {
 }
 
 class XDropdownSearch extends StatefulWidget {
+  final int totalPages;
   final void Function(String, bool)? onChanged;
   final void Function(DropdownSearchItem) onTapItem;
-  final Future<void> Function() infinity;
+  final Future<void> Function(int page) infinity;
   final void Function(String?)? onDelete;
   TextEditingController controller;
   String? topText;
@@ -25,15 +26,16 @@ class XDropdownSearch extends StatefulWidget {
   final double? width;
   XDropdownSearch({
     Key? key,
-    this.onChanged,
+    required this.infinity,
+    required this.items,
     required this.controller,
+    required this.totalPages,
+    required this.onTapItem,
+    this.onChanged,
     this.placeholder,
     this.placeholderColor,
     this.validator,
-    required this.infinity,
-    required this.items,
     this.width,
-    required this.onTapItem,
     this.onDelete,
     this.topText,
     this.hintText,
@@ -44,6 +46,14 @@ class XDropdownSearch extends StatefulWidget {
 }
 
 class _XDropdownSearchState extends State<XDropdownSearch> {
+  int page = 1;
+  Future onRefresh() async {
+    if (page <= widget.totalPages) {
+      await widget.infinity(page);
+      page++;
+    }
+  }
+
   double boxList = 0.0;
   List<DropdownSearchItem> items = [];
 
@@ -145,7 +155,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
             ),
           ),
           RefreshIndicator(
-            onRefresh: widget.infinity,
+            onRefresh: onRefresh,
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(color: XTheme.of(context).disabledColor),
