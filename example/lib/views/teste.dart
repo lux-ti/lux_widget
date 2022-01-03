@@ -12,15 +12,42 @@ class Teste extends StatefulWidget {
 }
 
 RxList<DropdownSearchItem> teste = [
-  DropdownSearchItem(text: 'teste', value: 0, id: 0),
-  DropdownSearchItem(text: 'teste1', value: 1, id: 1),
-  DropdownSearchItem(text: 'teste2', value: 2, id: 2),
-  DropdownSearchItem(text: 'teste3', value: 3, id: 3),
-  DropdownSearchItem(text: 'teste4', value: 4, id: 4),
-  DropdownSearchItem(text: 'teste5', value: 5, id: 5),
-  DropdownSearchItem(text: 'teste6', value: 6, id: 6),
-  DropdownSearchItem(text: 'teste7', value: 7, id: 7),
-  DropdownSearchItem(text: 'teste8', value: 8, id: 8),
+  DropdownSearchItem(
+    text: 'teste',
+    value: 0,
+  ),
+  DropdownSearchItem(
+    text: 'teste1',
+    value: 1,
+  ),
+  DropdownSearchItem(
+    text: 'teste2',
+    value: 2,
+  ),
+  DropdownSearchItem(
+    text: 'teste3',
+    value: 3,
+  ),
+  DropdownSearchItem(
+    text: 'teste4',
+    value: 4,
+  ),
+  DropdownSearchItem(
+    text: 'teste5',
+    value: 5,
+  ),
+  DropdownSearchItem(
+    text: 'teste6',
+    value: 6,
+  ),
+  DropdownSearchItem(
+    text: 'teste7',
+    value: 7,
+  ),
+  DropdownSearchItem(
+    text: 'teste8',
+    value: 8,
+  ),
 ].obs;
 
 int n = 1;
@@ -35,7 +62,9 @@ class _TesteState extends State<Teste> {
       await Future.delayed(Duration(seconds: 1), () {
         teste.insertAll(0, [
           DropdownSearchItem(
-              text: 'novo item ${1 * n}', value: 1 * n, id: 1 * n),
+            text: 'novo item ${1 * n}',
+            value: 1 * n,
+          ),
         ]);
         n++;
       });

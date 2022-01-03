@@ -5,9 +5,8 @@ import 'package:lux_ui/lib.dart';
 class DropdownSearchItem {
   String text;
   dynamic value;
-  int id;
 
-  DropdownSearchItem({required this.text, this.value, required this.id});
+  DropdownSearchItem({required this.text, this.value});
 }
 
 class XDropdownSearch extends StatefulWidget {
@@ -16,11 +15,9 @@ class XDropdownSearch extends StatefulWidget {
   final void Function(DropdownSearchItem) onTapItem;
   final Future<void> Function(int page)? infinity;
   final void Function(String?)? onDelete;
-  TextEditingController controller;
-  String? topText;
+  final TextEditingController controller;
+  final String? topText;
   final String? hintText;
-  final String? placeholder;
-  final Color? placeholderColor;
   final String? Function(String?)? validator;
   final RxList<DropdownSearchItem> items;
   final double? width;
@@ -32,8 +29,6 @@ class XDropdownSearch extends StatefulWidget {
     required this.totalPages,
     required this.onTapItem,
     this.onChanged,
-    this.placeholder,
-    this.placeholderColor,
     this.validator,
     this.width,
     this.onDelete,
