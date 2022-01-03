@@ -23,7 +23,7 @@ class XDropdownSearch extends StatefulWidget {
   final double? width;
   XDropdownSearch({
     Key? key,
-    required this.infinity,
+    this.infinity,
     required this.items,
     required this.controller,
     required this.totalPages,
