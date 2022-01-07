@@ -24,6 +24,12 @@ class XLogin extends StatelessWidget {
   final double? widthBackContainer;
   final double? textFieldLoginWidth;
   final double? textFieldPasswordWidth;
+  final double? fontSideBarLogin;
+  final double? fontSideBarPass;
+  final double? iconSizeSideBarLogin;
+  final double? iconSizeSideBarPass;
+  final double? fontHintLogin;
+  final double? fontHintPass;
 
 
   const XLogin({
@@ -40,7 +46,7 @@ class XLogin extends StatelessWidget {
     this.contentMid,
     this.onChange,
     this.onFieldSubmittedEmail,
-    this.onFieldSubmittedPassword, this.height, this.width, this.heightBackContainer, this.widthBackContainer, this.textFieldLoginWidth, this.textFieldPasswordWidth,
+    this.onFieldSubmittedPassword, this.height, this.width, this.heightBackContainer, this.widthBackContainer, this.textFieldLoginWidth, this.textFieldPasswordWidth, this.fontSideBarLogin, this.fontSideBarPass, this.fontHintLogin, this.fontHintPass, this.iconSizeSideBarLogin, this.iconSizeSideBarPass,
   }) : super(key: key);
 
   @override
@@ -78,12 +84,12 @@ class XLogin extends StatelessWidget {
                 children: [
                   XSideBarButton(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    iconSize: 15,
+                    iconSize: iconSizeSideBarLogin ?? 15,
                     icon: Lxi.user,
                     text: topName,
                     colorIcon: xTheme.primaryColor,
                     colorText: xTheme.primaryColor,
-                    fontSize: 15,
+                    fontSize:  fontSideBarLogin ?? 15,
                   ),
                   Container(
                     width: textFieldLoginWidth ?? 200,
@@ -100,18 +106,18 @@ class XLogin extends StatelessWidget {
                         border: InputBorder.none,
                         hintText: contentTop,
                         hintStyle: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.w300),
+                            fontSize: fontHintLogin ?? 24, fontWeight: FontWeight.w300),
                       ),
                     ),
                   ),
                   XSideBarButton(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      iconSize: 15,
+                      iconSize: iconSizeSideBarPass ?? 15,
                       icon: Lxi.lock,
                       text: midName,
                       colorIcon: xTheme.primaryColor,
                       colorText: xTheme.primaryColor,
-                      fontSize: 15),
+                      fontSize: iconSizeSideBarPass ?? 15),
                   Obx(() => Padding(
                     padding: const EdgeInsets.fromLTRB(70,0,20,0),
                     child: Container(
@@ -139,7 +145,7 @@ class XLogin extends StatelessWidget {
                             border: InputBorder.none,
                             hintText: contentMid,
                             hintStyle: TextStyle(
-                                fontSize: 24,
+                                fontSize: fontHintPass ??24,
                                 fontWeight: FontWeight.w300)),
                       ),
                     ),
