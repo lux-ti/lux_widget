@@ -18,6 +18,10 @@ class XLogin extends StatelessWidget {
   final TextEditingController? controllerSenha;
   final void Function(String)? onFieldSubmittedEmail;
   final void Function(String)? onFieldSubmittedPassword;
+  final double? height;
+  final double? width;
+  final double? heightBackContainer;
+  final double? widthBackContainer;
 
   const XLogin({
     required this.controllerEmail,
@@ -33,7 +37,7 @@ class XLogin extends StatelessWidget {
     this.contentMid,
     this.onChange,
     this.onFieldSubmittedEmail,
-    this.onFieldSubmittedPassword,
+    this.onFieldSubmittedPassword, this.height, this.width, this.heightBackContainer, this.widthBackContainer,
   }) : super(key: key);
 
   @override
@@ -50,8 +54,8 @@ class XLogin extends StatelessWidget {
               spreadRadius: 3,
               offset: Offset(0, 3))
         ], color: xTheme.primaryColor, borderRadius: BorderRadius.circular(5)),
-        height: 350,
-        width: 345,
+        height: heightBackContainer ?? 350,
+        width: widthBackContainer ?? 345,
       ),
       Padding(
         padding: EdgeInsets.only(top: 3),
@@ -60,8 +64,8 @@ class XLogin extends StatelessWidget {
           decoration: BoxDecoration(
               color: xTheme.backgroundColor,
               borderRadius: BorderRadius.circular(5)),
-          height: 350,
-          width: 345,
+          height: height ?? 350,
+          width: width ?? 345,
           child: Form(
             key: formKey,
             child: Column(
