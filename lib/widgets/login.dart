@@ -78,7 +78,7 @@ class XLogin extends StatelessWidget {
           child: Form(
             key: formKey,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(50,0, 30,0),
+              padding: const EdgeInsets.fromLTRB(30,0, 30,0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
