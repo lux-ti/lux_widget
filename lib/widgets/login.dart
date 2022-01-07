@@ -78,7 +78,7 @@ class XLogin extends StatelessWidget {
           child: Form(
             key: formKey,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(50,0, 50,0),
+              padding: const EdgeInsets.fromLTRB(50,0, 30,0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -119,7 +119,7 @@ class XLogin extends StatelessWidget {
                       colorText: xTheme.primaryColor,
                       fontSize: iconSizeSideBarPass ?? 15),
                   Obx(() => Padding(
-                    padding: const EdgeInsets.fromLTRB(70,0,20,0),
+                    padding: const EdgeInsets.fromLTRB(50,0,0,0),
                     child: Container(
                       width: textFieldPasswordWidth ?? 200,
                       child: TextFormField(
