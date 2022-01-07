@@ -22,6 +22,9 @@ class XLogin extends StatelessWidget {
   final double? width;
   final double? heightBackContainer;
   final double? widthBackContainer;
+  final double? textFieldLoginWidth;
+  final double? textFieldPasswordWidth;
+
 
   const XLogin({
     required this.controllerEmail,
@@ -37,7 +40,7 @@ class XLogin extends StatelessWidget {
     this.contentMid,
     this.onChange,
     this.onFieldSubmittedEmail,
-    this.onFieldSubmittedPassword, this.height, this.width, this.heightBackContainer, this.widthBackContainer,
+    this.onFieldSubmittedPassword, this.height, this.width, this.heightBackContainer, this.widthBackContainer, this.textFieldLoginWidth, this.textFieldPasswordWidth,
   }) : super(key: key);
 
   @override
@@ -68,10 +71,11 @@ class XLogin extends StatelessWidget {
           width: width ?? 345,
           child: Form(
             key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(children: [
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(50,0, 50,0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
                   XSideBarButton(
                     mainAxisAlignment: MainAxisAlignment.center,
                     iconSize: 15,
@@ -82,7 +86,7 @@ class XLogin extends StatelessWidget {
                     fontSize: 15,
                   ),
                   Container(
-                    width: 200,
+                    width: textFieldLoginWidth ?? 200,
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(15)),
                     child: TextFormField(
@@ -100,8 +104,6 @@ class XLogin extends StatelessWidget {
                       ),
                     ),
                   ),
-                ]),
-                Column(children: [
                   XSideBarButton(
                       mainAxisAlignment: MainAxisAlignment.center,
                       iconSize: 15,
@@ -110,28 +112,20 @@ class XLogin extends StatelessWidget {
                       colorIcon: xTheme.primaryColor,
                       colorText: xTheme.primaryColor,
                       fontSize: 15),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 78),
-                    child: Obx(() => Row(
-                          children: [
-                            Container(
-                              width: 200,
-                              child: TextFormField(
-                                controller: controllerSenha,
-                                validator: midValidator,
-                                onFieldSubmitted: onFieldSubmittedPassword,
-                                onChanged: onChange,
-                                textAlign: TextAlign.center,
-                                obscureText: obscureText.value,
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: contentMid,
-                                    hintStyle: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w300)),
-                              ),
-                            ),
-                            IconButton(
+                  Obx(() => Padding(
+                    padding: const EdgeInsets.fromLTRB(70,0,20,0),
+                    child: Container(
+                      width: textFieldPasswordWidth ?? 200,
+                      child: TextFormField(
+                        controller: controllerSenha,
+                        validator: midValidator,
+                        onFieldSubmitted: onFieldSubmittedPassword,
+                        onChanged: onChange,
+                        textAlign: TextAlign.center,
+                        obscureText: obscureText.value,
+                        
+                        decoration: InputDecoration(
+                          suffixIcon:  IconButton(
                               icon: Icon(
                                 Lxi.eye,
                                 size: 24,
@@ -142,12 +136,17 @@ class XLogin extends StatelessWidget {
                                     (obscureText != true.obs) ? true : false;
                               },
                             ),
-                          ],
-                        )),
-                  )
-                ]),
-                buttonChild,
-              ],
+                            border: InputBorder.none,
+                            hintText: contentMid,
+                            hintStyle: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w300)),
+                      ),
+                    ),
+                  )),
+                  buttonChild,
+                ],
+              ),
             ),
           ),
         ),
