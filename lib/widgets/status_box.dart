@@ -4,6 +4,8 @@ import 'package:lux_ui/widgets/buttons/buttons.dart';
 class XStatusBox extends StatelessWidget {
   final String name;
   final double? size;
+  final double? width;
+  final double? height;
   final Color color;
   final bool boll;
   final bool inBox;
@@ -13,7 +15,7 @@ class XStatusBox extends StatelessWidget {
     required this.name,
     required this.color,
     this.boll = false,
-    this.inBox = false,
+    this.inBox = false, this.width, this.height,
   }) : super(key: key);
 
   @override
@@ -46,8 +48,8 @@ class XStatusBox extends StatelessWidget {
     }
     if (inBox && boll != true) {
       return Container(
-        width: 140,
-        height: 30,
+        width: width ?? 140,
+        height: height ?? 30,
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.all(Radius.circular(50)),
