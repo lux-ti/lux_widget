@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class XCardProductionLine extends StatelessWidget {
   final double? height;
   final double? width;
+  final double? imageHeight;
+  final double? imageWidth;
   final Color? borderColor;
   final Color? frontColor;
   final double? borderWidth;
@@ -21,7 +23,7 @@ class XCardProductionLine extends StatelessWidget {
       this.borderRadius,
       this.leftWidget,
       this.rightWidget,
-      required this.imageUrl})
+      required this.imageUrl, this.imageHeight, this.imageWidth})
       : super(key: key);
 
   @override
@@ -50,8 +52,8 @@ class XCardProductionLine extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    width: 40,
-                    height: 40,
+                    width: imageWidth ?? 40,
+                    height: imageHeight ?? 40,
                     child: Image.network(imageUrl),
                   ),
                 ],
