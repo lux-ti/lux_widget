@@ -9,10 +9,12 @@ class XScafoldWithColorChild extends XScafold {
       {this.alignment,
       required String title,
       Widget? child,
+      double? fontSize,
       void Function()? onPressedButton,
       void Function()? onBack})
       : super(
             title: title,
+            fontSize: fontSize,
             child: child,
             onBack: onBack,
             onPressedButton: onPressedButton);
