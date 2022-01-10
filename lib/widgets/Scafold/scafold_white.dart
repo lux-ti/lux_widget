@@ -8,6 +8,7 @@ import 'package:lux_ui/widgets/Scafold/rounded_icon_button.dart';
 class XScafold extends StatelessWidget {
   final String? title;
   final double? fontSize;
+  final double? fontSizeNumber;
   final Widget? child;
   final String? number;
   final bool buttonSpaceBetween;
@@ -21,7 +22,7 @@ class XScafold extends StatelessWidget {
     this.onBack,
     this.onPressedButton,
     this.number,
-    this.buttonSpaceBetween = false, this.fontSize,
+    this.buttonSpaceBetween = false, this.fontSize, this.fontSizeNumber,
   }) : super(key: key);
 
   Widget buildTop(context) {
@@ -61,7 +62,7 @@ class XScafold extends StatelessWidget {
                         ? Text(
                             number ?? '',
                             style: TextStyle(
-                              fontSize: 46,
+                              fontSize: fontSizeNumber ?? 46,
                               fontWeight: FontWeight.w200,
                               fontFamily: 'Manrope',
                               color: theme.foregroundColor,
