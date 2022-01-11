@@ -118,19 +118,21 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            setState(() {
-                              if (boxList > 0) {
-                                if (!currentFocus.hasPrimaryFocus) {
-                                  currentFocus.unfocus();
+                            if (widget.items.length > 0) {
+                              setState(() {
+                                if (boxList > 0) {
+                                  if (!currentFocus.hasPrimaryFocus) {
+                                    currentFocus.unfocus();
+                                  }
+                                  boxList = 0.0;
+                                } else {
+                                  boxList = widget.items.length <= 5 &&
+                                          widget.items.length != 0
+                                      ? 130
+                                      : 200.0;
                                 }
-                                boxList = 0.0;
-                              } else {
-                                boxList = widget.items.length <= 5 &&
-                                        widget.items.length != 0
-                                    ? 130
-                                    : 200.0;
-                              }
-                            });
+                              });
+                            }
                           },
                           child: Icon(
                             (boxList > 0) ? Lxi.chevronTop : Lxi.chevronBottom,
@@ -188,7 +190,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                 () => ListView.builder(
                   controller: _scrollController,
                   itemCount: filteredItems.length,
-                  reverse: true,
+                  reverse: widget.items.length > 4,
                   itemBuilder: (context, index) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
