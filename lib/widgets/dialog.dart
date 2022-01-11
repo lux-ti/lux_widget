@@ -155,9 +155,10 @@ class XDialog {
               color: color ?? Colors.white,
             ),
             child: Center(
-              child: Text(
-                text ?? 'Erro inesperado',
-              ),
+              child: child ??
+                  Text(
+                    text ?? 'Erro inesperado',
+                  ),
             ),
           )
         ],
