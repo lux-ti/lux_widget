@@ -111,8 +111,8 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                   topText: widget.topText ?? '',
                   hintText: widget.hintText ?? 'Infome',
                   suffixIcon: Container(
-                    margin: EdgeInsets.only(right: 10),
-                    width: 100,
+                    padding: EdgeInsets.only(right: 5),
+                    width: 80,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -215,7 +215,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                                 ? XTheme.of(context).backgroundColor
                                 : Colors.grey[100],
                             padding:
-                                EdgeInsets.only(top: 13, bottom: 13, left: 20),
+                                EdgeInsets.only(top: 13, bottom: 13, left: 10),
                             child: Text(
                               filteredItems[index].text,
                               style: TextStyle(
