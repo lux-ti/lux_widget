@@ -188,7 +188,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                 () => ListView.builder(
                   controller: _scrollController,
                   itemCount: filteredItems.length,
-                  reverse: true,
+                  reverse: widget.items.length > 4,
                   itemBuilder: (context, index) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
