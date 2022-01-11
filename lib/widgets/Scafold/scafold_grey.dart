@@ -7,6 +7,7 @@ import 'package:lux_ui/widgets/status_box.dart';
 class XScafoldGrey extends XScafold {
   final Widget? topChild;
   final double? textSize;
+  final double? heightSizedBox;
   final TextStyle? textStyle;
   final Color? colorStatus;
   final String? codeNumber;
@@ -16,7 +17,7 @@ class XScafoldGrey extends XScafold {
   final void Function()? firstOnPressed;
   final void Function()? lastOnTapIcon;
 
-  XScafoldGrey({
+  XScafoldGrey(this.heightSizedBox, {
     this.lastOnTapIcon,
     this.backgroundColorIcon,
     this.icon,
@@ -156,7 +157,7 @@ class XScafoldGrey extends XScafold {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 7,
+                    height: heightSizedBox ?? MediaQuery.of(context).size.height / 7,
                     child: buildTop(context),
                   ),
                   Expanded(child: buildChild(context))
