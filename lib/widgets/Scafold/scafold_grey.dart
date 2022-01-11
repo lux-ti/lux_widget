@@ -17,7 +17,7 @@ class XScafoldGrey extends XScafold {
   final void Function()? firstOnPressed;
   final void Function()? lastOnTapIcon;
 
-  XScafoldGrey(this.heightSizedBox, {
+  XScafoldGrey( {this.heightSizedBox,
     this.lastOnTapIcon,
     this.backgroundColorIcon,
     this.icon,
