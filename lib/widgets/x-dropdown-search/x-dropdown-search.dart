@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lux_ui/lib.dart';
 
+class DropdownSearchItem {
+  String name;
+  int id;
+
+  DropdownSearchItem({required this.name, required this.id});
+}
+
 class XDropdownSearch extends StatefulWidget {
   final int totalPages;
   final void Function(String)? onChanged;
@@ -13,7 +20,7 @@ class XDropdownSearch extends StatefulWidget {
   final String? hintText;
   final String? Function(String?)? validator;
   final RxList<dynamic> items;
-  final RxInt value;
+  final Rx<dynamic> value;
   dynamic Function(dynamic)? getKey;
   String Function(dynamic)? getLabel;
   dynamic Function(dynamic)? getValue;
@@ -162,6 +169,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                         ),
                         GestureDetector(
                           onTap: () {
+                            widget.value.value = null;
                             if (widget.onDelete != null) {
                               widget.onDelete!(widget.controller.text);
                             }
