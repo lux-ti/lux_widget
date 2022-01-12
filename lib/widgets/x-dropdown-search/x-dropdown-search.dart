@@ -2,24 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lux_ui/lib.dart';
 
-class DropdownSearchItem {
-  String text;
-  dynamic value;
-
-  DropdownSearchItem({required this.text, this.value});
-}
-
 class XDropdownSearch extends StatefulWidget {
   final int totalPages;
   final void Function(String)? onChanged;
-  final void Function(DropdownSearchItem) onTapItem;
+  final void Function(dynamic)? onTapItem;
   final Future<void> Function(int page)? infinity;
   final void Function(String?)? onDelete;
   final TextEditingController controller;
   final String? topText;
   final String? hintText;
   final String? Function(String?)? validator;
-  final RxList<DropdownSearchItem> items;
+  final RxList<dynamic> items;
+  final RxInt value;
+  dynamic Function(dynamic)? getKey;
+  String Function(dynamic)? getLabel;
+  dynamic Function(dynamic)? getValue;
+
   final double? width;
   XDropdownSearch({
     Key? key,
@@ -27,13 +25,17 @@ class XDropdownSearch extends StatefulWidget {
     required this.items,
     required this.controller,
     required this.totalPages,
-    required this.onTapItem,
+    required this.value,
+    this.onTapItem,
     this.onChanged,
     this.validator,
     this.width,
     this.onDelete,
     this.topText,
     this.hintText,
+    this.getKey,
+    this.getLabel,
+    this.getValue,
   }) : super(key: key);
 
   @override
@@ -51,11 +53,12 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
 
   double boxList = 0.0;
 
-  RxList<DropdownSearchItem> filteredItems = <DropdownSearchItem>[].obs;
+  RxList<dynamic> filteredItems = <dynamic>[].obs;
   void filterItems(String filter) {
     if (filter.isNotEmpty) {
       filteredItems.value = widget.items
-          .where((x) => x.text.toLowerCase().startsWith(filter.toLowerCase()))
+          .where((x) =>
+              widget.getLabel!(x).toLowerCase().contains(filter.toLowerCase()))
           .toList()
           .obs;
     } else {
@@ -67,6 +70,21 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
   void initState() {
     super.initState();
     filterItems("");
+
+    if (widget.getKey == null) {
+      widget.getKey = (item) => item.id;
+    }
+
+    if (widget.getLabel == null) {
+      widget.getLabel = (item) => item.name;
+    }
+
+    if (widget.getValue == null) {
+      widget.getValue = widget.getKey;
+    }
+
+    widget.controller.text = widget.getLabel!(filteredItems.firstWhere(
+        (element) => widget.getKey!(element) == widget.value.value));
   }
 
   ScrollController _scrollController = ScrollController();
@@ -80,6 +98,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
   @override
   Widget build(BuildContext context) {
     FocusScopeNode currentFocus = FocusScope.of(context);
+
     return Container(
       width: widget.width ?? double.infinity,
       child: Column(
@@ -196,7 +215,8 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            widget.controller.text = filteredItems[index].text;
+                            widget.controller.text =
+                                widget.getLabel!(filteredItems[index]);
                             if (boxList > 0.0) {
                               if (!currentFocus.hasPrimaryFocus) {
                                 currentFocus.unfocus();
@@ -205,7 +225,13 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                                 boxList = 0.0;
                               });
                             }
-                            widget.onTapItem(filteredItems[index]);
+
+                            widget.value.value =
+                                widget.getValue!(filteredItems[index]);
+
+                            if (widget.onTapItem != null) {
+                              widget.onTapItem!(filteredItems[index]);
+                            }
                           },
                           child: Container(
                             width: double.infinity,
@@ -215,10 +241,10 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                             padding:
                                 EdgeInsets.only(top: 13, bottom: 13, left: 10),
                             child: Text(
-                              filteredItems[index].text,
+                              widget.getLabel!(filteredItems[index]),
                               style: TextStyle(
-                                  color: widget.controller.text ==
-                                          filteredItems[index].text
+                                  color: widget.value.value ==
+                                          widget.getKey!(filteredItems[index])
                                       ? XTheme.of(context).primaryColor
                                       : null),
                             ),

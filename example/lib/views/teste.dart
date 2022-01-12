@@ -11,14 +11,8 @@ class Teste extends StatelessWidget {
   int n = 1;
 
   TextEditingController teste1controller = TextEditingController();
-  var list = [
-    DropdownSearchItem(text: 'a', value: []),
-    DropdownSearchItem(text: 'a', value: []),
-    DropdownSearchItem(text: 'a', value: []),
-    DropdownSearchItem(
-        text: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', value: []),
-    DropdownSearchItem(text: 'ab', value: [])
-  ].obs;
+  RxInt valueDrop = 2.obs;
+  var list = [].obs;
 
   @override
   Widget build(BuildContext context) {
@@ -34,25 +28,17 @@ class Teste extends StatelessWidget {
       child: Container(
         color: Colors.white,
         child: Container(
-          width: 300,
-          child: Row(
+          child: Column(
             children: [
+              Text("data"),
+              Obx(() => Text(valueDrop.toString())),
               Expanded(
                 child: XDropdownSearch(
                   items: list,
                   topText: "Data",
                   controller: teste1controller,
                   totalPages: 1,
-                  onTapItem: (item) {},
-                ),
-              ),
-              Expanded(
-                child: XDropdownSearch(
-                  items: list,
-                  topText: "Data",
-                  controller: teste1controller,
-                  totalPages: 1,
-                  onTapItem: (item) {},
+                  value: valueDrop,
                 ),
               ),
             ],
