@@ -57,6 +57,10 @@ class Teste extends StatelessWidget {
                   totalPages: 1,
                   value: valueDrop.value,
                   onDelete: (value) {},
+                  onTapItem: (value) {
+                    print(value.id);
+                    valueDrop.value = value.id;
+                  },
                 ),
               ],
             ),

@@ -165,11 +165,16 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                               }
                             });
                           },
-                          child: Icon(
-                            (boxList > 0) ? Lxi.chevronTop : Lxi.chevronBottom,
-                            color: boxList > 0
-                                ? XTheme.of(context).primaryColor
-                                : null,
+                          child: Container(
+                            padding: EdgeInsets.only(right: 5),
+                            child: Icon(
+                              (boxList > 0)
+                                  ? Lxi.chevronTop
+                                  : Lxi.chevronBottom,
+                              color: boxList > 0
+                                  ? XTheme.of(context).primaryColor
+                                  : null,
+                            ),
                           ),
                         ),
                         widget.onDelete != null
@@ -192,7 +197,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                                   }
                                 },
                                 child: Container(
-                                  margin: EdgeInsets.only(left: 5, right: 5),
+                                  margin: EdgeInsets.only(right: 5),
                                   child: Icon(
                                     Icons.close,
                                     color: XTheme.of(context).primaryColor,
