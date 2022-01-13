@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lux_ui/lib.dart';
@@ -8,14 +10,23 @@ import 'package:lux_ui/widgets/x-dropdown-search/x-dropdown-search.dart';
 class Teste extends StatelessWidget {
   Teste({Key? key}) : super(key: key);
 
-  int n = 1;
-
   TextEditingController teste1controller = TextEditingController();
-  RxInt valueDrop = 2.obs;
-  var list = [].obs;
+  final valueDrop = 2.obs;
+
+  Rx<DropdownSearchItem> valueObs =
+      DropdownSearchItem(id: 3, name: 'name 3').obs;
+
+  var list = [
+    DropdownSearchItem(name: 'name 1', id: 1),
+    DropdownSearchItem(name: 'name 2', id: 2)
+  ].obs;
 
   @override
   Widget build(BuildContext context) {
+    // Future.delayed(Duration(seconds: 10)).then((value) {
+    //   valueObs = 3;
+    // });
+
     return XScafoldGrey(
       textSize: 38,
       title: 'Pedido',
@@ -28,20 +39,31 @@ class Teste extends StatelessWidget {
       child: Container(
         color: Colors.white,
         child: Container(
-          child: Column(
-            children: [
-              Text("data"),
-              Obx(() => Text(valueDrop.toString())),
-              Expanded(
-                child: XDropdownSearch(
+          child: Obx(
+            () => Column(
+              children: [
+                Text(valueDrop.value.toString()),
+                XDropdownSearch(
                   items: list,
                   topText: "Data",
                   controller: teste1controller,
                   totalPages: 1,
-                  value: valueDrop,
+                  value: valueDrop.value,
                 ),
-              ),
-            ],
+                XDropdownSearch(
+                  items: list,
+                  topText: "Data",
+                  controller: teste1controller,
+                  totalPages: 1,
+                  value: valueDrop.value,
+                  onDelete: (value) {},
+                  onTapItem: (value) {
+                    print(value.id);
+                    valueDrop.value = value.id;
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

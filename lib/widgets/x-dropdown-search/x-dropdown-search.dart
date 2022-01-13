@@ -20,7 +20,7 @@ class XDropdownSearch extends StatefulWidget {
   final String? hintText;
   final String? Function(String?)? validator;
   final RxList<dynamic> items;
-  final Rx<dynamic> value;
+  int? value;
   dynamic Function(dynamic)? getKey;
   String Function(dynamic)? getLabel;
   dynamic Function(dynamic)? getValue;
@@ -51,14 +51,14 @@ class XDropdownSearch extends StatefulWidget {
 
 class _XDropdownSearchState extends State<XDropdownSearch> {
   int page = 1;
+  double boxList = 0.0;
+
   Future onRefresh() async {
     if (page <= widget.totalPages && widget.infinity != null) {
       await widget.infinity!(page);
       page++;
     }
   }
-
-  double boxList = 0.0;
 
   RxList<dynamic> filteredItems = <dynamic>[].obs;
   void filterItems(String filter) {
@@ -90,8 +90,15 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
       widget.getValue = widget.getKey;
     }
 
-    widget.controller.text = widget.getLabel!(filteredItems.firstWhere(
-        (element) => widget.getKey!(element) == widget.value.value));
+    if (filteredItems.length > 0 && widget.value != null) {
+      var res = filteredItems.firstWhere(
+        (element) => widget.getKey!(element) == widget.value,
+        orElse: () => '',
+      );
+      if (res != '') {
+        widget.controller.text = widget.getLabel!(res);
+      }
+    }
   }
 
   ScrollController _scrollController = ScrollController();
@@ -160,38 +167,46 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                               });
                             }
                           },
-                          child: Icon(
-                            (boxList > 0) ? Lxi.chevronTop : Lxi.chevronBottom,
-                            color: boxList > 0
-                                ? XTheme.of(context).primaryColor
-                                : null,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            widget.value.value = null;
-                            if (widget.onDelete != null) {
-                              widget.onDelete!(widget.controller.text);
-                            }
-                            widget.controller.text = '';
-
-                            if (!currentFocus.hasPrimaryFocus) {
-                              currentFocus.unfocus();
-                            }
-                            if (boxList > 0.0) {
-                              setState(() {
-                                boxList = 0.0;
-                              });
-                            }
-                          },
                           child: Container(
-                            margin: EdgeInsets.only(left: 10),
+                            padding: EdgeInsets.only(right: 5),
                             child: Icon(
-                              Icons.close,
-                              color: XTheme.of(context).primaryColor,
+                              (boxList > 0)
+                                  ? Lxi.chevronTop
+                                  : Lxi.chevronBottom,
+                              color: boxList > 0
+                                  ? XTheme.of(context).primaryColor
+                                  : null,
                             ),
                           ),
-                        )
+                        ),
+                        widget.onDelete != null
+                            ? GestureDetector(
+                                onTap: () {
+                                  widget.value = null;
+
+                                  if (widget.onDelete != null) {
+                                    widget.onDelete!(widget.controller.text);
+                                  }
+                                  widget.controller.text = '';
+
+                                  if (!currentFocus.hasPrimaryFocus) {
+                                    currentFocus.unfocus();
+                                  }
+                                  if (boxList > 0.0) {
+                                    setState(() {
+                                      boxList = 0.0;
+                                    });
+                                  }
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 5),
+                                  child: Icon(
+                                    Icons.close,
+                                    color: XTheme.of(context).primaryColor,
+                                  ),
+                                ),
+                              )
+                            : SizedBox(),
                       ],
                     ),
                   ),
@@ -225,8 +240,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            widget.controller.text =
-                                widget.getLabel!(filteredItems[index]);
+                            widget.controller.text = filteredItems[index].name;
                             if (boxList > 0.0) {
                               if (!currentFocus.hasPrimaryFocus) {
                                 currentFocus.unfocus();
@@ -236,8 +250,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                               });
                             }
 
-                            widget.value.value =
-                                widget.getValue!(filteredItems[index]);
+                            widget.value = filteredItems[index].id;
 
                             if (widget.onTapItem != null) {
                               widget.onTapItem!(filteredItems[index]);
@@ -251,12 +264,12 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                             padding:
                                 EdgeInsets.only(top: 13, bottom: 13, left: 10),
                             child: Text(
-                              widget.getLabel!(filteredItems[index]),
+                              filteredItems[index].name,
                               style: TextStyle(
-                                  color: widget.value.value ==
-                                          widget.getKey!(filteredItems[index])
-                                      ? XTheme.of(context).primaryColor
-                                      : null),
+                                color: widget.value == filteredItems[index].id
+                                    ? XTheme.of(context).primaryColor
+                                    : null,
+                              ),
                             ),
                           ),
                         ),
