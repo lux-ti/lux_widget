@@ -3,16 +3,25 @@ import 'package:lux_ui/lib.dart';
 import 'package:lux_ui/widgets/buttons/buttons.dart';
 
 class XRadiobutton extends XCheckBox {
-  const XRadiobutton({Key? key, double? width,
-   double? heigth,
-   Color? color,
-   double borderRadius = 5,
-   bool? isTap,
-   void Function(bool value)? onTap}) : super(key: key,width: width,heigth: heigth,color: color,isTap: isTap,onTap: onTap,borderRadius: borderRadius);
+  XRadiobutton(
+      {Key? key,
+      double? width,
+      double? heigth,
+      Color? color,
+      double borderRadius = 5,
+      bool? isTap,
+      void Function(bool value)? onTap})
+      : super(
+            key: key,
+            width: width,
+            heigth: heigth,
+            color: color,
+            isTap: isTap,
+            onTap: onTap,
+            borderRadius: borderRadius);
 
   Widget border(XThemeData xTheme, bool isTouch) {
     return Container(
-
       height: 16,
       width: 17,
       decoration: BoxDecoration(
