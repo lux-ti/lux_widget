@@ -14,14 +14,6 @@ class Teste extends StatelessWidget {
   TextEditingController teste1controller = TextEditingController();
   var valueDrop = true;
 
-  Rx<DropdownSearchItem> valueObs =
-      DropdownSearchItem(id: 3, name: 'name 3').obs;
-
-  var list = [
-    DropdownSearchItem(name: 'name 1', id: 1),
-    DropdownSearchItem(name: 'name 2', id: 2)
-  ].obs;
-
   @override
   Widget build(BuildContext context) {
     // Future.delayed(Duration(seconds: 10)).then((value) {
