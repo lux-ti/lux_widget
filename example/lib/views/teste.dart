@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lux_ui/lib.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
+import 'package:lux_ui/widgets/buttons/buttons.dart';
 import 'package:lux_ui/widgets/date-picker/x-date-picker.dart';
 import 'package:lux_ui/widgets/x-dropdown-search/x-dropdown-search.dart';
 
@@ -11,15 +12,7 @@ class Teste extends StatelessWidget {
   Teste({Key? key}) : super(key: key);
 
   TextEditingController teste1controller = TextEditingController();
-  final valueDrop = 2.obs;
-
-  Rx<DropdownSearchItem> valueObs =
-      DropdownSearchItem(id: 3, name: 'name 3').obs;
-
-  var list = [
-    DropdownSearchItem(name: 'name 1', id: 1),
-    DropdownSearchItem(name: 'name 2', id: 2)
-  ].obs;
+  var valueDrop = true;
 
   @override
   Widget build(BuildContext context) {
@@ -39,31 +32,16 @@ class Teste extends StatelessWidget {
       child: Container(
         color: Colors.white,
         child: Container(
-          child: Obx(
-            () => Column(
-              children: [
-                Text(valueDrop.value.toString()),
-                XDropdownSearch(
-                  items: list,
-                  topText: "Data",
-                  controller: teste1controller,
-                  totalPages: 1,
-                  value: valueDrop.value,
-                ),
-                XDropdownSearch(
-                  items: list,
-                  topText: "Data",
-                  controller: teste1controller,
-                  totalPages: 1,
-                  value: valueDrop.value,
-                  onDelete: (value) {},
-                  onTapItem: (value) {
-                    print(value.id);
-                    valueDrop.value = value.id;
-                  },
-                ),
-              ],
-            ),
+          child: Column(
+            children: [
+              Text(valueDrop.toString()),
+              XCheckBox(
+                value: valueDrop,
+                onTap: (value) {
+                  valueDrop = value;
+                },
+              )
+            ],
           ),
         ),
       ),

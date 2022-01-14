@@ -5,7 +5,7 @@ import 'package:lux_ui/widgets/buttons/buttons.dart';
 import '../../theme_data.dart';
 
 class XRoundedCheckBox extends XCheckBox {
-  const XRoundedCheckBox(
+  XRoundedCheckBox(
       {Key? key,
       double? width,
       double? heigth,
@@ -22,10 +22,8 @@ class XRoundedCheckBox extends XCheckBox {
             onTap: onTap,
             borderRadius: borderRadius);
 
-  
   Widget border(XThemeData xTheme, bool isTouch) {
     return Container(
-
       height: 18,
       width: 18,
       decoration: BoxDecoration(
@@ -33,7 +31,7 @@ class XRoundedCheckBox extends XCheckBox {
         border: Border.all(color: color ?? xTheme.primaryColor),
         borderRadius: BorderRadius.circular(25),
       ),
-      child: isTouch  ? null : childInside(isTouch, xTheme),
+      child: isTouch ? null : childInside(isTouch, xTheme),
     );
   }
 
@@ -43,9 +41,12 @@ class XRoundedCheckBox extends XCheckBox {
       decoration: BoxDecoration(
           color: isTouch ? null : xTheme.primaryColor,
           borderRadius: BorderRadius.all(Radius.circular(25))),
-          child: Center(child: Icon(Icons.check ,color: xTheme.backgroundColor,size: 10 ,)),
+      child: Center(
+          child: Icon(
+        Icons.check,
+        color: xTheme.backgroundColor,
+        size: 10,
+      )),
     );
   }
 }
-
-

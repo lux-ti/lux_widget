@@ -8,25 +8,30 @@ class XCheckBox extends StatelessWidget {
   final Color? color;
   final double borderRadius;
   final bool? isTap;
+  final bool? value;
   final void Function(bool value)? onTap;
 
-  const XCheckBox({
+  XCheckBox({
     Key? key,
     this.width = 27,
     this.heigth = 27,
     this.color,
     this.borderRadius = 5,
     this.isTap,
+    this.value,
     required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var xTheme = XTheme.of(context);
-    var isTouch = false.obs;
+    RxBool isTouch = false.obs;
+    if (value != null) {
+      isTouch.value = value!;
+    }
     return GestureDetector(
         onTap: () {
-          isTouch.value = (isTouch.isTrue) ? false : true;
+          isTouch.value = !isTouch.isTrue;
           onTap!(isTouch.value);
         },
         child: Obx(() => border(xTheme, isTouch.value)));
