@@ -58,7 +58,7 @@ class XScafold extends StatelessWidget {
                     fontSize: fontSize ?? 34,
                   ),
                 ),
-                SizedBox(width: 15),
+                SizedBox(width: 8),
                 (number == null && onPressedButton == null)
                     ? Container()
                     : (number != null && onPressedButton == null)
