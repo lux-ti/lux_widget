@@ -22,7 +22,9 @@ class XScafold extends StatelessWidget {
     this.onBack,
     this.onPressedButton,
     this.number,
-    this.buttonSpaceBetween = false, this.fontSize, this.fontSizeNumber,
+    this.buttonSpaceBetween = false,
+    this.fontSize,
+    this.fontSizeNumber,
   }) : super(key: key);
 
   Widget buildTop(context) {
@@ -56,6 +58,7 @@ class XScafold extends StatelessWidget {
                     fontSize: fontSize ?? 34,
                   ),
                 ),
+                SizedBox(width: 15),
                 (number == null && onPressedButton == null)
                     ? Container()
                     : (number != null && onPressedButton == null)
@@ -75,7 +78,7 @@ class XScafold extends StatelessWidget {
                                 height: 21,
                                 backgroundColor: theme.primaryColor,
                                 iconColor: theme.backgroundColor,
-                                iconSize: 21,
+                                iconSize: 19,
                                 icon: Icons.add,
                               )
                             : Container()
