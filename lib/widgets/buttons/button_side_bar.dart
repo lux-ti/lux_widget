@@ -40,9 +40,9 @@ class XSideBarButton extends StatelessWidget {
               size: iconSize,
               color: colorIcon ?? xTheme.backgroundColor,
             ),
-            SizedBox(
-              width: 10,
-            ),
+            // SizedBox(
+            //   width: 10,
+            // ),
             Text(
               text!,
               style: TextStyle(
