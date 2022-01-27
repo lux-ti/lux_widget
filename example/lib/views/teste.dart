@@ -6,6 +6,7 @@ import 'package:lux_ui/lib.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
 import 'package:lux_ui/widgets/buttons/buttons.dart';
 import 'package:lux_ui/widgets/date-picker/x-date-picker.dart';
+import 'package:lux_ui/widgets/login.dart';
 import 'package:lux_ui/widgets/x-dropdown-search/x-dropdown-search.dart';
 
 class Teste extends StatelessWidget {
@@ -16,9 +17,7 @@ class Teste extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Future.delayed(Duration(seconds: 10)).then((value) {
-    //   valueObs = 3;
-    // });
+   var xTheme = XTheme.of(context);
 
     return XScafoldGrey(
       textSize: 38,
@@ -34,13 +33,31 @@ class Teste extends StatelessWidget {
         child: Container(
           child: Column(
             children: [
-              Text(valueDrop.toString()),
-              XCheckBox(
-                value: valueDrop,
-                onTap: (value) {
-                  valueDrop = value;
-                },
-              )
+              XLogin(
+              controllerEmail: null,
+              controllerSenha: null,
+              topName: 'LOGIN',
+              contentTop: 'Digite seu email',
+              formKey: null,
+              midName: 'SENHA',
+              contentMid: 'Digite sua senha',
+              topValidator: null,
+              midValidator: null,
+              onFieldSubmittedPassword: (value) {
+                
+              },
+              buttonChild: Container(
+                child: 
+                  XRoundedButton(
+                    color: xTheme.primaryColor,
+                    onTap: (){},
+                  //   widget: (isTap.value)
+                  //       ? text(name: 'LOGIN', xTheme: xTheme.backgroundColor)
+                  //       : cPI(xTheme: xTheme.backgroundColor),
+                  // ),
+                )
+              ),
+            ),
             ],
           ),
         ),
