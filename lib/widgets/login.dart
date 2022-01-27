@@ -30,6 +30,7 @@ class XLogin extends StatelessWidget {
   final double? iconSizeSideBarPass;
   final double? fontHintLogin;
   final double? fontHintPass;
+  final MainAxisAlignment? alignment;
 
 
   const XLogin({
@@ -46,7 +47,7 @@ class XLogin extends StatelessWidget {
     this.contentMid,
     this.onChange,
     this.onFieldSubmittedEmail,
-    this.onFieldSubmittedPassword, this.height, this.width, this.heightBackContainer, this.widthBackContainer, this.textFieldLoginWidth, this.textFieldPasswordWidth, this.fontSideBarLogin, this.fontSideBarPass, this.fontHintLogin, this.fontHintPass, this.iconSizeSideBarLogin, this.iconSizeSideBarPass,
+    this.onFieldSubmittedPassword, this.height, this.width, this.heightBackContainer, this.widthBackContainer, this.textFieldLoginWidth, this.textFieldPasswordWidth, this.fontSideBarLogin, this.fontSideBarPass, this.fontHintLogin, this.fontHintPass, this.iconSizeSideBarLogin, this.iconSizeSideBarPass, this.alignment,
   }) : super(key: key);
 
   @override
@@ -69,7 +70,7 @@ class XLogin extends StatelessWidget {
       Padding(
         padding: EdgeInsets.only(top: 3),
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 20),
+          padding: EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
               color: xTheme.backgroundColor,
               borderRadius: BorderRadius.circular(5)),
@@ -80,7 +81,7 @@ class XLogin extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(30,0, 30,0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: alignment ?? MainAxisAlignment.spaceAround,
                 children: [
                   XSideBarButton(
                     mainAxisAlignment: MainAxisAlignment.center,
