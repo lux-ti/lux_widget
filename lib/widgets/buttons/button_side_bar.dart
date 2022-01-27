@@ -28,7 +28,7 @@ class XSideBarButton extends StatelessWidget {
     var xTheme = XTheme.of(context);
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 12),
+      //margin: EdgeInsets.symmetric(vertical: 12),
       child: GestureDetector(
         onTap: onTap,
         child: Row(
