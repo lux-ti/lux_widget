@@ -9,6 +9,7 @@ class XSideBarButton extends StatelessWidget {
   final Color? colorIcon;
   final Color? colorText;
   final double? iconSize;
+  final double? paddingSideBar;
   final MainAxisAlignment mainAxisAlignment;
 
   const XSideBarButton(
@@ -20,7 +21,7 @@ class XSideBarButton extends StatelessWidget {
       this.colorIcon,
       this.iconSize,
       this.colorText,
-      this.mainAxisAlignment = MainAxisAlignment.start})
+      this.mainAxisAlignment = MainAxisAlignment.start, this.paddingSideBar})
       : super(key: key);
 
   @override
@@ -28,7 +29,7 @@ class XSideBarButton extends StatelessWidget {
     var xTheme = XTheme.of(context);
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 12),
+      margin: EdgeInsets.symmetric(vertical: paddingSideBar ?? 12),
       child: GestureDetector(
         onTap: onTap,
         child: Row(
