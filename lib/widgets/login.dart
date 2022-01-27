@@ -31,6 +31,7 @@ class XLogin extends StatelessWidget {
   final double? fontHintLogin;
   final double? fontHintPass;
   final MainAxisAlignment? alignment;
+  final double? paddingSideBar;
 
 
   const XLogin({
@@ -47,7 +48,7 @@ class XLogin extends StatelessWidget {
     this.contentMid,
     this.onChange,
     this.onFieldSubmittedEmail,
-    this.onFieldSubmittedPassword, this.height, this.width, this.heightBackContainer, this.widthBackContainer, this.textFieldLoginWidth, this.textFieldPasswordWidth, this.fontSideBarLogin, this.fontSideBarPass, this.fontHintLogin, this.fontHintPass, this.iconSizeSideBarLogin, this.iconSizeSideBarPass, this.alignment,
+    this.onFieldSubmittedPassword, this.height, this.width, this.heightBackContainer, this.widthBackContainer, this.textFieldLoginWidth, this.textFieldPasswordWidth, this.fontSideBarLogin, this.fontSideBarPass, this.fontHintLogin, this.fontHintPass, this.iconSizeSideBarLogin, this.iconSizeSideBarPass, this.alignment, this.paddingSideBar,
   }) : super(key: key);
 
   @override
@@ -84,6 +85,7 @@ class XLogin extends StatelessWidget {
                 mainAxisAlignment: alignment ?? MainAxisAlignment.spaceAround,
                 children: [
                   XSideBarButton(
+                    paddingSideBar: paddingSideBar,
                     mainAxisAlignment: MainAxisAlignment.center,
                     iconSize: iconSizeSideBarLogin ?? 15,
                     icon: Lxi.user,
@@ -112,6 +114,7 @@ class XLogin extends StatelessWidget {
                     ),
                   ),
                   XSideBarButton(
+                    paddingSideBar: paddingSideBar,
                       mainAxisAlignment: MainAxisAlignment.center,
                       iconSize: iconSizeSideBarPass ?? 15,
                       icon: Lxi.lock,
