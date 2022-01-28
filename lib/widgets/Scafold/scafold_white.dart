@@ -62,15 +62,18 @@ class XScafold extends StatelessWidget {
                 (number == null && onPressedButton == null)
                     ? Container()
                     : (number != null && onPressedButton == null)
-                        ? Text(
-                            number ?? '',
-                            style: TextStyle(
-                              fontSize: fontSizeNumber ?? 46,
-                              fontWeight: FontWeight.w200,
-                              fontFamily: 'Manrope',
-                              color: theme.foregroundColor,
+                        ? Padding(
+                          padding: const EdgeInsets.only(right:20.0),
+                          child: Text(
+                              number ?? '',
+                              style: TextStyle(
+                                fontSize: fontSizeNumber ?? 52,
+                                fontWeight: FontWeight.w200,
+                                fontFamily: 'Manrope',
+                                color: theme.foregroundColor,
+                              ),
                             ),
-                          )
+                        )
                         : (onPressedButton != null && number == null)
                             ? RoundedIconButton(
                                 onPressed: onPressedButton,
