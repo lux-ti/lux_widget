@@ -42,27 +42,33 @@ class XCardProduction extends StatelessWidget {
       ),
 
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20,15,10,10),
+          padding: const EdgeInsets.fromLTRB(20,10,30,10),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  topLeftWidget ?? Container(),
-                  bottomLeftWidget ?? Container(),
+              SizedBox(
+                width: 150,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    topLeftWidget ?? Container(),
+                    bottomLeftWidget ?? Container(),
 
-                ],
+                  ],
+                ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  topRightWidget ?? Container(),
-                  bottomRightWidget ?? Container(),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(right: 0.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    topRightWidget ?? Container(),
+                    bottomRightWidget ?? Container(),
+                  ],
+                ),
               )
             ],
           ),

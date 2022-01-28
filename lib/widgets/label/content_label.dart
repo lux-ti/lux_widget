@@ -5,7 +5,7 @@ class XContentLabel extends StatelessWidget {
   final String topName;
   final String name;
   final Color? colorTop;
-  final double? NameWidth;
+  final double? nameWidth;
   final Color? colorName;
   final double? topSize;
   final double? nameSize;
@@ -28,7 +28,7 @@ class XContentLabel extends StatelessWidget {
     this.nameWeight,
     this.topSpace,
     this.nameSpace,
-    this.NameWidth,
+    this.nameWidth,
     this.overflow,
     this.maxLines,
   }) : super(key: key);
@@ -49,7 +49,7 @@ class XContentLabel extends StatelessWidget {
               fontWeight: topWeight),
         ),
         Container(
-          width: NameWidth,
+          width: nameWidth,
           child: Text(name,
               maxLines: maxLines,
               style: TextStyle(
