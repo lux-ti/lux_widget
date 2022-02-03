@@ -60,8 +60,8 @@ class XDatePicker extends StatelessWidget {
     final dataSelecionada = await showDatePicker(
       context: context,
       initialDate: selectedData.value,
-      firstDate: DateTime(2019, 1),
-      lastDate: DateTime(2030),
+      firstDate: DateTime(1890, 1),
+      lastDate: DateTime.now(),
       builder: (context, child) {
         return Theme(
             data: Theme.of(context).copyWith(
