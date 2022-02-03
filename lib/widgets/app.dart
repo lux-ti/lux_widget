@@ -34,7 +34,8 @@ class XApp extends StatelessWidget {
         getPages: getPages,
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate
         ],
         supportedLocales: [const Locale('pt', 'BR')],
       ),
