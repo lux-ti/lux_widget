@@ -109,10 +109,12 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
     _scrollController.dispose();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     FocusScopeNode currentFocus = FocusScope.of(context);
-
+    var isReverse = true;
     return Container(
       width: widget.width ?? double.infinity,
       child: Column(
@@ -213,6 +215,9 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                   onChanged: (value) {
                     filterItems(value);
                     if (widget.onChanged != null) widget.onChanged!(value);
+                    setState(() {
+                      isReverse = value != '' ? false : true;
+                    });
                   },
                 ),
               ),
@@ -220,6 +225,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
           ),
           RefreshIndicator(
             onRefresh: onRefresh,
+            triggerMode: RefreshIndicatorTriggerMode.anywhere,
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(color: XTheme.of(context).disabledColor),
@@ -232,7 +238,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                 () => ListView.builder(
                   controller: _scrollController,
                   itemCount: filteredItems.length,
-                  reverse: widget.items.length < 4,
+                  reverse: isReverse,
                   itemBuilder: (context, index) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
