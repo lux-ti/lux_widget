@@ -10,7 +10,9 @@ class DropdownSearchItem {
 }
 
 class XDropdownSearch extends StatefulWidget {
+  
   final void Function()? onFocus;
+  final void Function()? onTapIcon;
   final int totalPages;
   final void Function(String)? onChanged;
   final void Function(dynamic)? onTapItem;
@@ -43,7 +45,7 @@ class XDropdownSearch extends StatefulWidget {
     this.hintText,
     this.getKey,
     this.getLabel,
-    this.getValue, this.onFocus,
+    this.getValue, this.onFocus, this.onTapIcon,
   }) : super(key: key);
 
   @override
@@ -155,6 +157,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                       children: [
                         GestureDetector(
                           onTap: () {
+                            widget.onTapIcon;
                             if (widget.items.length > 0) {
                               setState(() {
                                 if (boxList > 0) {
