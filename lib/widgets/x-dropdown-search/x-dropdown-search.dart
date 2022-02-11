@@ -24,6 +24,7 @@ class XDropdownSearch extends StatefulWidget {
   final String? Function(String?)? validator;
   final RxList<dynamic> items;
   int? value;
+  final bool? isReverse;
   dynamic Function(dynamic)? getKey;
   String Function(dynamic)? getLabel;
   dynamic Function(dynamic)? getValue;
@@ -45,7 +46,7 @@ class XDropdownSearch extends StatefulWidget {
     this.hintText,
     this.getKey,
     this.getLabel,
-    this.getValue, this.onFocus, this.onTapIcon,
+    this.getValue, this.onFocus, this.onTapIcon, this.isReverse,
   }) : super(key: key);
 
   @override
@@ -117,7 +118,6 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
   @override
   Widget build(BuildContext context) {
     FocusScopeNode currentFocus = FocusScope.of(context);
-    var isReverse = true;
     return Container(
       width: widget.width ?? double.infinity,
       child: Column(
@@ -220,9 +220,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                   onChanged: (value) {
                     filterItems(value);
                     if (widget.onChanged != null) widget.onChanged!(value);
-                    setState(() {
-                      isReverse = value != '' ? false : true;
-                    });
+                    
                   },
                 ),
               ),
@@ -243,7 +241,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                 () => ListView.builder(
                   controller: _scrollController,
                   itemCount: filteredItems.length,
-                  reverse: isReverse,
+                  reverse: widget.isReverse ?? false,
                   itemBuilder: (context, index) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
