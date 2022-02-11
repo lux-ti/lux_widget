@@ -10,6 +10,7 @@ class DropdownSearchItem {
 }
 
 class XDropdownSearch extends StatefulWidget {
+  final void Function()? onFocus;
   final int totalPages;
   final void Function(String)? onChanged;
   final void Function(dynamic)? onTapItem;
@@ -42,7 +43,7 @@ class XDropdownSearch extends StatefulWidget {
     this.hintText,
     this.getKey,
     this.getLabel,
-    this.getValue,
+    this.getValue, this.onFocus,
   }) : super(key: key);
 
   @override
@@ -141,6 +142,7 @@ class _XDropdownSearchState extends State<XDropdownSearch> {
                       widget.items.length < 15 ? TextInputType.none : null,
                   validator: widget.validator,
                   controller: widget.controller,
+                  onFocus: widget.onFocus,
                   colorText: XTheme.of(context).borderColor,
                   sizeInputText: 14,
                   topText: widget.topText ?? '',
