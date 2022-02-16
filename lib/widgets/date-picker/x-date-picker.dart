@@ -7,6 +7,8 @@ class XDatePicker extends StatelessWidget {
   final String? Function(String?)? validator;
   final String? topText;
   final String? hintText;
+  final DateTime? firstDate;
+  final DateTime? lastDate;
   final Function(DateTime) onSelectedDate;
 
   XDatePicker({
@@ -14,6 +16,8 @@ class XDatePicker extends StatelessWidget {
     this.validator,
     this.topText,
     this.hintText,
+    this.firstDate,
+    this.lastDate,
     required this.onSelectedDate,
   }) : super(key: key);
 
@@ -60,8 +64,8 @@ class XDatePicker extends StatelessWidget {
     final dataSelecionada = await showDatePicker(
       context: context,
       initialDate: selectedData.value,
-      firstDate: DateTime(1890, 1),
-      lastDate: DateTime.now(),
+      firstDate: firstDate ?? DateTime(1890, 1),
+      lastDate: lastDate ?? DateTime.now(),
       builder: (context, child) {
         return Theme(
             data: Theme.of(context).copyWith(
