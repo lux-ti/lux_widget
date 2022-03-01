@@ -46,23 +46,9 @@ class XCardProductionLine extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(10, 10, 30, 10),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    width: imageWidth ?? 40,
-                    height: imageHeight ?? 40,
-                    child: Image.network(imageUrl),
-                  ),
-                ],
-              ),
-              Spacer(),
               leftWidget ?? Container(),
-              Spacer(
-                flex: 4,
-              ),
               rightWidget ?? Container(),
             ],
           ),
