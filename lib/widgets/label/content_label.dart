@@ -15,6 +15,7 @@ class XContentLabel extends StatelessWidget {
   final double? nameSpace;
   final TextOverflow? overflow;
   final int? maxLines;
+  final CrossAxisAlignment? crossAxisAlignment;
 
   const XContentLabel({
     Key? key,
@@ -30,7 +31,7 @@ class XContentLabel extends StatelessWidget {
     this.nameSpace,
     this.nameWidth,
     this.overflow,
-    this.maxLines,
+    this.maxLines, this.crossAxisAlignment,
   }) : super(key: key);
 
   @override
@@ -38,7 +39,7 @@ class XContentLabel extends StatelessWidget {
     var xTheme = XTheme.of(context);
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
       children: [
         Text(
           topName,
