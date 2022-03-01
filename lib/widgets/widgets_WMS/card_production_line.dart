@@ -43,7 +43,7 @@ class XCardProductionLine extends StatelessWidget {
             borderRadius: BorderRadius.circular(borderRadius ?? 5),
             color: frontColor),
         child: Padding(
-          padding: EdgeInsets.fromLTRB(10, 10, 30, 10),
+          padding: EdgeInsets.fromLTRB(10, 10, 15, 10),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
