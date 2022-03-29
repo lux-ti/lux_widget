@@ -10,6 +10,7 @@ class XDatePicker extends StatelessWidget {
   final DateTime? firstDate;
   final DateTime? lastDate;
   final Function(DateTime) onSelectedDate;
+  final Rx<DateTime> selectedData;
 
   XDatePicker({
     Key? key,
@@ -18,10 +19,10 @@ class XDatePicker extends StatelessWidget {
     this.hintText,
     this.firstDate,
     this.lastDate,
-    required this.onSelectedDate,
+    required this.onSelectedDate, required this.selectedData,
   }) : super(key: key);
 
-  Rx<DateTime> selectedData = DateTime.now().obs;
+  
 
   String formatDate(DateTime date) {
     return DateFormat(
