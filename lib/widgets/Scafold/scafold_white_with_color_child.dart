@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:lux_ui/widgets/Scafold/Scafold.dart';
 
 class XScafoldWithColorChild extends XScafold {
@@ -8,12 +7,14 @@ class XScafoldWithColorChild extends XScafold {
   XScafoldWithColorChild(
       {this.alignment,
       required String title,
+      Widget? widget,
       Widget? child,
       double? fontSize,
       void Function()? onPressedButton,
       void Function()? onBack})
       : super(
             title: title,
+            widget: widget,
             fontSize: fontSize,
             child: child,
             onBack: onBack,

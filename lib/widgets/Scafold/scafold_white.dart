@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:lux_ui/lux_ui.dart';
 import 'package:lux_ui/util/lxi.dart';
@@ -12,6 +10,7 @@ class XScafold extends StatelessWidget {
   final Widget? child;
   final String? number;
   final bool buttonSpaceBetween;
+  final Widget? widget;
   final void Function()? onPressedButton;
   // late final XThemeData theme;
   final void Function()? onBack;
@@ -25,6 +24,7 @@ class XScafold extends StatelessWidget {
     this.buttonSpaceBetween = false,
     this.fontSize,
     this.fontSizeNumber,
+    this.widget,
   }) : super(key: key);
 
   Widget buildTop(context) {
@@ -63,8 +63,8 @@ class XScafold extends StatelessWidget {
                     ? Container()
                     : (number != null && onPressedButton == null)
                         ? Padding(
-                          padding: const EdgeInsets.only(right:20.0),
-                          child: Text(
+                            padding: const EdgeInsets.only(right: 20.0),
+                            child: Text(
                               number ?? '',
                               style: TextStyle(
                                 fontSize: fontSizeNumber ?? 52,
@@ -73,7 +73,7 @@ class XScafold extends StatelessWidget {
                                 color: theme.foregroundColor,
                               ),
                             ),
-                        )
+                          )
                         : (onPressedButton != null && number == null)
                             ? RoundedIconButton(
                                 onPressed: onPressedButton,
@@ -84,7 +84,9 @@ class XScafold extends StatelessWidget {
                                 iconSize: 19,
                                 icon: Icons.add,
                               )
-                            : Container()
+                            : Container(),
+                Spacer(),
+                widget ?? SizedBox()
               ],
             ),
           ),
