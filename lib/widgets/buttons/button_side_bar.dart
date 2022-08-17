@@ -9,6 +9,7 @@ class XSideBarButton extends StatelessWidget {
   final Color? colorIcon;
   final Color? colorText;
   final double? iconSize;
+  final double? space;
   final double? paddingSideBar;
   final MainAxisAlignment mainAxisAlignment;
 
@@ -21,7 +22,9 @@ class XSideBarButton extends StatelessWidget {
       this.colorIcon,
       this.iconSize,
       this.colorText,
-      this.mainAxisAlignment = MainAxisAlignment.start, this.paddingSideBar})
+      this.mainAxisAlignment = MainAxisAlignment.start,
+      this.paddingSideBar,
+      this.space})
       : super(key: key);
 
   @override
@@ -41,7 +44,7 @@ class XSideBarButton extends StatelessWidget {
               color: colorIcon ?? xTheme.backgroundColor,
             ),
             SizedBox(
-              width: 5,
+              width: space ?? 5,
             ),
             Text(
               text!,
