@@ -50,7 +50,7 @@ class XSideBarButton extends StatelessWidget {
               text!,
               style: TextStyle(
                   color: colorText ?? xTheme.backgroundColor,
-                  fontSize: fontSize,
+                  fontSize: fontSize ?? 14,
                   fontWeight: FontWeight.w300),
             )
           ],
