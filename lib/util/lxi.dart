@@ -18,12 +18,12 @@ class Lxi {
   getTest() {}
 
   Map modulesIcons = {
-    'production_icon': production_icon,
-    'transference_icon': transference_icon,
-    'inventory_icon': inventory_icon,
-    'conference_icon': conference_icon,
-    'separation_icon': separation_icon,
-    'avaria_icon': avaria_icon,
+    'tractor': production_icon,
+    'transference': transference_icon,
+    'inventory': inventory_icon,
+    'conference': conference_icon,
+    'separation': separation_icon,
+    'avaria': avaria_icon,
   };
 
   static const production_icon = LuxIconData(0xe800);
