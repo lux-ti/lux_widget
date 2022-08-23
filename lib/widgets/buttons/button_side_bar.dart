@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lux_ui/lib.dart';
 
 class XSideBarButton extends StatelessWidget {
-  final IconData icon;
+  final IconData? icon;
   final String? text;
   final void Function()? onTap;
   final double? fontSize;
@@ -15,7 +15,7 @@ class XSideBarButton extends StatelessWidget {
 
   const XSideBarButton(
       {Key? key,
-      required this.icon,
+      this.icon,
       this.text = '',
       this.onTap,
       this.fontSize = 30,
