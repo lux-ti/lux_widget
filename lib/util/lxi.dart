@@ -13,6 +13,19 @@ class LuxIconData extends IconData {
 /// Lxi is a collection of icons provided by
 /// [Lux Icons](https://example.com/).
 class Lxi {
+  getIcon(String iconName) => modulesIcons[iconName];
+
+  getTest() {}
+
+  Map modulesIcons = {
+    'production_icon': production_icon,
+    'transference_icon': transference_icon,
+    'inventory_icon': inventory_icon,
+    'conference_icon': conference_icon,
+    'separation_icon': separation_icon,
+    'avaria_icon': avaria_icon,
+  };
+
   static const production_icon = LuxIconData(0xe800);
   static const transference_icon = LuxIconData(0xe802);
   static const inventory_icon = LuxIconData(0xe803);
