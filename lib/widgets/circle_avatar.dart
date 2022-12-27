@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class XCircleAvatar extends StatelessWidget {
-  @required
   final String image;
-  @required
   final String initials;
   final double radius;
 
