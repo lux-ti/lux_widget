@@ -15,7 +15,6 @@ class LuxIconData extends IconData {
 class Lxi {
   getIcon(String iconName) => modulesIcons[iconName];
 
-  getTest() {}
 
   Map modulesIcons = {
     'tractor': production_icon,
@@ -24,6 +23,8 @@ class Lxi {
     'conference': conference_icon,
     'separation': separation_icon,
     'avaria': avaria_icon,
+    'entry_transfer': entry_transfer_icon,
+    'respond_request': responde_request_icon,
   };
 
   static const production_icon = LuxIconData(0xe800);
@@ -32,7 +33,8 @@ class Lxi {
   static const conference_icon = LuxIconData(0xe804);
   static const separation_icon = LuxIconData(0xe805);
   static const avaria_icon = LuxIconData(0xea09);
-
+  static const entry_transfer_icon = LuxIconData(0xe807);
+  static const responde_request_icon = LuxIconData(0xe806);
   static const Icon360 = LuxIconData(0xea01);
   static const cd = LuxIconData(0xea02);
   static const addToLibrary = LuxIconData(0xea03);
