@@ -23,7 +23,7 @@ class Lxi {
     'conference': conference_icon,
     'separation': separation_icon,
     'avaria': avaria_icon,
-    'entry_transfer': entry_transfer_icon,
+    'industry': entry_transfer_icon,
     'box': responde_request_icon,
   };
 
